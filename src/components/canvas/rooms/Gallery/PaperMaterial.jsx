@@ -120,21 +120,21 @@ const PaperMaterial = forwardRef(({ color = '#e0e0e0', roughness = 0.6, map, sid
             // regardless of which corridor segment (chunk) the room is in
             vec3 localPos = vWorldPositionColor - uRoomOrigin;
 
-            // dirX = -1.0 (głąb pokoju), dirZ = kąt (0.0 to prosto po osi X)
-            // Ustaw takie same wartości jak w usePaintMaterial.js dla spójności!
+            // dirX = -1.0（房间深处），dirZ = 角度（0.0 为沿 X 轴直线）
+            // 为保持一致，设置与 usePaintMaterial.js 相同的值！
             float dirX = -1.0;
             float dirZ = 0.1; 
             vec3 revealDir = normalize(vec3(dirX, 0.0, dirZ));
 
-            // Mapowanie postępu na odległość wzdłuż wektora
+            // 将进度映射到沿向量的距离
             float startDist = -5.0; 
             float endDist = 55.0;
             float targetDist = mix(startDist, endDist, uPaintProgress);
             
-            // Odległość pixela wzdłuż wybranego kierunku (relative to room origin)
+            // 像素沿选定方向的距离（相对房间原点）
             float distFromPlane = targetDist - dot(localPos, revealDir);
             
-            // Szum (próbkowanie w płaszczyźnie prostopadłej do X, czyli YZ)
+            // 噪声（在垂直于 X 的 YZ 平面采样）
             // Use localPos for noise too so the pattern is consistent
             float n = revealNoise(localPos.yz * 2.0) * 2.0;
             float n2 = revealNoise(localPos.yz * 8.0) * 0.5;

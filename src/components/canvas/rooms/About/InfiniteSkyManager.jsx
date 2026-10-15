@@ -145,8 +145,8 @@ const AwardButton = ({ onClick, texture, paintedTexture, width, height, position
 const STORY_CYCLE_LENGTH = 160;
 
 // === TWARDA LINIA ZANIKANIA DLA MILESTONES (WORLD SPACE) ===
-// Pokój About jest na Z = -25, więc -25 to drzwi pokoju
-// -27 = 2 metry za drzwiami (w głąb pokoju) - musi matchować CORRIDOR_CLIP_Z w SkyChunk
+// About 房间在 Z = -25，所以 -25 是房间门
+// -27 = 门后 2 米（深入房间）- 必须与 SkyChunk 中的 CORRIDOR_CLIP_Z 匹配
 const MILESTONE_CORRIDOR_CLIP_Z = -8.0;
 
 const InfiniteSkyManager = ({ scrollProgressRef }) => {
@@ -277,7 +277,7 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
     // Calculate aspect ratio
     // LEGACY FIX: Use original dimensions (2816x1536) to prevent stretching
     const legacyAspectRatio = 2816 / 1536; 
-    const avatarWidth = 6; // Zwiększony rozmiar awatara na chmurce
+    const avatarWidth = 6; // 云上角色放大的尺寸
     const avatarHeight = avatarWidth / legacyAspectRatio;
 
     // Animation: floating + spread apart when close
@@ -286,8 +286,8 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
 
         const time = state.clock.elapsedTime;
 
-        // === TWARDA LINIA CLIP (RĘCZNE OBLICZENIE WORLD Z) ===
-        // worldZ = pokój(-25) + scrollProgress + lokalna pozycja milestone
+        // === 硬裁剪线（手动计算世界 Z） ===
+        // worldZ = 房间(-25) + scrollProgress + 里程碑局部位置
         const scrollProgress = scrollProgressRef?.current || 0;
         const worldZ = ROOM_Z + scrollProgress + z;
         groupRef.current.visible = worldZ < MILESTONE_CORRIDOR_CLIP_Z;
@@ -303,9 +303,9 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
         // Spread effect: starts at z = -25, full spread at z = -5
         // This makes elements spread BEFORE they reach the camera
         // === EDYTUJ TUTAJ (INTRO) ===
-        // Zwiększ różnicę między Start a End, żeby animacja była wolniejsza
-        const spreadStart = -70; // Startuje wcześniej
-        const spreadEnd = -50;   // Kończy później
+        // 增大 Start 与 End 的差值，让动画更慢
+        const spreadStart = -70; // 更早开始
+        const spreadEnd = -50;   // 更晚结束
         let spreadFactor = 0;
 
         if (distanceZ > spreadStart && distanceZ < spreadEnd) {
@@ -471,7 +471,7 @@ const AWARDS_DATA = {
  * SOTY (center), SOTD, SOTM, Featured (behind)
  */
 const AwardsMilestone = ({ z, scrollProgressRef }) => {
-    // Pobieranie danych nagród z Sanity (z fallbackiem)
+    // 从 Sanity 获取奖项数据（带降级）
     const sanityAwards = useAwards();
     const awardsData = sanityAwards || AWARDS_DATA;
 
@@ -839,7 +839,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
     useFrame((state) => {
         if (!groupRef.current) return;
 
-        // === TWARDA LINIA CLIP (RĘCZNE OBLICZENIE WORLD Z) ===
+        // === 硬裁剪线（手动计算世界 Z） ===
         const scrollProgress = scrollProgressRef?.current || 0;
         const worldZ = ROOM_Z + scrollProgress + z;
         groupRef.current.visible = worldZ < MILESTONE_CORRIDOR_CLIP_Z;
@@ -852,7 +852,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
 
         // Reveal effect (islands float up from below clouds)
         // === EDYTUJ TUTAJ (JOURNEY) ===
-        const revealStart = -100; // Wcześniejszy start
+        const revealStart = -100; // 更早开始
         const revealEnd = -20;
         let revealFactor = 0;
 
@@ -927,7 +927,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
                 {/* NAPIS NA WYSPIE (UO) - EDYTUJ TUTAJ */}
                 <Text
                     position={[0.1, -0.85, 0.1]} // POZYCJA (X, Y, Z)
-                    fontSize={0.4}           // WIELKOŚĆ
+                    fontSize={0.4}           // 大小
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
@@ -950,7 +950,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
                 {/* NAPIS NA WYSPIE (Freelance) - EDYTUJ TUTAJ */}
                 <Text
                     position={[0, -0.65, 0.1]} // POZYCJA (X, Y, Z)
-                    fontSize={0.5}           // WIELKOŚĆ
+                    fontSize={0.5}           // 大小
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
@@ -969,7 +969,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
  */
 
 // Balloon configuration: size category, texture path, position offset
-// === EDYTUJ WYSOKOŚĆ TUTAJ (zmień wartość 'y' dla każdego balona) ===
+// === 在此编辑高度（修改每个气球的 'y' 值） ===
 const BALLOON_CONFIG = [
     // Large balloons (main skills) - front and center
     { texture: '/textures/about/reactduzybalon.webp', paintedTexture: '/textures/about/reactduzybalon_painted.webp', label: 'React', size: 'large', x: -2.5, y: 2, z: 0.3, phase: 0 },
@@ -1050,11 +1050,11 @@ const SkillBalloon = ({ config, revealFactorRef, spreadFactorRef, timeRef }) => 
     const targetMagnet = useRef({ x: 0, y: 0 });
     const currentMagnet = useRef({ x: 0, y: 0 });
 
-    // === RESPONSYWNOŚĆ ===
-    // Na mobile (wąski viewport) balony są bliżej środka
-    const positionScale = isTouch ? 0.5 : 1; // Jak bardzo ściskamy pozycje na mobile
+    // === 响应式 ===
+    // 移动端（窄视口）气球更靠近中心
+    const positionScale = isTouch ? 0.5 : 1; // 移动端位置压缩程度
     const spreadScale = isTouch ? 0.4 : 1;   // Jak bardzo zmniejszamy spread na mobile
-    const sizeScale = isTouch ? 0.85 : 1;    // Trochę mniejsze balony na mobile
+    const sizeScale = isTouch ? 0.85 : 1;    // 移动端气球略小
 
     // Cursor handling
     useEffect(() => {
@@ -1118,7 +1118,7 @@ const SkillBalloon = ({ config, revealFactorRef, spreadFactorRef, timeRef }) => 
     // Animation update loop
     useFrame((state, delta) => {
         if (hovered && !isPopping) {
-            targetScale.current = 1.05; // lekkie powiększenie
+            targetScale.current = 1.05; // 轻微放大
         } else {
             targetScale.current = 1.0;
             targetMagnet.current.x = 0;
@@ -1339,7 +1339,7 @@ const SkillsMilestone = ({ z, scrollProgressRef }) => {
     useFrame((state) => {
         if (!groupRef.current) return;
 
-        // === TWARDA LINIA CLIP (RĘCZNE OBLICZENIE WORLD Z) ===
+        // === 硬裁剪线（手动计算世界 Z） ===
         const scrollProgress = scrollProgressRef?.current || 0;
         const worldZ = ROOM_Z + scrollProgress + z;
         groupRef.current.visible = worldZ < MILESTONE_CORRIDOR_CLIP_Z;
@@ -1367,10 +1367,10 @@ const SkillsMilestone = ({ z, scrollProgressRef }) => {
         revealFactorRef.current = newRevealFactor;
 
         // === SPREAD EFFECT (EDYTUJ TUTAJ SKILLS SPREAD) ===
-        // Im bliżej kamery, tym bardziej balony się rozsuwają
-        // Większy zakres = dłuższa, bardziej widoczna animacja
-        const spreadStart = -70; // Kiedy animacja SIĘ ZACZYNA (Wcześniej)
-        const spreadEnd = -40;    // Kiedy animacja jest PEŁNA (Później)
+        // 离相机越近，气球散得越开
+        // 范围越大 = 动画越长、越明显
+        const spreadStart = -70; // 动画开始时机（更早）
+        const spreadEnd = -40;    // 动画完成时机（更晚）
         let newSpreadFactor = 0;
 
         if (distanceZ > spreadStart && distanceZ < spreadEnd) {

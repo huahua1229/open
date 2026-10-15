@@ -79,13 +79,13 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
     const corridorHeight = 3.5;
 
     // =============================================
-    // USTAWIENIA PODŁOGI (FLOOR SETTINGS)
+    // 地板设置（FLOOR SETTINGS）
     // =============================================
-    // Tekstura kawałka podłogi - ręcznie rysowane deski
+    // 地板块纹理 - 手绘木板
     const floorTexture = useTexture('/textures/corridor/kawalekpodlogi.webp');
     floorTexture.wrapS = floorTexture.wrapT = THREE.ClampToEdgeWrapping;
 
-    // Tekstura listwy przypodłogowej (baseboards)
+    // 踢脚线纹理（baseboards）
     // Wymiary obrazka: 1582 x 94 px → aspect ratio 16.83:1
     const baseboardTexture = useTexture('/textures/corridor/texturadoprogow.webp');
     baseboardTexture.wrapS = baseboardTexture.wrapT = THREE.RepeatWrapping;
@@ -109,11 +109,11 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
     if (effectiveLength <= 0) return null;
 
     // =============================================
-    // REGULACJA PRZYCIĘCIA LISTWY PRZY DRZWIACH
+    // 门边踢脚线裁剪调节
     // =============================================
-    // O ile (w unitach 3D) skrócić listwę z każdej strony przy ramce drzwi.
-    // Zwiększ wartość → większa przerwa między listwą a drzwiami.
-    // Zmniejsz wartość → listwa bliżej drzwi (może najeżdżać na ramkę).
+    // 在门框每侧缩短踢脚线多少（3D 单位）。
+    // 增大数值 → 踢脚线与门之间间隙更大。
+    // 减小数值 → 踢脚线更靠近门（可能压到门框）。
     const BASEBOARD_DOOR_MARGIN = 0.5;
 
     // Helper to generate wall segments for a side ('left' or 'right')
@@ -154,7 +154,7 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                     rotation: [0, isLeft ? Math.PI / 2 : -Math.PI / 2, 0],
                     width: segLength,
                     isLeft,
-                    // Ten segment kończy się przy drzwiach (od strony niższego Z)
+                    // 这段在门处结束（从较低 Z 一侧）
                     trimLowZ: true
                 });
             }
@@ -251,7 +251,7 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                 rotation: [0, isLeft ? Math.PI / 2 : -Math.PI / 2, 0],
                 width: segLength,
                 isLeft,
-                // Ten segment zaczyna się zaraz po drzwiach (od strony wyższego Z)
+                // 这段在门后紧接着开始（从较高 Z 一侧）
                 trimHighZ: currentZ !== effectiveStart
             });
         }
@@ -265,37 +265,37 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
     return (
         <group>
             {/* =============================================
-                PODŁOGA - Kafelki (FLOOR TILES)
+                地板 - 地砖（FLOOR TILES）
                 =============================================
-                Każdy kafelek jest płaskim plane z teksturą kawalekpodlogi.png
-                Co drugi kafelek jest obrócony o 180° i lustrzanie odbity
-                żeby fajnie się łączyły ze sobą.
+                每块地砖都是带 kawalekpodlogi.png 纹理的平面
+                每隔一块地砖旋转 180° 并镜像翻转
+                以便它们能很好地拼接在一起。
                 
-                USTAWIENIA DO RĘCZNEJ REGULACJI:
-                - TILE_LENGTH: długość jednego kafelka (w unitach 3D)
-                - TILE_WIDTH: szerokość (powinna pasować do korytarza = 7)
-                - FLOOR_START_OFFSET: przesunięcie startu podłogi
+                手动调节设置：
+                - TILE_LENGTH: 单块地砖长度（3D 单位）
+                - TILE_WIDTH: 宽度（应匹配走廊 = 7）
+                - FLOOR_START_OFFSET: 地板起点偏移
             */}
             {(() => {
-                // ===== REGULACJA KAFELKÓW PODŁOGI =====
-                const TILE_LENGTH = 10;          // Długość jednego kafelka wzdłuż korytarza
-                const CENTER_WIDTH = 5;          // Szerokość środkowego pasa (węższe deski = ładniej)
-                const SIDE_WIDTH = 1;            // Szerokość bocznych pasów po lewej i prawej
-                const FLOOR_START_OFFSET = 2;    // Offset startu (+ = dalej, - = bliżej kamery)
+                // ===== 地砖调节 =====
+                const TILE_LENGTH = 10;          // 单块地砖沿走廊的长度
+                const CENTER_WIDTH = 5;          // 中间带宽度（更窄的木板 = 更好看）
+                const SIDE_WIDTH = 1;            // 左右两侧带的宽度
+                const FLOOR_START_OFFSET = 2;    // 起点偏移（+ = 更远，- = 更近相机）
 
-                // Przycięte tekstury do bocznych pasów (ta sama skala co środek, nie rozciągnięte!)
-                // UV repeat = jaki ułamek tekstury pokazać (SIDE_WIDTH / CENTER_WIDTH)
+                // 侧带用的裁剪纹理（与中间同比例，不被拉伸！）
+                // UV repeat = 显示纹理的哪一部分（SIDE_WIDTH / CENTER_WIDTH）
                 const uvFraction = SIDE_WIDTH / CENTER_WIDTH; // np. 1/5 = 0.2 → 20% tekstury
 
                 const leftSideTexture = floorTexture.clone();
                 leftSideTexture.needsUpdate = true;
-                leftSideTexture.repeat.set(1, uvFraction);    // Pełna długość, przycięta szerokość
-                leftSideTexture.offset.set(0, 0);             // Lewa krawędź tekstury
+                leftSideTexture.repeat.set(1, uvFraction);    // 全长度，裁剪宽度
+                leftSideTexture.offset.set(0, 0);             // 纹理左边缘
 
                 const rightSideTexture = floorTexture.clone();
                 rightSideTexture.needsUpdate = true;
                 rightSideTexture.repeat.set(1, uvFraction);
-                rightSideTexture.offset.set(0, 1 - uvFraction); // Prawa krawędź tekstury
+                rightSideTexture.offset.set(0, 1 - uvFraction); // 纹理右边缘
 
                 const tiles = [];
                 const floorY = -corridorHeight / 2;
@@ -308,7 +308,7 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                     const globalTileIndex = Math.round(tileZ / TILE_LENGTH);
                     const isMirrored = Math.abs(globalTileIndex) % 2 === 1;
 
-                    // --- Środkowy pas podłogi ---
+                    // --- 地板中间带 ---
                     tiles.push(
                         <mesh
                             key={`floor-center-${tileZ.toFixed(1)}`}
@@ -326,7 +326,7 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                         </mesh>
                     );
 
-                    // --- Lewy pas podłogi (przycięta tekstura, nie rozciągnięta!) ---
+                    // --- 地板左侧带（裁剪纹理，未被拉伸！） ---
                     tiles.push(
                         <mesh
                             key={`floor-left-${tileZ.toFixed(1)}`}
@@ -344,7 +344,7 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                         </mesh>
                     );
 
-                    // --- Prawy pas podłogi (przycięta tekstura, nie rozciągnięta!) ---
+                    // --- 地板右侧带（裁剪纹理，未被拉伸！） ---
                     tiles.push(
                         <mesh
                             key={`floor-right-${tileZ.toFixed(1)}`}
@@ -433,26 +433,26 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                     // =============================================
                     // PRZYCINANIE LISTWY PRZY DRZWIACH
                     // =============================================
-                    // Listwa jest węższa o BASEBOARD_DOOR_MARGIN z każdej strony
-                    // gdzie segment sąsiaduje z drzwiami (trimStart / trimEnd).
-                    // Środek listwy jest przesunięty, żeby wyrównać do ściany.
-                    // trimHighZ = przytnij od strony wyższego Z (gdzie zaczyna się wnęka drzwi)
-                    // trimLowZ  = przytnij od strony niższego Z  (gdzie kończy się wnęka drzwi)
+                    // 踢脚线在每侧窄 BASEBOARD_DOOR_MARGIN
+                    // 在段与门相邻处（trimStart / trimEnd）。
+                    // 踢脚线中心被偏移，以对齐墙面。
+                    // trimHighZ = 从较高 Z 一侧裁剪（门洞开始处）
+                    // trimLowZ  = 从较低 Z 一侧裁剪（门洞结束处）
                     const bbMarginHighZ = seg.trimHighZ ? BASEBOARD_DOOR_MARGIN : 0;
                     const bbMarginLowZ = seg.trimLowZ ? BASEBOARD_DOOR_MARGIN : 0;
                     const bbWidth = seg.width - bbMarginHighZ - bbMarginLowZ;
 
-                    // Przesunięcie środka listwy wzdłuż osi lokalnej (X w przestrzeni grupy)
-                    // Segment jest obrócony, więc lokalna oś X = wzdłuż ściany.
-                    // Po rotacji +PI/2 (lewa ściana): lokalna oś +X → świat -Z (niższy Z)
-                    // Po rotacji -PI/2 (prawa ściana): lokalna oś +X → świat +Z (wyższy Z)
-                    // Dlatego offset jest odwrócony między lewą a prawą ścianą.
+                    // 沿局部轴（组空间中的 X）偏移踢脚线中心
+                    // 段被旋转，所以局部 X 轴 = 沿墙方向。
+                    // 旋转 +PI/2（左墙）后：局部 +X 轴 → 世界 -Z（较低 Z）
+                    // 旋转 -PI/2（右墙）后：局部 +X 轴 → 世界 +Z（较高 Z）
+                    // 因此左右墙之间的偏移是相反的。
                     let bbOffsetX;
                     if (seg.isLeft) {
-                        // +X lokalny = -Z świat = strona lowZ
+                        // 局部 +X = 世界 -Z = lowZ 侧
                         bbOffsetX = (bbMarginLowZ - bbMarginHighZ) / 2;
                     } else {
-                        // +X lokalny = +Z świat = strona highZ
+                        // 局部 +X = 世界 +Z = highZ 侧
                         bbOffsetX = (bbMarginHighZ - bbMarginLowZ) / 2;
                     }
 
@@ -468,7 +468,7 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
                                 />
                             </mesh>
 
-                            {/* Baseboard (Listwa przypodłogowa) - przycięta przy drzwiach */}
+                            {/* 踢脚线（Baseboard）- 门边被裁剪 */}
                             <mesh position={[bbOffsetX, -corridorHeight / 2 + 0.075, 0.01]}>
                                 <planeGeometry args={[bbWidth, 0.15]} />
                                 <meshBasicMaterial color="#e0e0e0"

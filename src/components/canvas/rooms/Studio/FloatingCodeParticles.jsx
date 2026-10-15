@@ -170,7 +170,7 @@ const FloatingCodeParticles = ({ towerRotationRef, fallOffsetRef }) => {
 
             // Calculate raw X based on initial position + rotation offset
             // We subtract rotationOffset to make them move opposite to creating depth?
-            // User said: "jak sie obraca wierza w lewo to te cząsteczki leca w lewo"
+            // 用户要求：「当塔向左旋转时，这些粒子也向左飞」
             // If I rotate the tower to the left (counter-clockwise, typically +RotationY), 
             // the "face" sets moves left. 
             // So if `towerRotation` increases, we want `x` to decrease?

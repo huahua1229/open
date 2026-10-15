@@ -33,21 +33,21 @@ const GalleryClouds = ({ count = 12, seed = 42, rotationOffset = [0, -Math.PI / 
             const z = -5 - random() * 30; // Depth variation
             const driftSpeed = 0.1 + random() * 0.15;
 
-            // Równomierny offset dla każdej chmury - rozłożone po całej szerokości
-            // Każda chmura startuje w innym miejscu na osi X
+            // 每朵云的均匀偏移 - 分布在整个宽度上
+            // 每朵云从 X 轴上的不同位置出发
             const initialOffset = (i / count) * totalDistance + random() * 3;
 
-            // Oblicz początkową pozycję X jakby chmura już była w ruchu
+            // 计算初始 X 位置，如同云已在运动中
             const initialX = startX - (initialOffset % (totalDistance + 10)) + 5;
 
             items.push({
                 id: i,
-                position: [initialX, y, z],  // Pozycja już przeliczona!
+                position: [initialX, y, z],  // 位置已提前计算！
                 scale: 0.5 + random() * 1.2,
                 opacity: 0.4 + random() * 0.3,
                 textureIndex: Math.floor(random() * CLOUD_TEXTURES.length),
                 driftSpeed: driftSpeed,
-                initialOffset: initialOffset,  // Zapamiętaj offset do animacji
+                initialOffset: initialOffset,  // 记住偏移用于动画
             });
         }
 
@@ -106,7 +106,7 @@ const StaticCloud = ({ position, scale, opacity, textureIndex, driftSpeed, initi
         if (!meshRef.current) return;
 
         // Continuous linear movement from right to left with looping
-        // initialOffset zapewnia że każda chmura startuje w innym miejscu
+        // initialOffset 确保每朵云从不同位置出发
         const time = clock.getElapsedTime();
         const progress = ((time * driftSpeed + initialOffset) % (totalDistance + 10)) - 5;
         const currentX = startX - progress;

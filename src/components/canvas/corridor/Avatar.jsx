@@ -87,7 +87,7 @@ const Avatar = ({ position = [10, -20, 30] }) => {
 
         // === FRAME ANIMATION LOGIC (PING-PONG) ===
         // Using delta for consistent speed regardless of monitor Hz
-        const FPS = 20; // Prędkość machania (klatki na sekundę)
+        const FPS = 20; // 挥动速度（每秒帧数）
         const frameDuration = 1 / FPS;
 
         frameTimer.current += delta;
@@ -95,23 +95,23 @@ const Avatar = ({ position = [10, -20, 30] }) => {
         if (frameTimer.current >= frameDuration) {
             frameTimer.current = 0; // Reset timer
 
-            // Jesteśmy na ostatniej (od prawej)? To machamy do lewej
+            // 我们是在最后一张（从右数）吗？那就向左挥动
             if (currentFrame.current >= TOTAL_FRAMES - 1) {
                 isReversing.current = true;
             }
-            // Jesteśmy na indeksie 0 (czyli 1.webp)? To machamy z powrotem do prawej
+            // 我们在索引 0（即 1.webp）吗？那就向右挥动回去
             else if (currentFrame.current <= 0) {
                 isReversing.current = false;
             }
 
-            // Przejście klatki
+            // 切换帧
             if (isReversing.current) {
                 currentFrame.current -= 1;
             } else {
                 currentFrame.current += 1;
             }
 
-            // Zabezpieczenie przed błędem indeksu (nie schodzimy poniżej 0)
+            // 防止索引越界（不低于 0）
             const safeIndex = Math.max(0, Math.min(TOTAL_FRAMES - 1, currentFrame.current));
 
             // Aplikacja tekstury

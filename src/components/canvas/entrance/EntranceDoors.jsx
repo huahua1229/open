@@ -50,7 +50,7 @@ const EntranceDoors = ({
         setIsMobile(isTouchDevice() || window.innerWidth < 1000);
     }, []);
 
-    // Dla hooków tekstur musimy obliczyć to raz na starcie
+    // 对纹理 hook 而言，我们需在启动时计算一次
     const isMobileDevice = typeof window !== 'undefined' && (isTouchDevice() || window.innerWidth < 1000);
     const dummyTex = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
@@ -576,7 +576,7 @@ const EntranceDoors = ({
         <group ref={groupRef} position={[position[0], 0, position[2]]}>
 
             {/* === STONE PATH FLOOR (On Top - in front of entrance) === */}
-            {/* WYSOKOŚĆ STONE PATH: zmień 'floorY + 0.02' - większa liczba = wyżej */}
+            {/* 石板路高度：修改 'floorY + 0.02' - 数字越大越高 */}
             <mesh
                 position={[0, floorY + 0.02, pathLength / 2]}
                 rotation={[-Math.PI / 2, 0, 0]}
@@ -610,11 +610,11 @@ const EntranceDoors = ({
             {/* === BRICK FACADE === */}
             {/* 
                 DOSTOSOWANIE OBRAZKA (TEXTURE ADJUSTMENT):
-                1. args={[Szerokość, Wysokość]} - Rozmiar obrazka
-                2. facadeYOffset - Przesunięcie góra/dół (np. -1 obniży, 1 podwyższy)
+                1. args={[宽度, 高度]} - 图片大小
+                2. facadeYOffset - 上下偏移（如 -1 降低、1 升高）
             */}
             <mesh position={[0, wallCenterY + facadeYOffset + 1.65, 0.15]}>
-                {/* args={[Szerokość, Wysokość]} - Zmieniaj te liczby (np. 7, 8) */}
+                {/* args={[宽度, 高度]} - 修改这些数字（如 7, 8） */}
                 <planeGeometry args={[16., 8]} />
                 <meshBasicMaterial color="#e0e0e0"
                     map={bricksTexture}
@@ -875,7 +875,7 @@ const EntranceDoors = ({
 
                     {/* Quote Text */}
                     {/* ROZMIAR TEKSTU: fontSize - mniejsza = mniejszy tekst */}
-                    {/* ZAWIJANIE: maxWidth - mniejsza = wcześniejsze zawijanie */}
+                    {/* 换行：maxWidth - 越小越早换行 */}
                     <Text
                         position={[0, 0.1, 0.01]}
                         fontSize={0.07}

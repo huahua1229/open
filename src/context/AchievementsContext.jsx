@@ -25,7 +25,7 @@ export const AchievementsProvider = ({ children }) => {
             const saved = localStorage.getItem('itom_achievements');
             if (saved) {
                 const parsed = JSON.parse(saved);
-                // Wrzucamy do pule, ale ignorujemy 'corridor_enter' żeby tooltip wejściowy zawsze się pojawiał
+                // 加入队列，但忽略 'corridor_enter'，让入口提示始终出现
                 const filtered = parsed.filter(id => id !== 'corridor_enter');
                 completedRef.current = [...filtered];
                 return filtered;

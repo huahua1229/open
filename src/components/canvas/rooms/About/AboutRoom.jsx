@@ -14,7 +14,7 @@ const CHUNK_LENGTH = 40;
 
 // ============================================
 // ⚙️ AUDIO SETTINGS - TWEAK HERE
-// Edytuj te wartości, aby zmienić głośność i zasięg słyszalności szumu wiatru
+// 修改这些值以改变风声的音量和可闻范围
 // ============================================
 export const AUDIO_SETTINGS = {
     volume: 2.5,

@@ -19,7 +19,7 @@ const _tempScale = new THREE.Vector3();
 
 // ============================================
 // ⚙️ AUDIO SETTINGS - TWEAK HERE
-// Edytuj te wartości, aby zmienić głośność i zasięg słyszalności szumu miasta
+// 修改这些值以改变城市噪音的音量和可闻范围
 // ============================================
 export const AUDIO_SETTINGS = {
     volume: 0.6,
@@ -101,7 +101,7 @@ const wrapZh = (text, n) => {
 };
 const GAP = 2.5;
 
-// Zmień te wartości aby dopasować proporcje ptaka (legacy ratio 1.41)
+// 修改这些值以匹配鸟的比例（legacy ratio 1.41）
 const BIRD_WIDTH = 0.49;
 const BIRD_HEIGHT = 0.35;
 
@@ -659,18 +659,18 @@ const FlyingBird = ({ texture }) => {
     const birdRef = useRef();
     const startX = -25;
     const endX = 25;
-    const speed = 2.5; // Zmniejszona prędkość lotu
+    const speed = 2.5; // 降低的飞行速度
 
-    // Zmienne do fizyki skoków
+    // 跳跃物理相关变量
     const velocityY = useRef(0);
-    const gravity = -12.0; // Zmniejszona grawitacja dla większej płynności
+    const gravity = -12.0; // 降低重力以获得更流畅的效果
     const jumpStrength = 5.5; // Delikatniejszy skok
     const jumpInterval = useRef(0);
 
     useFrame((state, delta) => {
         if (!birdRef.current) return;
 
-        // Zabezpieczenie przed zbyt dużym powiększeniem delty (przy lagach)
+        // 防止 delta 过大（卡顿时）
         const safeDelta = Math.min(delta, 0.05);
 
         // Ruch w poziomie
@@ -688,33 +688,33 @@ const FlyingBird = ({ texture }) => {
         velocityY.current += gravity * safeDelta;
         birdRef.current.position.y += velocityY.current * safeDelta;
 
-        // Skakanie (płynniejsze i przewidywalne)
+        // 跳跃（更流畅、更可预测）
         jumpInterval.current -= safeDelta;
 
-        // Skok następuje po upływie czasu przewidzianego do następnego kliknięcia
+        // 达到下一次点击的预定时间后触发跳跃
         if (jumpInterval.current <= 0 || birdRef.current.position.y < 3.2) {
             velocityY.current = jumpStrength;
-            // Rzadsze, bardziej rytmiczne skoki (np. co pełną sekundę)
+            // 更稀疏、更有节奏的跳跃（如每满一秒一次）
             jumpInterval.current = 0.9 + Math.random() * 0.3;
         }
 
-        // Ograniczenie dolne podłogi
+        // 地板下边界
         if (birdRef.current.position.y < 3.0) {
             birdRef.current.position.y = 3.0;
             velocityY.current = jumpStrength;
         }
 
-        // Ograniczenie górne sufitu
+        // 天花板上边界
         if (birdRef.current.position.y > 6.5) {
             birdRef.current.position.y = 6.5;
             velocityY.current = 0;
         }
 
         // Rotacja ptaka
-        // W Flappy Bird ptak delikatnie opada dziobem w dół gdy spada, i kieruje wzrok do góry gdy skacze
+        // 在 Flappy Bird 中，鸟下落时喙略微向下，跳跃时朝上
         const targetRotationZ = THREE.MathUtils.clamp(velocityY.current * 0.05, -Math.PI / 6, Math.PI / 8);
 
-        // Bardzo płynne obracanie (lerp)
+        // 非常平滑的旋转（lerp）
         birdRef.current.rotation.z = THREE.MathUtils.lerp(birdRef.current.rotation.z, targetRotationZ, safeDelta * 8);
     });
 
@@ -1028,7 +1028,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
             }
         }
 
-        // --- Zrównaj pozycję tekstu Z z animacją zaginania i falowania kartki (PRZÓD) ---
+        // --- 让文字 Z 位置与纸张弯折波动动画对齐（正面） ---
         if (textRef.current && materialRef.current) {
             const y = textRef.current.position.y;
             const uBend = materialRef.current.bend;
@@ -1041,12 +1041,12 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
 
             textRef.current.position.z = bendAmount + flutter + 0.02;
 
-            // Obrót tekstu by przylegał do krzywizny (pochodna dz/dy)
+            // 旋转文字使其贴合曲率（导数 dz/dy）
             const dz_dy = 2.0 * y * uBend + 2.0 * Math.cos(uTime * 2.0 + y * 2.0) * totalWind * (1.0 + Math.abs(uBend * 3.0));
             textRef.current.rotation.x = Math.atan(dz_dy);
         }
 
-        // --- Zrównaj pozycję przycisku Z z animacją pleców (TYŁ) ---
+        // --- 让按钮 Z 位置与纸张背面动画对齐（背面） ---
         if (buttonGroupRef.current && materialRef.current) {
             const y = buttonGroupRef.current.position.y;
             const uBend = materialRef.current.bend;
@@ -1057,21 +1057,21 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
             const totalWind = 0.02 + uWindStrength;
             const flutter = Math.sin(uTime * 2.0 + y * 2.0) * totalWind * (1.0 + Math.abs(uBend * 3.0));
 
-            // PAMIĘTAJ! Cała płaszczyzna zgina się w przód (+Z względem rodzica).
-            // A że my jesteśmy PO ZEWNĘTRZNEJ stronie (z tyłu pleców), chcemy być ułamek za płaszczyzną, np -0.03
-            // Wcześniej omyłkowo odwróciłem znak całego równania ( -(bendAmount...) ), co odwróciło falowanie. Prawidłowo jest tak:
+            // 记住！整个平面向前弯折（相对父级 +Z）。
+            // 而我们在外侧（背面后方），应位于平面后方一小段，如 -0.03
+            // 之前曾误将整个等式的符号翻转（-(bendAmount...)），导致波动反向。正确写法如下：
             buttonGroupRef.current.position.z = bendAmount + flutter - 0.03;
 
-            // Obrót przycisku by przylegał do krzywizny, będąc po przeciwnej stronie (dodatkowe odwrócenie o Pi)
+            // 旋转按钮以贴合曲率，位于另一侧（额外翻转 Pi）
             const dz_dy = 2.0 * y * uBend + 2.0 * Math.cos(uTime * 2.0 + y * 2.0) * totalWind * (1.0 + Math.abs(uBend * 3.0));
             buttonGroupRef.current.rotation.x = Math.PI + Math.atan(dz_dy);
 
-            // Hover animacja powiększania dla przycisku (napis się powiększa)
+            // 按钮的 hover 放大动画（文字放大）
             const targetScale = btnHovered ? 1.08 : 1;
             buttonGroupRef.current.scale.lerp(_tempScale.set(targetScale, targetScale, 1), 0.15);
         }
 
-        // --- Zrównaj pozycję górnego opisu (PROJECT DETAILS) ---
+        // --- 对齐顶部说明（PROJECT DETAILS）的位置 ---
         if (detailsGroupRef.current && materialRef.current) {
             const y = detailsGroupRef.current.position.y;
             const uBend = materialRef.current.bend;
@@ -1082,15 +1082,15 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
             const totalWind = 0.02 + uWindStrength;
             const flutter = Math.sin(uTime * 2.0 + y * 2.0) * totalWind * (1.0 + Math.abs(uBend * 3.0));
 
-            // Z tyłu (jak button)
+            // 在背面（同按钮）
             detailsGroupRef.current.position.z = bendAmount + flutter - 0.03;
 
-            // Obrót
+            // 旋转
             const dz_dy = 2.0 * y * uBend + 2.0 * Math.cos(uTime * 2.0 + y * 2.0) * totalWind * (1.0 + Math.abs(uBend * 3.0));
             detailsGroupRef.current.rotation.x = Math.PI + Math.atan(dz_dy);
         }
 
-        // --- Zrównaj pozycję sekcji Tech Stack ---
+        // --- 对齐 Tech Stack 区块的位置 ---
         if (techStackGroupRef.current && materialRef.current) {
             const y = techStackGroupRef.current.position.y;
             const uBend = materialRef.current.bend;
@@ -1200,14 +1200,14 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                     />
                 </mesh>
 
-                {/* === PRZYCISK: POWRÓT DO GALERII NA PLECACH KARTKI === */}
+                {/* === 按钮：纸张背面返回画廊 === */}
                 {/* POLARIS 版：所有卡片（项目卡与照片卡）都有「返回画廊」按钮 */}
                 <group
                     ref={buttonGroupRef}
                     position={[0, 0.75, 0]}
                     rotation={[Math.PI, 0, 0]}
                 >
-                    {/* Warstwa 1: Wizualna ramka przycisku (bez eventów) */}
+                    {/* 第 1 层：按钮视觉边框（无事件） */}
                     <mesh>
                         <planeGeometry args={[1.2, 1.2 / 3.613]} />
                         <meshBasicMaterial color="#ffffff"
@@ -1217,7 +1217,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                         />
                     </mesh>
 
-                    {/* Warstwa 2: Napis OPEN PROJECT (bez eventów) */}
+                    {/* 第 2 层：OPEN PROJECT 文字（无事件） */}
                     <Text
                         ref={openTextRef}
                         position={[0, 0, 0.01]}
@@ -1231,7 +1231,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                         返回画廊
                     </Text>
 
-                    {/* Warstwa 3: Niewidoczny hit-area pokrywający cały przycisk - łapie WSZYSTKIE eventy */}
+                    {/* 第 3 层：覆盖整个按钮的隐形点击区 - 捕获所有事件 */}
                     <mesh
                         position={[0, 0, 0.02]}
                         onClick={(e) => {
@@ -1262,12 +1262,12 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                 {/* === TEKST NA PLECACH KARTKI (PROJECT DETAILS) === */}
                 <group
                     ref={detailsGroupRef}
-                    position={[0, -0.5, 0]} // Miejsce u góry (gdy Y=0.75 to dół, to Y=-0.4 to góra)
+                    position={[0, -0.5, 0]} // 上方位置（Y=0.75 为下，Y=-0.4 为上）
                     rotation={[Math.PI, 0, 0]}
                 >
                     <Text
                         ref={detailsTextRef1}
-                        position={[0, 0.28, 0.01]} // Względem środka detailsGroupRef, wyżej
+                        position={[0, 0.28, 0.01]} // 相对 detailsGroupRef 中心，更高
                         fontSize={0.10}
                         color="#1c1c1c"
                         font="/fonts/SmileySans-Oblique.ttf"
@@ -1281,13 +1281,13 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
 
                     <Text
                         ref={detailsTextRef2}
-                        position={[0, 0.2, 0.01]} // Poniżej nagłówka
+                        position={[0, 0.2, 0.01]} // 标题下方
                         fontSize={0.06}
                         color="#333333"
                         font="/fonts/SmileySans-Oblique.ttf"
                         anchorX="center"
                         anchorY="top"
-                        maxWidth={1.1} // Maksymalna szerokość zanim zacznie łamać linie
+                        maxWidth={1.1} // 开始换行前的最大宽度
                         lineHeight={1.4}
                         textAlign="center"
                         fillOpacity={0} // Start hidden
@@ -1300,7 +1300,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                 {/* POLARIS 版：项目卡显示「技术栈」+ 4 个图标；照片卡（纯展示）改为古代诗词名句装饰 */}
                 <group
                     ref={techStackGroupRef}
-                    position={[0, 0.30, 0]} // Pomiędzy Project Details a przyciskiem Open Project
+                    position={[0, 0.30, 0]} // 在 Project Details 与 Open Project 按钮之间
                     rotation={[Math.PI, 0, 0]}
                 >
                     {project.url ? (
@@ -1318,10 +1318,10 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                             技术栈
                         </Text>
 
-                        {/* Kontener na loga układane poziomo */}
+                        {/* 水平排列 logo 的容器 */}
                         <group position={[0, -0.05, 0.01]}>
                             {project.techStack && project.techStack.map((logoPath, idx) => {
-                                // Rozstawienie kwadracików (4 sztuki wyśrodkowane)
+                                // 方块排列（4 个居中）
                                 const spacing = 0.30;
                                 const startX = -((project.techStack.length - 1) * spacing) / 2;
                                 const xPos = startX + (idx * spacing);
@@ -1389,21 +1389,21 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                 </group>
 
                 {/* 
-                  === TEKST / TYTUŁY PROJEKTÓW ===
-                  Tu możesz łatwo dostosować wygląd każdego napisu.
+                  === 项目文字 / 标题 ===
+                  这里可以轻松调整每处文字的外观。
                   
                   position: [X, Y, Z] 
-                  > X to lewo/prawo (0 to środek)
-                  > Y to góra/dół (np. 0.75 to góra kartki, -0.75 dół)
-                  > Z nie ruszać. Skrypt powyżej sam wylicza Z, żeby napis zginał się i przyklejał do fali kartki!
+                  > X 为左/右（0 为居中）
+                  > Y 为上/下（如 0.75 为纸张顶部，-0.75 底部）
+                  > Z 不要动。上方脚本会自动计算 Z，使文字贴合纸张波浪弯折！
                   
-                  fontSize: rozmiar fontu (domyślnie 0.15)
+                  fontSize：字号（默认 0.15）
                   color: kolor napisu
-                  font: opcjonalnie dajesz tu inną czcionkę z folderu /public/fonts/
+                  font：可选，从 /public/fonts/ 指定其他字体
                 */}
                 <Text
                     ref={textRef}
-                    position={[0, 0.7, 0]} // Tylko dwa pierwsze parametry [X, Y] mają tutaj znaczenie
+                    position={[0, 0.7, 0]} // 这里只有前两个参数 [X, Y] 有意义
                     fontSize={0.20}
                     color="#1c1c1c"
                     font="/fonts/SmileySans-Oblique.ttf"

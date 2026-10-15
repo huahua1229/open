@@ -26,7 +26,7 @@ const SUBTITLES = {
     "LET'S CONNECT": 'Get in touch with me'
 };
 
-// Naturalny kafelek listwy: 1582x94px przy wysokości 0.15 → ~2.524 units szerokości
+// 踢脚线自然块：1582x94px、高 0.15 → 宽约 2.524 单位
 const NATURAL_TILE_W = (1582 / 94) * 0.15;
 
 /**

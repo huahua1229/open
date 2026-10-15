@@ -15,21 +15,21 @@ import { isTouchDevice } from '../../../../utils/deviceDetect';
 import { usePaintMaterial } from '../Gallery/usePaintMaterial';
 
 // ============================================
-// ⚙️ PAINT CONFIGURATION - TWEAK HERE (Skąd-Dokąd)
-// Edytuj te wartości, aby zmienić kierunek i zakres animacji wejścia
+// ⚙️ 绘制配置 - 在此微调（从哪到哪）
+// 修改这些值以改变入场动画的方向和范围
 // ============================================
 const STUDIO_PAINT_CONFIG = {
     dirX: 0.0,
-    dirY: -1.0,    // Kierunek: od góry (-1) do dołu
+    dirY: -1.0,    // 方向：从上（-1）到下
     dirZ: 0.0,
-    startDist: -10.0, // Początek fali
+    startDist: -10.0, // 波动起点
     endDist: 10.0,   // Koniec fali
-    noiseAxes: 'xz'  // Płaszczyzna szumu
+    noiseAxes: 'xz'  // 噪声平面
 };
 
 // ============================================
 // ⚙️ AUDIO SETTINGS - TWEAK HERE
-// Edytuj te wartości, aby zmienić głośność i zasięg słyszalności szumu monitorów
+// 修改这些值以改变显示器噪音的音量和可闻范围
 // ============================================
 export const AUDIO_SETTINGS = {
     volume: 1,

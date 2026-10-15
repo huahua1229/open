@@ -171,8 +171,8 @@ const PaperTransition = () => {
         };
     }, [teleportPhase, startTeleportTransition, finishPaperOpen, play]);
 
-    // Zostawiamy komponent cały czas w DOM (bez "return null"), 
-    // żeby uniknąć laga pierwszego załadowania skomplikowanych ścieżek SVG.
+    // 让组件始终保留在 DOM 中（不 "return null"），
+    // 以避免首次加载复杂 SVG 路径时的卡顿。
     // if (!teleportPhase) return null;
 
     return (

@@ -961,11 +961,11 @@ const DoorSection = ({
                 {/* === ARROW DECORATION === */}
                 {/* Pointing to door. Left arrow. */}
                 {/* ===================================================
-                    REGULACJA STRZAŁKI LEWEJ:
+                    左箭头调节：
                     position={[wallOffsetX - 0.9, 0, 0.02]}
-                      - wallOffsetX - 0.9 → odległość od środka drzwi (zwiększ 0.9 = dalej od drzwi)
-                      - Y = 0             → wysokość (0 = środek ściany, + = wyżej, - = niżej)
-                    scale={[0.5, 0.5, 1]} → rozmiar strzałki
+                      - wallOffsetX - 0.9 → 距门中心的距离（增大 0.9 = 离门更远）
+                      - Y = 0             → 高度（0 = 墙面中心，+ = 更高，- = 更低）
+                    scale={[0.5, 0.5, 1]} → 箭头大小
                     =================================================== */}
                 <mesh
                     position={[wallOffsetX - 1.1, 0, 0.02]}
@@ -984,10 +984,10 @@ const DoorSection = ({
 
                 {/* === ARROW DECORATION (RIGHT, MIRRORED) === */}
                 {/* ===================================================
-                    REGULACJA STRZAŁKI PRAWEJ:
+                    右箭头调节：
                     position={[wallOffsetX + 0.9, -0.3, 0.02]}
-                      - wallOffsetX + 0.9 → odległość od środka drzwi (prawa strona)
-                      - Y = -0.3          → trochę niżej niż lewa strzałka
+                      - wallOffsetX + 0.9 → 距门中心的距离（右侧）
+                      - Y = -0.3          → 比左箭头略低
                     scale={[-0.5, 0.5, 1]} → ujemny X = lustrzane odbicie
                     =================================================== */}
                 <mesh
@@ -1025,12 +1025,12 @@ const DoorSection = ({
                     />
                 </mesh>
 
-                {/* === THRESHOLD STRIPE (Próg przy drzwiach bocznych) === */}
+                {/* === 门槛条纹（侧门处门槛） === */}
                 {(() => {
-                    // Próg leży na podłodze, prostopadle do ściany bocznej
-                    // Szerokość progu = szerokość otworu drzwiowego (~1.1)
-                    const THRESH_W = 1.1;   // Szerokość (wzdłuż X lokalnego = wzdłuż ściany)
-                    const THRESH_D = 0.15;  // Głębokość (wzdłuż Z lokalnego = w głąb korytarza)
+                    // 门槛平放在地面，垂直于侧墙
+                    // 门槛宽度 = 门洞宽度（~1.1）
+                    const THRESH_W = 1.1;   // 宽度（沿局部 X = 沿墙）
+                    const THRESH_D = 0.15;  // 深度（沿局部 Z = 深入走廊）
                     const threshTex = baseboardTexture.clone();
                     threshTex.needsUpdate = true;
                     threshTex.wrapS = threshTex.wrapT = THREE.RepeatWrapping;
@@ -1058,9 +1058,9 @@ const DoorSection = ({
                     {/* === TEXTURED SIGN === */}
                     <group position={[0, doorHeight / 2 + 0.45, 0.08]}>
                         {/* 
-                            WIELKOŚĆ TABLICZKI (SIGN SIZE):
-                            Zmień liczby w args={[Szerokość, Wysokość]}
-                            Obecnie: 1.3 szerokości, 0.65 wysokości
+                            标牌大小（SIGN SIZE）：
+                            修改 args={[宽度, 高度]} 中的数字
+                            当前：宽 1.3、高 0.65
                         */}
                         <mesh>
                             {/* Adjusted size for the signs - assuming rectangular aspect ratio */}

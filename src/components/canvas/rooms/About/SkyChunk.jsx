@@ -13,7 +13,7 @@ const CHUNK_WIDTH = 20;
 const CHUNK_HEIGHT = 12;
 
 // === TWARDA LINIA ZANIKANIA (WORLD SPACE) ===
-// Pokój About jest na Z = -25 (group position w AboutRoom.jsx)
+// About 房间在 Z = -25（AboutRoom.jsx 中的 group 位置）
 // Wszystko z world Z > CORRIDOR_CLIP_Z jest NATYCHMIAST niewidoczne
 const CORRIDOR_CLIP_Z = -8.0;
 
@@ -126,9 +126,9 @@ const Cloud = ({
 
         const time = state.clock.elapsedTime;
 
-        // === TWARDA LINIA CLIP (RĘCZNE OBLICZENIE WORLD Z) ===
-        // worldZ = pokój(-25) + scrollProgress + lokalna pozycja chmury
-        // NIE używamy getWorldPosition() bo useFrame dzieci odpala się PRZED rodzicem!
+        // === 硬裁剪线（手动计算世界 Z） ===
+        // worldZ = 房间(-25) + scrollProgress + 云的局部位置
+        // 不用 getWorldPosition()，因为子级 useFrame 在父级之前执行！
         const scrollProgress = scrollProgressRef?.current || 0;
         const cloudLocalZ = basePosition.current[2];
         const worldZ = ROOM_Z + scrollProgress + cloudLocalZ;
@@ -161,7 +161,7 @@ const Cloud = ({
         meshRef.current.position.y = basePosition.current[1] + driftY;
         meshRef.current.position.z = basePosition.current[2];
 
-        // Jeśli chmura jest za linią clipu → natychmiast niewidoczna
+        // 若云在裁剪线之后 → 立即不可见
         if (materialRef.current) {
             materialRef.current.opacity = worldZ > CORRIDOR_CLIP_Z ? 0 : baseOpacity;
         }

@@ -16,7 +16,7 @@ const AchievementPopup = () => {
     const isCompleted = activePopup.status === 'completed';
     const isHiding = activePopup.status === 'hiding';
 
-    // Specjalna logika dla corridor_enter (pytanie o dźwięk)
+    // corridor_enter 的特殊逻辑（询问声音）
     const isSoundPrompt = activePopup.id === 'corridor_enter';
 
     return (
@@ -69,8 +69,8 @@ const AchievementPopup = () => {
                                     if (isMuted !== willMute) toggleMute();
                                     if (getBgmMuted() !== willMute) toggleBgmMute();
 
-                                    // 2. Wymuszamy fizyczne zjechanie pasków głośności, 
-                                    // żeby menu się zsynchronizowało z ustawieniami z wejścia
+                                    // 2. 强制音量条物理下滑，
+                                    // 使菜单与入口处的设置同步
                                     if (willMute) {
                                         setGlobalVolume(0);
                                         setMusicVolume(0);

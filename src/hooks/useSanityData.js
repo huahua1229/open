@@ -4,8 +4,8 @@ import { useTexture } from '@react-three/drei';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 
-// Flaga bezpieczeństwa: Jeśli użytkownik nie wpisał jeszcze Project ID, 
-// hooki zwrócą null, co pozwoli na załadowanie danych hardcodowanych (fallback).
+// 安全标志：若用户尚未填写 Project ID，
+// hook 会返回 null，从而加载硬编码数据（降级）。
 // POLARIS 版：projectId 为占位 polartest01，永远视为未配置 Sanity，走本地硬编码内容。
 export const isSanityConfigured = sanityClient.config().projectId !== 'polartest01';
 
@@ -31,14 +31,14 @@ function notifyUpdate() {
     listeners.forEach(l => l());
 }
 
-// Pomocniczy preloader dla zwykłych obrazków HTML (np. certyfikatów)
+// 普通 HTML 图片的辅助预加载器（如证书）
 const preloadBrowserImage = (path) => {
     if (typeof window === 'undefined' || !path) return;
     const img = new Image();
     img.src = path;
 };
 
-// Sprawdzenie, czy urządzenie obsługuje hover (kursory, komputery)
+// 判断设备是否支持 hover（指针、电脑）
 const supportsHover = typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches;
 
 export function loadSanityData() {
@@ -96,7 +96,7 @@ export function loadSanityData() {
                 `)
             ]);
 
-            // Mapowanie danych galerii i techStack na ścieżki lokalne oraz optymalizacja obrazków z Sanity
+            // 将画廊和 techStack 数据映射到本地路径，并优化 Sanity 图片
             if (projectsData && projectsData.length > 0) {
                 cache.projects = projectsData.map(p => {
                     const frontUrl = p.frontImage ? getProxyUrl(urlFor(p.frontImage).width(1024).quality(80).auto('format')) : null;
@@ -110,7 +110,7 @@ export function loadSanityData() {
                 });
             }
 
-            // Mapowanie danych studio, przypisanie id oraz optymalizacja obrazków z Sanity
+            // 映射 studio 数据、分配 id 并优化 Sanity 图片
             if (contentData && contentData.length > 0) {
                 cache.content = contentData.map((item, index) => {
                     const frontTextureUrl = item.frontTexture ? getProxyUrl(urlFor(item.frontTexture).width(1024).quality(80).auto('format')) : null;
@@ -124,7 +124,7 @@ export function loadSanityData() {
                 });
             }
 
-            // Mapowanie nagród do struktury oczekiwanej przez overlay oraz optymalizacja certyfikatów z Sanity
+            // 将奖项映射为 overlay 期望的结构，并优化 Sanity 证书
             if (awardsData && awardsData.length > 0) {
                 const mapItems = (items) => items.map(a => {
                     const imageUrl = a.certificateImage ? getProxyUrl(urlFor(a.certificateImage).width(800).quality(80).auto('format')) : null;
@@ -161,7 +161,7 @@ export function loadSanityData() {
                 };
             }
 
-            // PRELOADING ZDJĘĆ/TEKSTUR Z SANITY
+            // 预加载 Sanity 的图片/纹理
             
             // 1. Projekty galerii
             if (cache.projects) {
@@ -170,7 +170,7 @@ export function loadSanityData() {
                         useTexture.preload(p.front);
                         preloadBrowserImage(p.front);
                     }
-                    // Optymalizacja mobilna: Ładujemy malowane wersje TYLKO jeśli urządzenie wspiera hover (komputery)
+                    // 移动端优化：仅在设备支持 hover（电脑）时加载手绘版本
                     if (p.painted && supportsHover) {
                         useTexture.preload(p.painted);
                         preloadBrowserImage(p.painted);
@@ -185,7 +185,7 @@ export function loadSanityData() {
                         useLoader.preload(TextureLoader, c.frontTexture);
                         preloadBrowserImage(c.frontTexture);
                     }
-                    // Optymalizacja mobilna: Ładujemy malowane wersje TYLKO dla komputerów (z myszką/hover)
+                    // 移动端优化：仅为电脑（带鼠标/hover）加载手绘版本
                     if (c.paintedFrontTexture && supportsHover) {
                         useLoader.preload(TextureLoader, c.paintedFrontTexture);
                         preloadBrowserImage(c.paintedFrontTexture);
@@ -193,7 +193,7 @@ export function loadSanityData() {
                 });
             }
 
-            // 3. Nagrody (certyfikaty w oknach 2D) - preload w przeglądarce
+            // 3. 奖项（2D 窗口中的证书）- 浏览器内预加载
             if (cache.awards) {
                 ['sotd', 'sotm', 'other'].forEach(category => {
                     cache.awards[category].items.forEach(item => {
@@ -210,7 +210,7 @@ export function loadSanityData() {
             console.error("Error preloading Sanity data:", error);
             cache.error = error;
             cache.loading = false;
-            // Oznaczamy jako załadowane w razie błędu, żeby aplikacja nie wisiała w nieskończoność na preloaderze
+            // 出错时也标记为已加载，避免应用无限卡在预加载器
             cache.loaded = true;
         }
 
@@ -289,5 +289,5 @@ export function useAwards() {
     return awardsData;
 }
 
-// Automatyczne odpalenie pobierania przy załadowaniu modułu JS
+// JS 模块加载时自动触发数据获取
 loadSanityData();

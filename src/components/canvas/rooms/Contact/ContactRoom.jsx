@@ -22,41 +22,41 @@ const WAVE_LAYERS = 4;
 
 // ============================================
 // ⚙️ AUDIO SETTINGS - TWEAK HERE
-// Edytuj te wartości, aby zmienić głośność i zasięg słyszalności szumu morza
+// 修改这些值以改变海浪声的音量和可闻范围
 // ============================================
 export const AUDIO_SETTINGS = {
     volume: 2,
-    distance: 2,           // Dystans, od którego dźwięk zaczyna cichnąć (refDistance)
-    rolloff: 1.2           // Szybkość cichnięcia (rolloffFactor)
+    distance: 2,           // 声音开始衰减的距离（refDistance）
+    rolloff: 1.2           // 衰减速度（rolloffFactor）
 };
 
 // ============================================
 // ⚙️ LATARNIA SETTINGS - TWEAK HERE
-// Edytuj te wartości, aby zmienić pozycję, obrót i wielkość latarni
+// 修改这些值以改变灯塔的位置、旋转和大小
 // ============================================
 export const LATARNIA_SETTINGS = {
-    // Pozycja: [lewo/prawo (X), góra/dół (Y), tył/przód (Z)]
+    // 位置：[左/右（X），上/下（Y），后/前（Z）]
     position: [-10, 5, -20],
 
-    // Rotacja: [przechył w przód/tył (X), obrót w lewo/prawo (Y), obrót na boki (Z)]
+    // 旋转：[前后俯仰（X），左右旋转（Y），侧向旋转（Z）]
     rotation: [0, 0.1, 0],
 
-    // Wielkość: [szerokość, wysokość]
+    // 大小：[宽，高]
     scale: [4.49, 5] // Legacy ratio 1102/1225
 };
 
 // ============================================
 // ⚙️ STATEK SETTINGS - TWEAK HERE
-// Edytuj te wartości, aby zmienić pozycję, obrót i wielkość statku
+// 修改这些值以改变船只的位置、旋转和大小
 // ============================================
 export const STATEK_SETTINGS = {
-    // Pozycja: [lewo/prawo (X), góra/dół (Y), tył/przód (Z)]
+    // 位置：[左/右（X），上/下（Y），后/前（Z）]
     position: [0, 1.6, -15],
 
-    // Rotacja: [przechył w przód/tył (X), obrót w lewo/prawo (Y), obrót na boki (Z)]
+    // 旋转：[前后俯仰（X），左右旋转（Y），侧向旋转（Z）]
     rotation: [0, -0.2, 0],
 
-    // Wielkość: [szerokość, wysokość]
+    // 大小：[宽，高]
     scale: [3.35, 1.3] // Legacy ratio 2525/978
 };
 
@@ -334,8 +334,8 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             statekRef.current.position.y = STATEK_SETTINGS.position[1] + Math.sin(time * bobSpeed) * bobAmplitude;
 
             // ⛵ Sailing left and right (X axis)
-            const sailSpeed = 0.04; // znacznie wolniejsze pływanie (było 0.15)
-            const sailAmplitude = 12; // mniejszy obszar pływania, by nie wyjeżdżał za ekran (było 25)
+            const sailSpeed = 0.04; // 大幅放慢漂动（原为 0.15）
+            const sailAmplitude = 12; // 缩小漂动范围，避免漂出屏幕（原为 25）
             statekRef.current.position.x = STATEK_SETTINGS.position[0] + Math.sin(time * sailSpeed) * sailAmplitude;
 
             // 🔄 Add a slight tilt on the Z axis (roll)

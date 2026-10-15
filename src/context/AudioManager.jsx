@@ -81,7 +81,7 @@ export const AudioProvider = ({ children }) => {
             'szumwiatru': '/sounds/szumwiatru.mp3', // Szum wiatru w pokoju About
             'szummiasta': '/sounds/szummiasta.mp3', // Szum miasta w pokoju The Gallery
             'uchyleniedrzwi': '/sounds/uchyleniedrzwi.mp3', // Skrzypienie przy najechaniu
-            'otwarciedrzwi': '/sounds/otwarciedrzwi.mp3',   // Otwarcie głównych/bocznych drzwi
+            'otwarciedrzwi': '/sounds/otwarciedrzwi.mp3',   // 打开主门/侧门
             'zamknieciedrzwi': '/sounds/zamknieciedrzwi.mp3' // Zamykanie drzwi
         };
         const path = soundPaths[soundName] || `/sounds/${soundName}.mp3`;

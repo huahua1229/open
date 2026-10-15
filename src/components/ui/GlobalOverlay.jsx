@@ -44,8 +44,8 @@ const GlobalOverlay = () => {
         }
     }, [overlayContent]);
 
-    // Wyłączamy "return null", żeby ciężkie filtry rozmycia i SVG były osadzone w DOM 
-    // i nie powodowały zacięć podczas pierwszego wywołania.
+    // 关闭 "return null"，让重型模糊滤镜和 SVG 预置在 DOM 中，
+    // 避免首次调用时卡顿。
     // if (!isVisible && !overlayContent && !cachedContent) return null;
 
     // DUMMY RENDER MOCK - Pre-render the heaviest layout (certificate_grid) invisibly 
@@ -208,7 +208,7 @@ const ContentCard = ({ content, isOpen, onClose, isMobile }) => {
     const transitionContent = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
 
     // --- KONFIGURACJA STYLU KARTKI (POZYCJA) ---
-    // Używamy % lub vw/vh dla fluid-responsywności.
+    // 使用 % 或 vw/vh 实现流式响应。
     const cardStyle = isMobile ? {
         // MOBILE: Karta na dole
         width: '90%',
@@ -241,11 +241,11 @@ const ContentCard = ({ content, isOpen, onClose, isMobile }) => {
         maskImage: 'none',
         WebkitMaskImage: 'none'
     } : isMobile ? {
-        // Mobile: Monitor jest na górze (50% szerokości, 25% wysokości od góry)
+        // 移动端：显示器在顶部（宽 50%，距顶 25% 高）
         maskImage: 'radial-gradient(circle at 50% 25%, transparent 0%, transparent 15%, black 40%)',
         WebkitMaskImage: 'radial-gradient(circle at 50% 25%, transparent 0%, transparent 15%, black 40%)'
     } : {
-        // Desktop: Monitor jest po lewej (31% szerokości od lewej, 50% wysokości)
+        // 桌面端：显示器在左侧（距左 31% 宽，50% 高）
         // WPROWADZONE PRZEZ UZYTKOWNIKA 31%
         maskImage: 'radial-gradient(circle at 31% 50%, transparent 0%, transparent 12%, black 35%)',
         WebkitMaskImage: 'radial-gradient(circle at 31% 50%, transparent 0%, transparent 12%, black 35%)'
@@ -276,8 +276,8 @@ const ContentCard = ({ content, isOpen, onClose, isMobile }) => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    // Optymalizacja WebGL: Filtry są baaaardzo drogie podczas animacji
-                    // Trzymamy je na sztywno, a animujemy tylko przezroczystość (opacity)
+                    // WebGL 优化：滤镜在动画期间开销非常大
+                    // 保持它们固定，只动画透明度（opacity）
                     backgroundColor: 'rgba(0,0,0,0.5)',
                     backdropFilter: 'blur(8px)',
                     WebkitBackdropFilter: 'blur(8px)',

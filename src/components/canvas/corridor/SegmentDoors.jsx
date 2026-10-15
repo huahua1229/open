@@ -163,8 +163,8 @@ const SegmentDoors = ({
             {/* Decoration Left (Idea Process) */}
             {/* 
                 EDYCJA GRAFIKI LEWEJ (Idea):
-                - rotation={[x, y, z]} -> Obrót (np. z = 0.1 to lekki przechył)
-                - args={[Szerokość, Wysokość]} -> Rozmiar
+                - rotation={[x, y, z]} -> 旋转（如 z = 0.1 为轻微倾斜）
+                - args={[宽度, 高度]} -> 大小
             */}
             <mesh
                 position={[-(doorOpeningWidth / 2 + sideWallWidth / 2), wallCenterY, 0.07]}
@@ -327,23 +327,23 @@ const SegmentDoors = ({
                 distance={6}
                 decay={2}
             /> */}
-            {/* === THRESHOLD STRIPE (Próg przy drzwiach) === */}
+            {/* === 门槛条纹（门边门槛） === */}
             {(() => {
                 // =============================================
-                // REGULACJA PROGU PRZY DRZWIACH KOŃCOWYCH
+                // 末端门边门槛调节
                 // =============================================
-                // THRESHOLD_DEPTH  → grubość progu (wzdłuż Z korytarza)
-                // THRESHOLD_WIDTH  → szerokość progu (wzdłuż X korytarza)
+                // THRESHOLD_DEPTH  → 门槛厚度（沿走廊 Z）
+                // THRESHOLD_WIDTH  → 门槛宽度（沿走廊 X）
                 const THRESHOLD_DEPTH = 0.15;
                 const THRESHOLD_WIDTH = frameWidth + 0.1;
 
                 const threshTex = baseboardTexSrc.clone();
                 threshTex.needsUpdate = true;
                 threshTex.wrapS = threshTex.wrapT = THREE.RepeatWrapping;
-                threshTex.rotation = 0; // Brak rotacji - tekstura idzie wzdłuż X
+                threshTex.rotation = 0; // 无旋转 - 纹理沿 X 方向
                 threshTex.offset.set(0, 0);
-                // Naturalny kafelek: 1582x94px przy wysokości 0.15 → szerokość ~2.524 units
-                // Dla progu: powtarzamy wzdłuż X (szerokość), 1 raz wzdłuż Z (głębokość)
+                // 自然块：1582x94px、高 0.15 → 宽约 2.524 单位
+                // 门槛：沿 X（宽）重复，沿 Z（深）只 1 次
                 threshTex.repeat.set(THRESHOLD_WIDTH / NATURAL_TILE_W, 1);
 
                 return (

@@ -94,12 +94,12 @@ export const usePaintMaterial = (options = {}) => {
 
             vec3 revealDir = normalize(vec3(${dirX.toFixed(1)}, ${dirY.toFixed(1)}, ${dirZ.toFixed(1)}));
 
-            // Mapowanie postępu na odległość wzdłuż wektora
+            // 将进度映射到沿向量的距离
             float startDist = ${startDist.toFixed(1)}; 
             float endDist = ${endDist.toFixed(1)};
             float targetDist = mix(startDist, endDist, uPaintProgress);
             
-            // Odległość pixela wzdłuż wybranego kierunku (relative to room origin)
+            // 像素沿选定方向的距离（相对房间原点）
             float distFromPlane = targetDist - dot(localPos, revealDir);
             
             // Szum — noise sampling axes configured per room

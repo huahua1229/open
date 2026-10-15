@@ -8,7 +8,7 @@ import { isTouchDevice } from '../../../utils/deviceDetect';
 /**
  * CorridorDecorations - Dekoracje korytarza.
  * 
- * Proste płaskie plane'y z teksturami - styl rysunkowy 2D w świecie 3D.
+ * 简单的带纹理平面 - 3D 世界中的 2D 手绘风格。
  * 
  * Korytarz (per segment, 80 units):
  *   Drzwi: relZ -18 (left), -32 (right), -48 (left), -62 (right)
@@ -17,7 +17,7 @@ import { isTouchDevice } from '../../../utils/deviceDetect';
  *   Bezpieczne strefy dekoracji: -5 do -15, -20 do -30, -34 do -46, -50 do -60, -64 do -75
  */
 
-// Globalne zmienne dla useFrame, aby uniknąć alokacji pamięci w każdej klatce i zapobiec ścinkom (GC stalls)
+// useFrame 使用的全局变量，避免每帧分配内存、防止 GC 卡顿
 const tempPos = new THREE.Vector3();
 const tempRot = new THREE.Quaternion();
 const tempScale = new THREE.Vector3();
@@ -58,7 +58,7 @@ const PictureContent = ({ imagePath, imagePaintedPath, width, height, isPainted 
     }, [isPainted, imagePaintedPath]);
 
     return (
-        <group position={[0, 0, 0.01]}> {/* Lekko przed ramką */}
+        <group position={[0, 0, 0.01]}> {/* 略在相框之前 */}
             {imagePaintedPath && (
                 <mesh position={[0, 0, -0.001]}>
                     <planeGeometry args={[width, height]} />
@@ -87,7 +87,7 @@ const PictureContent = ({ imagePath, imagePaintedPath, width, height, isPainted 
                     <meshBasicMaterial color="#e0e0e0"
                         map={texture}
                         transparent={true}
-                        alphaTest={0.1} // KLUCZOWE: Naprawia przezroczystość (wycina tło)
+                        alphaTest={0.1} // 关键：修复透明度（裁剪背景）
                         side={THREE.DoubleSide}
                         roughness={0.5}
                     />
@@ -105,7 +105,7 @@ const InspectableFrame = ({ frame, wallX, frameTexture, framePaintedTexture, CAB
     const compileFramesRef = useRef(0);
     const hideDelayRef = useRef();
 
-    // Zapisujemy oryginalną pozycję i rotację na ścianie
+    // 保存墙面上的原始位置与旋转
     const originalPos = useMemo(() => new THREE.Vector3(
         frame.side === 'left' ? -wallX + (frame.offsetFromWall || 0) : wallX - (frame.offsetFromWall || 0),
         frame.y,
@@ -119,12 +119,12 @@ const InspectableFrame = ({ frame, wallX, frameTexture, framePaintedTexture, CAB
     const [isHovered, setIsHovered] = useState(false);
     const [isInspected, setIsInspected] = useState(false);
 
-    // Sprawdzamy czy to urządzenie dotykowe (telefon/tablet) by całkowicie wyłączyć efekt hover i podnieść wydajność
+    // 判断是否为触屏设备（手机/平板），完全关闭 hover 效果以提升性能
     const isTouch = useMemo(() => isTouchDevice(), []);
-    // Zostawiamy też stary mechanizm żeby odłączyć na ekstremalnie wąskich ekranach w ogóle inspected
+    // 同时保留旧机制，在极窄屏幕上完全关闭 inspected
     const isMobile = viewport.width < 5 || viewport.aspect < 0.8 || isTouch;
 
-    // Kiedy komponent znika, na wszelki wypadek wyłączamy override
+    // 组件卸载时，为保险起见关闭 override
     useEffect(() => {
         return () => {
             if (isInspected) {
@@ -185,22 +185,22 @@ const InspectableFrame = ({ frame, wallX, frameTexture, framePaintedTexture, CAB
         }
 
         if (isInspected) {
-            // Pozycja przed kamerą (bliżej)
+            // 相机前方的位置（更近）
             camera.getWorldDirection(tempCamDir);
 
             // Obliczamy responsywny dystans (fluid responsive)
-            // Gdy aspekt (szerokość/wysokość) jest mniejszy (wąskie ekrany np. laptopy max 1.3), odsuwamy obraz dalej (np. 2.2)
-            // Gdy aspekt jest duży (ultrawide, 16:9 ~ 1.77), przysuwamy obraz bliżej (np. 1.5)
+            // 当宽高比更小（窄屏，如笔记本最大 1.3）时，把画面推得更远（如 2.2）
+            // 当宽高比很大（超宽屏，16:9 ~ 1.77）时，把画面拉得更近（如 1.5）
             // clamp(1.5, 2.8)
             const baseDistance = 1.3;
-            // Im mniejszy aspekt (węższy ekran), tym większa odległość
+            // 宽高比越小（屏幕越窄），距离越大
             const aspectOffset = Math.max(0, 1.8 - viewport.aspect) * 1.5;
             const distance = Math.min(2.8, Math.max(1.5, baseDistance + aspectOffset));
 
-            // Punkt tuż przed kamerą (zwiększony dynamicznie - im więcej, tym dalej)
+            // 紧贴相机前方的点（动态增大 - 值越大越远）
             tempPos.copy(camera.position).add(tempCamDir.multiplyScalar(distance));
 
-            // Rotacja zwracająca obraz bezpośrednio do kamery
+            // 让画面正对相机的旋转
             tempRot.copy(camera.quaternion);
 
             // Efekt "3D Karty" na podstawie myszki
@@ -211,16 +211,16 @@ const InspectableFrame = ({ frame, wallX, frameTexture, framePaintedTexture, CAB
 
             tempRot.multiply(tempQuat);
 
-            // Lekko powiększamy obraz dla detalu
+            // 略微放大画面以展示细节
             tempScale.set(1.2, 1.2, 1.2);
         } else {
-            // Powrót na ścianę
+            // 回到墙面
             tempPos.copy(originalPos);
             tempRot.setFromEuler(originalRot);
             tempScale.set(1, 1, 1);
         }
 
-        // Płynna interpolacja (lerp/slerp) w każdym oknie renderowania
+        // 每帧渲染时的平滑插值（lerp/slerp）
         const factor = delta * 6;
         groupRef.current.position.lerp(tempPos, factor);
         groupRef.current.quaternion.slerp(tempRot, factor);
@@ -238,10 +238,10 @@ const InspectableFrame = ({ frame, wallX, frameTexture, framePaintedTexture, CAB
                 position={[0, 0, 0.05]}
                 onClick={(e) => {
                     e.stopPropagation();
-                    if (isMobile) return; // Całkowite wyłączenie na mobile
+                    if (isMobile) return; // 移动端完全关闭
                     setIsInspected((prev) => {
                         const next = !prev;
-                        if (setCameraOverride) setCameraOverride(next); // Blokowanie / odblokowanie poruszania kamerą
+                        if (setCameraOverride) setCameraOverride(next); // 锁定 / 解锁相机移动
                         window.dispatchEvent(new CustomEvent('inspectChange', { detail: next }));
                         return next;
                     });
@@ -288,7 +288,7 @@ const InspectableFrame = ({ frame, wallX, frameTexture, framePaintedTexture, CAB
                 />
             </mesh>
 
-            {/* OBRAZEK WEWNĄTRZ */}
+            {/* 内部图片 */}
             {frame.image && (
                 <PictureContent
                     imagePath={frame.image}
@@ -336,7 +336,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
     const grateTexture = useTexture('/textures/corridor/kratkawentylacyjna.webp');
     const flowerTexture = useTexture('/textures/corridor/kwiatekwdoniczce.webp');
 
-    // --- Ceiling Lights (punkty światła) ---
+    // --- 天花板灯（光源点） ---
     // Tekstury lamp
     const lampGrilleTexture = useTexture('/textures/corridor/kratanalampy.webp');
     // lampGrilleTexture.wrapS = lampGrilleTexture.wrapT = THREE.RepeatWrapping; 
@@ -344,17 +344,17 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
 
     const lampSideTexture = useTexture('/textures/corridor/bokilampy.webp');
     lampSideTexture.wrapS = lampSideTexture.wrapT = THREE.RepeatWrapping;
-    // Dopasowanie UV dla długiego boku
+    // 调整长边的 UV
     lampSideTexture.repeat.set(1, 1);
 
     const lights = useMemo(() => {
         const items = [];
-        // ===== REGULACJA ŚWIATEŁ =====
-        const LIGHT_SPACING = 15;      // Odstęp między lampami
-        const LIGHT_START_OFFSET = -5;  // Start z zapasem od początku (bo tam są drzwi poprzedniego segmentu)
+        // ===== 灯光调节 =====
+        const LIGHT_SPACING = 15;      // 灯之间的间距
+        const LIGHT_START_OFFSET = -5;  // 从开头预留余量开始（因为那里是上一段的大门）
 
         const startZ = zOffset + LIGHT_START_OFFSET;
-        const endZ = zOffset - segmentLength + 10; // Zapas od końca (SegmentDoors jest na -75)
+        const endZ = zOffset - segmentLength + 10; // 距末端留余量（SegmentDoors 在 -75）
 
         for (let z = startZ; z > endZ; z -= LIGHT_SPACING) {
             items.push({ z });
@@ -363,32 +363,32 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
     }, [segmentLength, zOffset]);
 
     // =============================================
-    // RAMKI NA ZDJĘCIA (PICTURE FRAMES)
+    // 相框（PICTURE FRAMES）
     // =============================================
-    // Płaskie plane'y na ścianach z teksturą ramki.
-    // Wewnątrz ramki można później dodać plakaty/zdjęcia.
+    // 墙面上带相框纹理的平面。
+    // 相框内之后可添加海报/照片。
     //
-    // USTAWIENIA DO RĘCZNEJ REGULACJI:
-    // - z: pozycja Z (gdzie na osi korytarza), obliczana jako zOffset - wartość
+    // 手动调节设置：
+    // - z: Z 位置（走廊轴上的位置），按 zOffset - 值 计算
     // - side: 'left' lub 'right'
     // - width/height: rozmiar ramki
-    // - y: pozycja Y (wysokość na ścianie, 0 = środek)
+    // - y: Y 位置（墙面高度，0 = 中心）
     const frames = useMemo(() => [
         {
-            z: zOffset - 10,         // Między startem a Gallery (relZ -5 do -15)
+            z: zOffset - 10,         // 在起点与 Gallery 之间（relZ -5 到 -15）
             side: 'right',
-            width: 2.5,              // Szerokość ramki
+            width: 2.5,              // 相框宽度
             height: 2.5 / 1.785,     // Legacy ratio 3200x1792
-            y: 0.3,                  // Wysokość na ścianie
+            y: 0.3,                  // 墙面高度
             id: 'frame-1',
             // Custom setup for "rysuneknaobraz1.png"
             image: '/textures/corridor/rysuneknaobraz1.webp',
             imageWidth: 1.1,
             imageHeight: 1.1,
-            offsetFromWall: 0.1, // Przesunięcie bliżej środka korytarza (0.1 unit)
+            offsetFromWall: 0.1, // 向走廊中心偏移（0.1 单位）
         },
         {
-            z: zOffset - 25,         // Między Gallery a Studio (relZ -20 do -30)
+            z: zOffset - 25,         // 在 Gallery 与 Studio 之间（relZ -20 到 -30）
             side: 'left',
             width: 2.5,
             height: 2.5 / 1.785,
@@ -400,7 +400,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             offsetFromWall: 0.1
         },
         {
-            z: zOffset - 40,         // Między Studio a About (relZ -34 do -46)
+            z: zOffset - 40,         // 在 Studio 与 About 之间（relZ -34 到 -46）
             side: 'right',
             width: 2.5,
             height: 2.5 / 1.785,
@@ -413,7 +413,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             signatureColor: '#333333'
         },
         {
-            z: zOffset - 55,         // Między About a Connect (relZ -50 do -60)
+            z: zOffset - 55,         // 在 About 与 Contact 之间（relZ -50 到 -60）
             side: 'left',
             width: 2.5,
             height: 2.5 / 1.785,
@@ -437,7 +437,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
     const cabinetFrontTexture = useTexture('/textures/corridor/szafkaprzod.webp');
     const cabinetRestTexture = useTexture('/textures/corridor/szafkaprzodgora.webp');
 
-    // Klonujemy teksturę dla nóg, żeby ją obrócić (bo user mówi że jest poziomo a ma być pionowo)
+    // 克隆桌腿纹理以便旋转（用户说原本是横向，应该为纵向）
     const legTexture = useMemo(() => {
         const tex = woodTexture.clone();
         tex.rotation = Math.PI / 2;
@@ -446,29 +446,29 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
     }, [woodTexture]);
 
     // Konfiguracja stolika
-    // Obrócony 90° i przyciągnięty do lewej ściany
+    // 旋转 90° 并贴近左墙
     const tableConfig = useMemo(() => ({
-        z: zOffset - 35,          // Pozycja Z (strefa między Studio a About)
-        width: 2.0,               // Szerokość blatu (po obrocie: wzdłuż ściany)
-        depth: 0.8,               // Głębokość blatu (po obrocie: od ściany w korytarz)
-        height: 1.0,              // Wysokość całkowita
-        legRadius: 0.08,          // Grubość nóg
-        topThickness: 0.08,       // Grubość blatu
-        x: -wallX + 0.42,         // Przy lewej ścianie (depth/2 + mały gap)
+        z: zOffset - 35,          // Z 位置（Studio 与 About 之间的区域）
+        width: 2.0,               // 桌面宽度（旋转后：沿墙方向）
+        depth: 0.8,               // 桌面深度（旋转后：从墙向走廊）
+        height: 1.0,              // 总高度
+        legRadius: 0.08,          // 桌腿粗细
+        topThickness: 0.08,       // 桌面厚度
+        x: -wallX + 0.42,         // 贴左墙（depth/2 + 小间隙）
     }), [zOffset, wallX]);
 
     return (
         <group>
             {/* === LAMPY SUFITOWE === */}
             {lights.filter(light => light.z <= zClip).map((light, i) => {
-                // Konfiguracja tekstur wewnątrz pętli (lub poza, ale upewnijmy się co do wrappingu)
+                // 在循环内配置纹理（或在循环外，但需确认 wrapping）
                 lampGrilleTexture.wrapS = lampGrilleTexture.wrapT = THREE.ClampToEdgeWrapping;
-                lampSideTexture.wrapS = lampSideTexture.wrapT = THREE.ClampToEdgeWrapping; // Boki też clamp, żeby nie było pasków
+                lampSideTexture.wrapS = lampSideTexture.wrapT = THREE.ClampToEdgeWrapping; // 侧面也 clamp，避免出现条纹
 
                 return (
                     <group key={`light-${i}`} position={[0, ceilingY, light.z]}>
-                        {/* Obudowa lampy - podłużny prostokąt 3D */}
-                        {/* GŁÓWNA BRYŁA */}
+                        {/* 灯罩 - 长条形 3D 矩形 */}
+                        {/* 主体 */}
                         <mesh position={[0, -0.03, 0]}>
                             <boxGeometry args={[2.0, 0.06, 0.5]} />
 
@@ -480,7 +480,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
                             <meshBasicMaterial attach="material-2" color="#d0d0d0" roughness={0.8} />
 
                             {/* Bottom - Grille Texture 
-                                Używamy przezroczystości, żeby odsłonić wewnętrzne światło.
+                                使用透明来显露内部灯光。
                                 Sama krata jest ciemna/metaliczna.
                             */}
                             <meshBasicMaterial
@@ -498,8 +498,8 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
                             <meshBasicMaterial color="#e0e0e0" attach="material-5" map={lampSideTexture} roughness={0.6} />
                         </mesh>
 
-                        {/* WEWNĘTRZNE ŚWIATŁO (LIGHT PANEL) 
-                            Siedzi WYŻEJ w obudowie, żeby kratka pod spodem była widoczna.
+                        {/* 内部灯光（LIGHT PANEL）
+                            位于灯罩内较高处，以便下方格栅可见。
                         */}
                         <mesh
                             position={[0, -0.059, 0]}
@@ -513,7 +513,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
                             />
                         </mesh>
 
-                        {/* RZECZYWISTE ŹRÓDŁO ŚWIATŁA (PointLight) - WYLACZONE */}
+                        {/* 实际光源（PointLight）- 已关闭 */}
                         {/* <pointLight
                             position={[0, -1.5, 0]}
                             distance={6}
@@ -525,7 +525,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
                 );
             })}
 
-            {/* === STOLIK (obrócony 90°, przy lewej ścianie) === */}
+            {/* === 小桌（旋转 90°，靠左墙） === */}
             <group position={[tableConfig.x, floorY, tableConfig.z]} rotation={[0, Math.PI / 2, 0]}>
                 {/* Nogi stolika */}
                 {[
@@ -554,7 +554,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
                 {/* KWIATEK NA STOLE */}
                 <mesh
                     position={[0, tableConfig.height + tableConfig.topThickness + 0.2, 0]} // Na blacie
-                    rotation={[0, -Math.PI / 4, 0]} // Lekki obrót
+                    rotation={[0, -Math.PI / 4, 0]} // 轻微旋转
                 >
                     <planeGeometry args={[0.3, 0.3 / 0.758]} />
                     <meshBasicMaterial color="#e0e0e0"
@@ -568,13 +568,13 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             </group>
 
             {/* =============================================
-                RAMKI NA ZDJĘCIA NA ŚCIANACH
+                墙上的相框
                 =============================================
-                Każda ramka to płaski plane z teksturą "ramka na zdjecie.png".
-                Są przyczepione do ścian na przemian (lewa/prawa).
+                每个相框都是带 "ramka na zdjecie.png" 纹理的平面。
+                它们交替贴附在墙上（左/右）。
                 
-                Żeby zmienić pozycję/rozmiar konkretnej ramki,
-                edytuj odpowiedni obiekt w tablicy 'frames' powyżej.
+                要修改某个相框的位置/尺寸，
+                编辑上方 'frames' 数组中相应的对象。
             */}
             {frames.map((frame) => (
                 <InspectableFrame
@@ -589,14 +589,14 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             ))}
 
             {/* === SZAFKA (CABINET) === */}
-            {/* Prosty box jako placeholder, naprzeciwko drzwi About (Left -48) -> więc szafka na Right -51 */}
+            {/* 简单盒体作为占位，正对 About 房门（左 -48）-> 因此柜子在右 -51 */}
             <mesh
                 position={[wallX - 0.26, floorY + 0.5, zOffset - 51]}
-            // X: wallX - (depth/2) - mały margin
+            // X: wallX - (depth/2) - 小边距
             // Y: floorY + (height/2)
             // Z: zOffset - 51 (blisko drzwi About)
             >
-                {/* Wymiary: X=0.5 (głębokość od ściany), Y=1.0 (wysokość), Z=0.8 (szerokość wzdłuż ściany) */}
+                {/* 尺寸：X=0.5（离墙深度），Y=1.0（高度），Z=0.8（沿墙宽度） */}
                 <boxGeometry args={[0.5, 1.0, 1.0 * 0.8]} />
                 {/* 
                     Materials for BoxGeometry:
@@ -615,11 +615,11 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
                 <meshBasicMaterial color="#e0e0e0" attach="material-5" map={cabinetRestTexture} />
             </mesh>
 
-            {/* === STOJĄCA RAMKA NA SZAFCE (STANDING FRAME) === */}
-            {/* Stoi na szafce: Y = floorY + 1.0 (wysokość szafki) + połowa wysokości ramki */}
+            {/* === 柜子上的立式相框（STANDING FRAME） === */}
+            {/* 立在柜子上：Y = floorY + 1.0（柜子高度）+ 相框高度的一半 */}
             <mesh
                 position={[wallX - 0.26, floorY + 1.0 + 0.2, zOffset - 51]}
-                rotation={[0, -Math.PI / 2 + 0.2, 0]} // Lekki obrót, żeby nie stała idealnie prosto
+                rotation={[0, -Math.PI / 2 + 0.2, 0]} // 轻微旋转，避免摆放得过于端正
             >
                 <planeGeometry args={[0.3, 0.3 / 0.777]} />
                 <meshBasicMaterial color="#e0e0e0"
@@ -636,7 +636,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             {/* Kolo drzwi Contact (Right -62). Ustawiamy na -58, ODWROTNIE (Left). */}
             <mesh
                 position={[-wallX + 0.8, floorY + 1.5, zOffset - 58]} // Left side
-                rotation={[0, Math.PI / 4, 0]} // Obrócone w stronę korytarza (z lewej)
+                rotation={[0, Math.PI / 4, 0]} // 转向走廊（从左侧）
             >
                 <planeGeometry args={[1.8, 1.8 / 0.602]} />
                 <meshBasicMaterial color="#e0e0e0"
@@ -649,7 +649,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             </mesh>
 
             {/* === KRATKI WENTYLACYJNE (VENTILATION GRATES) === */}
-            {/* Generujemy kratkę na przeciwległej ścianie dla każdego obrazu */}
+            {/* 为每张图在对面墙生成格栅 */}
             {frames.map((frame, i) => {
                 const isFrameLeft = frame.side === 'left';
                 const grateSide = isFrameLeft ? 'right' : 'left';

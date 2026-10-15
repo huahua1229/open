@@ -12,7 +12,7 @@ import '../../styles/ScreenReaderOverlay.scss';
 const ScreenReaderOverlay = () => {
     const { hasEntered, isInRoom, currentRoom, teleportTo, requestExit } = useScene();
     
-    // Pobieranie danych do wygenerowania niewidocznego HTML-a dla SEO / robotów
+    // 获取数据以生成面向 SEO / 爬虫的不可见 HTML
     const projects = useGalleryProjects();
     const studio = useStudioContent();
     const awards = useAwards();
