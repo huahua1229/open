@@ -1,6 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from 'react';
 import { useFrame, useLoader, useThree } from '@react-three/fiber';
-import { Text, PositionalAudio } from '@react-three/drei';
+import { Text, PositionalAudio, Line, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import SkyChunk, { CHUNK_LENGTH, ROOM_Z } from './SkyChunk';
@@ -1426,19 +1426,62 @@ const SkillsMilestone = ({ z, scrollProgressRef }) => {
 
 // =========================================
 // 🌟 INTERESTS MILESTONE - 兴趣爱好（POLARIS 版新增）
-// 六张贴纸卡片：运动 / 游戏 / 小说 / 音乐 / 性格 / 信息
+// 六张手绘便签卡片：运动 / 游戏 / 小说 / 音乐 / 性格 / 关于
+// 风格：皱纸底 + 手绘抖动描边 + 胶带贴纸，与全站素描风统一
 // =========================================
+
+// 生成手绘感抖动矩形描边点（确定性随机，seed 不同卡片笔迹略有差异）
+const sketchRectPoints = (w, h, seed) => {
+    const pts = [];
+    let s = seed % 2147483647;
+    if (s <= 0) s += 2147483646;
+    const rand = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    const segs = 8;
+    const hw = w / 2, hh = h / 2;
+    const corners = [[-hw, -hh], [hw, -hh], [hw, hh], [-hw, hh]];
+    for (let e = 0; e < 4; e++) {
+        const [x0, y0] = corners[e];
+        const [x1, y1] = corners[(e + 1) % 4];
+        for (let k = 0; k <= segs; k++) {
+            const t = k / segs;
+            const isCorner = k === 0 || k === segs;
+            const jx = (rand() - 0.5) * (isCorner ? 0.09 : 0.045);
+            const jy = (rand() - 0.5) * (isCorner ? 0.09 : 0.045);
+            pts.push([x0 + (x1 - x0) * t + jx, y0 + (y1 - y0) * t + jy, 0]);
+        }
+    }
+    pts.push([pts[0][0], pts[0][1], 0]);
+    return pts;
+};
+
+// 生成手绘感下划线（横向波浪线）
+const sketchUnderlinePoints = (w, seed) => {
+    const pts = [];
+    let s = seed % 2147483647;
+    if (s <= 0) s += 2147483646;
+    const rand = () => { s = (s * 16807) % 2147483647; return s / 2147483647; };
+    const segs = 10;
+    for (let k = 0; k <= segs; k++) {
+        const t = k / segs;
+        pts.push([-w / 2 + w * t, (rand() - 0.5) * 0.03, 0]);
+    }
+    return pts;
+};
+
 const InterestsMilestone = ({ z, scrollProgressRef }) => {
     const groupRef = useRef();
     const titleRef = useRef();
     const subRef = useRef();
     const cardGroupRefs = useRef([]);
-    const borderMatRefs = useRef([]);
+    const shadowMatRefs = useRef([]);
     const panelMatRefs = useRef([]);
-    const tagMatRefs = useRef([]);
+    const lineObjRefs = useRef([]);   // 每张卡：[外描边, 内描边, 下划线] 的 Line2 对象
+    const tapeMatRefs = useRef([]);
     const tagTextRefs = useRef([]);
     const bodyTextRefs = useRef([]);
     const revealFactorRef = useRef(0);
+
+    const paperTexture = useTexture('/textures/paper-texture.webp');
 
     // 卡片数据：3 列 × 2 行网格
     const CARD_W = 3.1;
@@ -1447,13 +1490,18 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
     const ROW_Y = [2.55, 0.35];
     const ROTS = [-0.02, 0.015, -0.012, 0.02, -0.015, 0.012];
     const cards = [
-        { tag: '运动', body: '羽毛球 · 爬山\n凤凰山、梧桐山等' },
-        { tag: '游戏', body: '王者荣耀' },
-        { tag: '小说', body: '《诡秘之主》《龙族》\n《绍宋》' },
-        { tag: '音乐', body: '许嵩 · 陈惠敏 · 周杰伦\n陈奕迅 · 薛之谦' },
-        { tag: '性格', body: '内向 · 熟人前放得开\n历史爱好者' },
-        { tag: '关于', body: '生日 2006.12.29\n籍贯 广东陆丰' },
+        { tag: '运动', body: '我常去爬山\n凤凰山、梧桐山都踩过点\n羽毛球也随手能来两拍' },
+        { tag: '游戏', body: '王者荣耀是我的主战场\n抽空上两局解压\n欢迎组队开黑' },
+        { tag: '小说', body: '我爱啃《诡秘之主》和《龙族》\n历史文《绍宋》也在追' },
+        { tag: '音乐', body: '我的歌单常驻许嵩、陈惠敏\n周杰伦，陈奕迅、薛之谦\n也常常单曲循环' },
+        { tag: '性格', body: '我偏内向慢热\n但熟人面前完全放得开\n还是个不折不扣的历史迷' },
+        { tag: '关于', body: '我生于 2006.12.29\n广东陆丰人' },
     ];
+
+    // 每张卡的手绘描边与下划线点集（seed 带卡片序号，笔迹各不相同）
+    const borderPts1 = useMemo(() => cards.map((_, i) => sketchRectPoints(CARD_W + 0.1, CARD_H + 0.1, 101 + i * 17)), []);
+    const borderPts2 = useMemo(() => cards.map((_, i) => sketchRectPoints((CARD_W + 0.1) * 1.012, (CARD_H + 0.1) * 1.012, 997 + i * 23)), []);
+    const underlinePts = useMemo(() => cards.map((_, i) => sketchUnderlinePoints(0.9, 509 + i * 31)), []);
 
     useFrame((state) => {
         if (!groupRef.current) return;
@@ -1493,9 +1541,12 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                 g.scale.set(s, s, s);
                 g.visible = f > 0.01;
             }
-            [borderMatRefs, panelMatRefs, tagMatRefs].forEach((refs) => {
-                if (refs.current[i]) refs.current[i].opacity = f;
-            });
+            if (shadowMatRefs.current[i]) shadowMatRefs.current[i].opacity = f * 0.55;
+            if (panelMatRefs.current[i]) panelMatRefs.current[i].opacity = f;
+            // 手绘描边 / 下划线（Line2 对象 → .material.opacity）
+            const lines = lineObjRefs.current[i];
+            if (lines) lines.forEach((obj) => { if (obj && obj.material) obj.material.opacity = f; });
+            if (tapeMatRefs.current[i]) tapeMatRefs.current[i].opacity = f * 0.75;
             [tagTextRefs, bodyTextRefs].forEach((refs) => {
                 if (refs.current[i]) refs.current[i].fillOpacity = f;
             });
@@ -1529,10 +1580,10 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                 font="/fonts/SmileySans-Oblique.ttf"
                 fillOpacity={0}
             >
-                羽毛球 · 爬山 · 王者荣耀 · 小说 · 历史 · 音乐
+                羽毛球 · 爬山 · 游戏 · 小说 · 历史 · 音乐
             </Text>
 
-            {/* 六张贴纸卡片 */}
+            {/* 六张手绘便签卡片 */}
             {cards.map((card, i) => {
                 const col = i % 3;
                 const row = Math.floor(i / 3);
@@ -1543,45 +1594,73 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                         position={[COL_X[col], ROW_Y[row], 0.5]}
                         rotation={[0, 0, ROTS[i]]}
                     >
-                        {/* 描边（稍大一圈的深色板） */}
-                        <mesh position={[0.07, -0.07, -0.03]}>
-                            <planeGeometry args={[CARD_W + 0.12, CARD_H + 0.12]} />
+                        {/* 底部软阴影（模拟纸张微微翘起的落影） */}
+                        <mesh position={[0.06, -0.06, -0.02]}>
+                            <planeGeometry args={[CARD_W, CARD_H]} />
                             <meshBasicMaterial
-                                ref={(el) => { borderMatRefs.current[i] = el; }}
-                                color="#3a3326"
+                                ref={(el) => { shadowMatRefs.current[i] = el; }}
+                                color="#8a8577"
                                 transparent
                                 opacity={0}
                                 side={THREE.DoubleSide}
+                                depthWrite={false}
                             />
                         </mesh>
-                        {/* 卡片面板（暖色纸张） */}
+                        {/* 皱纸面板 */}
                         <mesh>
                             <planeGeometry args={[CARD_W, CARD_H]} />
                             <meshBasicMaterial
                                 ref={(el) => { panelMatRefs.current[i] = el; }}
-                                color="#fff8ec"
+                                color="#ffffff"
+                                map={paperTexture}
                                 transparent
                                 opacity={0}
                                 side={THREE.DoubleSide}
                             />
                         </mesh>
-                        {/* 顶部粉色标签条 */}
-                        <mesh position={[0, CARD_H / 2 - 0.32, 0.02]}>
-                            <planeGeometry args={[CARD_W - 0.3, 0.56]} />
+                        {/* 手绘描边（两道深色墨线，笔迹微抖） */}
+                        <Line
+                            points={borderPts1[i]}
+                            color="#1a1a1a"
+                            lineWidth={3}
+                            transparent
+                            opacity={0}
+                            ref={(el) => {
+                                if (!lineObjRefs.current[i]) lineObjRefs.current[i] = [];
+                                lineObjRefs.current[i][0] = el;
+                            }}
+                        />
+                        <Line
+                            points={borderPts2[i]}
+                            color="#1a1a1a"
+                            lineWidth={2}
+                            transparent
+                            opacity={0}
+                            ref={(el) => {
+                                lineObjRefs.current[i][1] = el;
+                            }}
+                        />
+                        {/* 顶部胶带（ scrapbook 贴纸感） */}
+                        <mesh
+                            position={[0, CARD_H / 2 + 0.02, 0.05]}
+                            rotation={[0, 0, i % 2 === 0 ? 0.1 : -0.09]}
+                        >
+                            <planeGeometry args={[0.95, 0.26]} />
                             <meshBasicMaterial
-                                ref={(el) => { tagMatRefs.current[i] = el; }}
-                                color="#ff9ec4"
+                                ref={(el) => { tapeMatRefs.current[i] = el; }}
+                                color={i % 2 === 0 ? '#ffd6e7' : '#cfe6f5'}
                                 transparent
                                 opacity={0}
                                 side={THREE.DoubleSide}
+                                depthWrite={false}
                             />
                         </mesh>
-                        {/* 标签文字 */}
+                        {/* 标签文字（粉彩手写体，替代原来的粉色色块） */}
                         <Text
                             ref={(el) => { tagTextRefs.current[i] = el; }}
-                            position={[0, CARD_H / 2 - 0.32, 0.04]}
-                            fontSize={0.34}
-                            color="#ffffff"
+                            position={[0, CARD_H / 2 - 0.34, 0.04]}
+                            fontSize={0.36}
+                            color="#e0568a"
                             anchorX="center"
                             anchorY="middle"
                             font="/fonts/SmileySans-Oblique.ttf"
@@ -1589,11 +1668,23 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                         >
                             {card.tag}
                         </Text>
+                        {/* 标签下的手绘波浪下划线 */}
+                        <Line
+                            points={underlinePts[i]}
+                            color="#f3a8c5"
+                            lineWidth={2}
+                            transparent
+                            opacity={0}
+                            position={[0, CARD_H / 2 - 0.58, 0.04]}
+                            ref={(el) => {
+                                lineObjRefs.current[i][2] = el;
+                            }}
+                        />
                         {/* 内容文字 */}
                         <Text
                             ref={(el) => { bodyTextRefs.current[i] = el; }}
-                            position={[0, -0.32, 0.04]}
-                            fontSize={0.25}
+                            position={[0, -0.42, 0.04]}
+                            fontSize={0.24}
                             color="#3a3326"
                             anchorX="center"
                             anchorY="middle"
