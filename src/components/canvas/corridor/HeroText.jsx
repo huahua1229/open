@@ -69,11 +69,11 @@ const HeroText = ({ position = [0, 0.3, 0] }) => {
 
     // Tagline words for split effect
     const taglineWords = useMemo(() => [
-        { text: '数据', baseX: -0.95, splitDir: -1.5, delay: 0 },
-        { text: '挖掘', baseX: -0.475, splitDir: -0.8, delay: 0 },
+        { text: '土象', baseX: -0.95, splitDir: -1.5, delay: 0 },
+        { text: '音乐', baseX: -0.475, splitDir: -0.8, delay: 0 },
         { text: '·', baseX: 0.0, splitDir: 0.0, delay: 0 },
         { text: '大模型', baseX: 0.475, splitDir: 0.8, delay: 0 },
-        { text: '应用', baseX: 0.95, splitDir: 1.5, delay: 0 },
+        { text: '诗歌', baseX: 0.95, splitDir: 1.5, delay: 0 },
     ], []);
 
     // Animation loop
