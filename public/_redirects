@@ -1,0 +1,8 @@
+# 此文件仅用于内部路径重定向。
+# www 到 non-www 的重定向在 Cloudflare 面板 "Rules -> Redirect Rules" 中配置。
+
+# 轻量静态起始页。精确规则须在 SPA 路由之前。
+/start  /start/index.html  200
+/start/ /start/index.html  200
+
+# 其余路径（/gallery、/about 等）由 SPA fallback 自动处理。

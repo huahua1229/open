@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polaris · 扫码关注我的抖音</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+        font-family: "KaiTi", "楷体", "STKaiti", "Microsoft YaHei", sans-serif;
+        background: radial-gradient(ellipse at 20% 15%, #2a2150 0%, #171230 45%, #0c0a1e 100%);
+        color: #f5ecff;
+        overflow: hidden;
+        display: flex; align-items: center; justify-content: center;
+    }
+    /* 星空 */
+    .stars {
+        position: fixed; inset: 0; pointer-events: none;
+        background-image:
+            radial-gradient(1px 1px at 22px 38px, #fff9, transparent),
+            radial-gradient(1px 1px at 128px 86px, #ffd7f2, transparent),
+            radial-gradient(1.5px 1.5px at 260px 40px, #d9ccff, transparent),
+            radial-gradient(1px 1px at 340px 160px, #fff8, transparent),
+            radial-gradient(1.5px 1.5px at 60px 220px, #ffb8e4, transparent),
+            radial-gradient(1px 1px at 420px 280px, #fff9, transparent),
+            radial-gradient(1px 1px at 520px 120px, #d9ccff, transparent),
+            radial-gradient(1.5px 1.5px at 640px 60px, #fff7, transparent),
+            radial-gradient(1px 1px at 700px 240px, #ffd7f2, transparent),
+            radial-gradient(1.5px 1.5px at 800px 180px, #fff8, transparent),
+            radial-gradient(1px 1px at 920px 80px, #d9ccff, transparent),
+            radial-gradient(1px 1px at 60px 400px, #fff8, transparent),
+            radial-gradient(1.5px 1.5px at 300px 500px, #ffb8e4, transparent),
+            radial-gradient(1px 1px at 560px 460px, #fff9, transparent),
+            radial-gradient(1px 1px at 760px 420px, #d9ccff, transparent),
+            radial-gradient(1.5px 1.5px at 900px 520px, #fff7, transparent);
+        animation: twinkle 4s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle { from { opacity: .55; } to { opacity: 1; } }
+    /* 主卡片 */
+    .card {
+        position: relative;
+        width: min(88vw, 460px);
+        background: linear-gradient(165deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+        border: 1px solid rgba(255, 214, 244, .35);
+        border-radius: 22px;
+        padding: 34px 30px 30px;
+        text-align: center;
+        box-shadow: 0 24px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.15);
+        backdrop-filter: blur(10px);
+    }
+    .badge {
+        display: inline-block;
+        font-size: 13px; letter-spacing: 5px;
+        color: #ffd7f2; opacity: .9;
+        border: 1px solid rgba(255, 183, 228, .5);
+        border-radius: 999px;
+        padding: 6px 18px;
+        margin-bottom: 18px;
+    }
+    h1 {
+        font-size: 27px; font-weight: normal;
+        color: #fff4fb;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+    }
+    .qr {
+        width: min(60vw, 250px);
+        border-radius: 14px;
+        box-shadow: 0 12px 40px rgba(0,0,0,.6);
+        margin: 16px auto 18px;
+        display: block;
+        border: 3px solid #fff;
+    }
+    .sub {
+        font-size: 15px; color: #e6d7ff; letter-spacing: 1px;
+        margin-bottom: 14px;
+    }
+    .hint {
+        font-size: 12px; color: #b9a4e6; letter-spacing: 2px;
+        padding-top: 12px;
+        border-top: 1px dashed rgba(255, 183, 228, .35);
+    }
+    .foot {
+        position: fixed; bottom: 18px; left: 0; right: 0;
+        text-align: center; font-size: 12px; color: #7f6aa8; letter-spacing: 3px;
+    }
+</style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="card">
+        <div class="badge">P O L A R I S</div>
+        <h1>扫码关注我的抖音</h1>
+        <img class="qr" src="../textures/contact/douyin_qr.jpg" alt="二维码">
+        <div class="sub">在抖音，遇见代码与山海的另一面</div>
+        <div class="hint">打开 抖音 App 扫一扫</div>
+    </div>
+    <div class="foot">卓智华 · 在代码与山海之间</div>
+</body>
+</html>

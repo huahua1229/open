@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preload" as="image" href="/textures/paper-texture.webp" type="image/webp" fetchpriority="high" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="/favico.png" />
+  <link rel="apple-touch-icon" href="/favico.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="hJ5aPZ41MvWj8wpgBteG7wWeOaKQk0TrSWgfKrTTE50" />
+  <meta name="google-site-verification" content="xHP9fuTfxKEJaZ1C9d_MYu1jQhgAsHJLSol3j5f55yA" />
+  <meta name="theme-color" content="#fafafa" />
+
+  <!-- SEO Meta Tags -->
+  <title>POLARIS | 大模型应用 · AI 与数据挖掘探索者</title>
+  <meta name="description"
+    content="卓智华的交互式 3D 个人站。广东科学技术职业学院大模型应用专业，2026 泰迪杯数据挖掘挑战赛全国专科组三等奖、广东省专科组二等奖，热爱人工智能与数据挖掘。" />
+  <meta name="author" content="卓智华 (Zhuo Zhihua)" />
+  <meta name="keywords"
+    content="卓智华, POLARIS, 个人网站, 大模型应用, 数据挖掘, 泰迪杯, 广东科学技术职业学院, Three.js, React, 3D portfolio" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://huahua1229.github.io/Polaris" />
+
+  <!-- Open Graph (Facebook, LinkedIn, Discord) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="POLARIS | 大模型应用 · AI 与数据挖掘探索者" />
+  <meta property="og:description"
+    content="卓智华的交互式 3D 个人站：在代码与山海之间寻找平衡。泰迪杯全国专科组三等奖、广东省专科组二等奖。" />
+  <meta property="og:url" content="https://huahua1229.github.io/Polaris" />
+  <meta property="og:site_name" content="POLARIS 个人站" />
+  <meta property="og:image" content="https://huahua1229.github.io/Polaris/static/decor/hero_day.webp" />
+  <meta property="og:image:width" content="513" />
+  <meta property="og:image:height" content="1007" />
+  <meta property="og:locale" content="zh_CN" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="POLARIS | 大模型应用 · AI 与数据挖掘探索者" />
+  <meta name="twitter:description"
+    content="卓智华的交互式 3D 个人站：泰迪杯全国专科组三等奖、广东省专科组二等奖，热爱人工智能与数据挖掘。" />
+  <meta name="twitter:image" content="https://huahua1229.github.io/Polaris/static/decor/hero_day.webp" />
+
+  <!-- Google Fonts: Hand-drawn + Primary -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Gloria+Hallelujah&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Preload bazowych tekstur używanych w preloaderze -->
+
+  <style>
+    /* Absolute SEO text hiding - completely accessible to Googlebot, invisible to users */
+    .sr-only-seo {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- SEO Fallback for WebGL SPAs (2026 Crawl Optimization) -->
+  <div id="seo-content" class="sr-only-seo">
+    <header>
+      <h1>POLARIS — 卓智华 | 大模型应用 · AI 与数据挖掘探索者</h1>
+      <p>基于 React Three Fiber 的交互式 3D 个人网站，展示个人简介、荣誉、项目与技能。</p>
+    </header>
+    
+    <nav aria-label="站点导航">
+      <ul>
+        <li><a href="/">首页（3D 走廊）</a></li>
+        <li><a href="/gallery">画廊 · 项目与作品</a></li>
+        <li><a href="/about">关于我</a></li>
+        <li><a href="/studio">工作室 · 技能与经历</a></li>
+        <li><a href="/contact">联系 · 社交</a></li>
+      </ul>
+    </nav>
+    
+    <main>
+      <article id="home-corridor">
+        <header>
+          <h2>3D 走廊：一段代码与山海之间的旅程</h2>
+        </header>
+        <section>
+          <h3>欢迎来到 POLARIS 数字小宇宙</h3>
+          <p>
+            我是 <strong>卓智华</strong>，广东科学技术职业学院大模型应用专业在校学生，热爱人工智能与数据挖掘技术。
+            这个网站不是一份普通的简历，而是一个完全由 WebGL 打造的手绘 3D 走廊体验。
+            走廊的每一扇门通向我的不同侧面：我的项目、我的传记、我的联系方式。
+          </p>
+          <p>
+            我的目标是让网页不只是静态的内容，而是像游戏一样沉浸、像电影一样有节奏的体验。
+            借助 React Three Fiber、Three.js 和 GSAP，这条 3D 走廊在各类设备上保持流畅运行。
+          </p>
+        </section>
+      </article>
+
+      <article id="about-me">
+        <header>
+          <h2>关于卓智华：屏幕背后的探索者</h2>
+        </header>
+        <section>
+          <h3>我的成长旅程</h3>
+          <p>
+            我的名字是 <strong>卓智华</strong>（Zhuo Zhihua），一名大模型应用专业学生，专注于数据挖掘与 AI 应用。
+            曾获 2026 年（第 14 届）泰迪杯数据挖掘挑战赛全国专科组三等奖、广东省专科组二等奖，作品《「秦直道」的路线规划》；
+            参与全国大学生数学建模竞赛。课余喜欢打游戏、爬山、看海、听音乐，在代码与山海之间寻找平衡。
+          </p>
+        </section>
+        <section>
+          <h3>核心技能</h3>
+          <ul>
+            <li><strong>前端基础：</strong>HTML / CSS（90%），能独立完成页面布局与交互动效。</li>
+            <li><strong>数据分析与 AI：</strong>Python 数据分析 / 大模型应用（80%），Pandas 数据处理、机器学习建模。</li>
+            <li><strong>前端框架：</strong>Vue / React（75%），组件化开发与工程化实践。</li>
+            <li><strong>其他：</strong>爬虫（requests / lxml）、SQL、Git、微信云托管、小程序开发。</li>
+          </ul>
+        </section>
+      </article>
+
+      <article id="gallery-projects">
+        <header>
+          <h2>画廊：精选作品与案例</h2>
+        </header>
+        <section>
+          <h3>泰迪杯 · 秦直道路线规划（全国三等奖）</h3>
+          <p>
+            2026 年（第 14 届）泰迪杯数据挖掘挑战赛全国专科组三等奖获奖作品。利用数据挖掘算法为秦直道规划最优路线，
+            涉及数据清洗、特征工程、路径规划建模与可视化。
+          </p>
+        </section>
+        <section>
+          <h3>泰迪杯 · 广东省专科组二等奖</h3>
+          <p>
+            同一作品《「秦直道」的路线规划》荣获广东省专科组二等奖。
+          </p>
+        </section>
+        <section>
+          <h3>全国大学生数学建模竞赛</h3>
+          <p>
+            参与全国大学生数学建模竞赛，体验三天两夜的问题建模、求解与论文写作。
+          </p>
+        </section>
+        <section>
+          <h3>POLARIS 个人网站</h3>
+          <p>
+            从零搭建的个人网站：三栏布局、日夜模式、留言板、音乐库、相册、投稿系统，纯前端 + 云服务实现。
+            源码托管在 <a href="https://github.com/huahua1229" target="_blank" rel="noopener noreferrer">GitHub</a>。
+          </p>
+        </section>
+      </article>
+
+      <article id="contact-room">
+        <header>
+          <h2>联系我</h2>
+        </header>
+        <section>
+          <h3>合作与交流</h3>
+          <p>
+            欢迎交流 AI、数据挖掘、前端开发相关话题。联系方式：邮箱 2728817118@qq.com。
+            3D 联系房间里有漂浮的社交油桶：哔哩哔哩、GitHub、抖音、小红书。
+          </p>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <!-- Noscript strict fallback -->
+  <noscript>
+    请启用 JavaScript 以体验 POLARIS 交互式 3D 个人网站。
+  </noscript>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
