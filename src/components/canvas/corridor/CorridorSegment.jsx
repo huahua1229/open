@@ -121,8 +121,8 @@ const CorridorSegment = ({
                 {/* POLARIS Text - centered (POLARIS letters adjusted internally) */}
                 <HeroText position={[0, -0.1, -0.5]} />
 
-                {/* Avatar - 右侧（避免挡住 POLARIS 大字） */}
-                <Avatar position={[2.2, -0.61, -0.3]} />
+                {/* Avatar - center */}
+                <Avatar position={[0, -0.61, -0.3]} />
 
 
                 {/* Doodles around avatar */}

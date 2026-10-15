@@ -58,13 +58,13 @@ const HeroText = ({ position = [0, 0.3, 0] }) => {
 
     // Letter positions for POLARIS split effect
     const letters = useMemo(() => [
-        { char: 'P', baseX: -0.96, splitDir: -1.8, delay: 0 },
-        { char: 'O', baseX: -0.64, splitDir: -1.0, delay: 0 },
-        { char: 'L', baseX: -0.32, splitDir: -0.4, delay: 0 },
+        { char: 'P', baseX: -1.32, splitDir: -1.8, delay: 0 },
+        { char: 'O', baseX: -0.88, splitDir: -1.0, delay: 0 },
+        { char: 'L', baseX: -0.44, splitDir: -0.4, delay: 0 },
         { char: 'A', baseX: 0.0, splitDir: 0.0, delay: 0 },
-        { char: 'R', baseX: 0.32, splitDir: 0.4, delay: 0 },
-        { char: 'I', baseX: 0.64, splitDir: 1.0, delay: 0 },
-        { char: 'S', baseX: 0.96, splitDir: 1.8, delay: 0 },
+        { char: 'R', baseX: 0.44, splitDir: 0.4, delay: 0 },
+        { char: 'I', baseX: 0.88, splitDir: 1.0, delay: 0 },
+        { char: 'S', baseX: 1.32, splitDir: 1.8, delay: 0 },
     ], []);
 
     // Tagline words for split effect
