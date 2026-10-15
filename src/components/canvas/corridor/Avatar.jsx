@@ -68,7 +68,7 @@ const Avatar = ({ position = [10, -20, 30] }) => {
         const DODGE_START = 3;
         const DODGE_PEAK = 0;
         const DODGE_END = -2;
-        const DODGE_AMOUNT = -1.5;
+        const DODGE_AMOUNT = 1.5; // 人物在右侧（x=2.2），相机靠近时向右外侧闪避，不挡 POLARIS 文字
 
         if (distance > DODGE_PEAK && distance < DODGE_START) {
             const t = (DODGE_START - distance) / (DODGE_START - DODGE_PEAK);
