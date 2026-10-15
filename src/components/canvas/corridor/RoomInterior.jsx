@@ -20,10 +20,18 @@ const ROOM_CONFIG = {
 };
 
 const SUBTITLES = {
-    'THE GALLERY': 'Explore my creative projects',
-    'THE STUDIO': 'Watch behind the scenes',
-    'DEV DIARY': 'My development journey',
-    "LET'S CONNECT": 'Get in touch with me'
+    'THE GALLERY': '探索我的创意项目',
+    'THE STUDIO': '观看幕后花絮',
+    'DEV DIARY': '我的开发历程',
+    "LET'S CONNECT": '与我取得联系'
+};
+
+// 房间中文标题（generic 房间 fallback 用，key 与门牌 label 保持一致）
+const ROOM_TITLES = {
+    'THE GALLERY': '画廊',
+    'THE STUDIO': '工作室',
+    'DEV DIARY': '开发日志',
+    "LET'S CONNECT": '联系我'
 };
 
 // 踢脚线自然块：1582x94px、高 0.15 → 宽约 2.524 单位
@@ -278,7 +286,7 @@ const RoomInterior = memo(({ label, showRoom, onReady, isExiting }) => {
                                 maxWidth={roomWidth * 0.8}
                                 textAlign="center"
                             >
-                                {label}
+                                {ROOM_TITLES[label] || label}
                             </Text>
 
                             {/* Subtitle */}

@@ -18,14 +18,14 @@ const ScreenReaderOverlay = () => {
     const awards = useAwards();
 
     return (
-        <div className="sr-overlay" role="complementary" aria-label="Accessible navigation for 3D portfolio">
+        <div className="sr-overlay" role="complementary" aria-label="3D 作品集的无障碍导航">
             {/* Skip to content link */}
             <a href="#sr-main-nav" className="sr-only sr-focusable">
-                Skip to accessible navigation
+                跳转到无障碍导航
             </a>
 
             {/* Main accessible navigation */}
-            <nav id="sr-main-nav" className="sr-only" aria-label="Portfolio rooms">
+            <nav id="sr-main-nav" className="sr-only" aria-label="作品集房间">
                 <h1>POLARIS — 大模型应用 · AI 与数据挖掘探索者</h1>
                 <h2>站点导航</h2>
 
@@ -75,7 +75,7 @@ const ScreenReaderOverlay = () => {
 
                         {/* Room-specific content descriptions */}
                         {currentRoom === 'about' && (
-                            <div aria-label="About room content">
+                            <div aria-label="关于房间内容">
                                 <h3>关于我</h3>
                                 <p>我是卓智华，广东科学技术职业学院大模型应用专业在校学生，热爱人工智能与数据挖掘。曾获 2026 年（第 14 届）泰迪杯数据挖掘挑战赛全国专科组三等奖、广东省专科组二等奖，参与全国大学生数学建模竞赛。人生若只如初见，何事秋风悲画扇。</p>
                                 
@@ -98,7 +98,7 @@ const ScreenReaderOverlay = () => {
                             </div>
                         )}
                         {currentRoom === 'gallery' && (
-                            <div aria-label="Gallery room content">
+                            <div aria-label="画廊房间内容">
                                 <h3>我的项目</h3>
                                 <p>浏览展示在纸卡上的项目作品。点击项目卡查看详情并访问线上站点。</p>
                                 
@@ -116,13 +116,13 @@ const ScreenReaderOverlay = () => {
                             </div>
                         )}
                         {currentRoom === 'contact' && (
-                            <div aria-label="Contact room content">
+                            <div aria-label="联系房间内容">
                                 <h3>联系我</h3>
                                 <p>漂浮的油桶是我的社交链接：哔哩哔哩、GitHub、抖音、小红书，点击即可访问。中间的消息桶可以给我发邮件（2728817118@qq.com）。</p>
                             </div>
                         )}
                         {currentRoom === 'studio' && (
-                            <div aria-label="Studio room content">
+                            <div aria-label="工作室房间内容">
                                 <h3>工作室</h3>
                                 <p>在旋转的显示器上浏览我的技能与经历。点击显示器查看详情。</p>
 
@@ -141,19 +141,19 @@ const ScreenReaderOverlay = () => {
                         )}
 
                         {/* Quick navigation to other rooms */}
-                        <h3>Quick Navigation</h3>
+                        <h3>快速导航</h3>
                         <ul>
                             {currentRoom !== 'about' && (
-                                <li><button onClick={() => teleportTo('about')} type="button">Go to About</button></li>
+                                <li><button onClick={() => teleportTo('about')} type="button">前往关于</button></li>
                             )}
                             {currentRoom !== 'gallery' && (
-                                <li><button onClick={() => teleportTo('gallery')} type="button">Go to Gallery</button></li>
+                                <li><button onClick={() => teleportTo('gallery')} type="button">前往画廊</button></li>
                             )}
                             {currentRoom !== 'contact' && (
-                                <li><button onClick={() => teleportTo('contact')} type="button">Go to Contact</button></li>
+                                <li><button onClick={() => teleportTo('contact')} type="button">前往联系</button></li>
                             )}
                             {currentRoom !== 'studio' && (
-                                <li><button onClick={() => teleportTo('studio')} type="button">Go to Studio</button></li>
+                                <li><button onClick={() => teleportTo('studio')} type="button">前往工作室</button></li>
                             )}
                         </ul>
                     </>
@@ -162,7 +162,7 @@ const ScreenReaderOverlay = () => {
 
             {/* Live region for state changes */}
             <div aria-live="polite" aria-atomic="true" className="sr-only">
-                {isInRoom && `Entered ${currentRoom} room`}
+                {isInRoom && `已进入${currentRoom === 'about' ? '关于' : currentRoom === 'gallery' ? '画廊' : currentRoom === 'contact' ? '联系' : currentRoom === 'studio' ? '工作室' : currentRoom}房间`}
             </div>
         </div>
     );
