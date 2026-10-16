@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 const PAPER_WIDTH = 1.51; // Legacy ratio 1197/1340
 const PAPER_HEIGHT = 1.7;
-const FONT_PATH = '/fonts/SmileySans-Oblique.ttf';
+const FONT_PATH = '/open/fonts/SmileySans-Oblique.ttf';
 
 // Helper: Interactive Text Field with Smooth Animation and Invisible Hitbox
 const InteractiveTextField = ({
@@ -328,8 +328,8 @@ const MessagePaper = ({ position = [0, 0.05, 2], onSend }) => {
     };
 
     // Load textures
-    const paperTexture = useTexture('/textures/contact/paper_form.webp');
-    const buttonTexture = useTexture('/textures/contact/send_button.webp');
+    const paperTexture = useTexture('/open/textures/contact/paper_form.webp');
+    const buttonTexture = useTexture('/open/textures/contact/send_button.webp');
 
     // Configure textures
     useEffect(() => {

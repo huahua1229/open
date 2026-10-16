@@ -26,9 +26,9 @@ const tempEuler = new THREE.Euler();
 const tempQuat = new THREE.Quaternion();
 
 
-const CABIN_SKETCH_URL = '/fonts/CabinSketch-Regular.ttf';
+const CABIN_SKETCH_URL = '/open/fonts/CabinSketch-Regular.ttf';
 // 中文字体（得意黑）—— 画框签名等 3D 中文文案
-const SMILEY_URL = '/fonts/SmileySans-Oblique.ttf';
+const SMILEY_URL = '/open/fonts/SmileySans-Oblique.ttf';
 
 const PictureContent = ({ imagePath, imagePaintedPath, width, height, isPainted }) => {
     const texture = useTexture(imagePath);
@@ -329,20 +329,20 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
     // =============================================
     // TEKSTURY DEKORACJI
     // =============================================
-    const frameTexture = useTexture('/textures/corridor/ramkanazdjecieduza.webp');
-    const framePaintedTexture = useTexture('/textures/corridor/ramkanazdjecieduza_painted.webp');
-    const standingFrameTexture = useTexture('/textures/corridor/ramkanazdjeciemala.webp');
-    const treeTexture = useTexture('/textures/corridor/drzewkowdoniczce.webp');
-    const grateTexture = useTexture('/textures/corridor/kratkawentylacyjna.webp');
-    const flowerTexture = useTexture('/textures/corridor/kwiatekwdoniczce.webp');
+    const frameTexture = useTexture('/open/textures/corridor/ramkanazdjecieduza.webp');
+    const framePaintedTexture = useTexture('/open/textures/corridor/ramkanazdjecieduza_painted.webp');
+    const standingFrameTexture = useTexture('/open/textures/corridor/ramkanazdjeciemala.webp');
+    const treeTexture = useTexture('/open/textures/corridor/drzewkowdoniczce.webp');
+    const grateTexture = useTexture('/open/textures/corridor/kratkawentylacyjna.webp');
+    const flowerTexture = useTexture('/open/textures/corridor/kwiatekwdoniczce.webp');
 
     // --- 天花板灯（光源点） ---
     // Tekstury lamp
-    const lampGrilleTexture = useTexture('/textures/corridor/kratanalampy.webp');
+    const lampGrilleTexture = useTexture('/open/textures/corridor/kratanalampy.webp');
     // lampGrilleTexture.wrapS = lampGrilleTexture.wrapT = THREE.RepeatWrapping; 
     // lampGrilleTexture.repeat.set(1, 1);
 
-    const lampSideTexture = useTexture('/textures/corridor/bokilampy.webp');
+    const lampSideTexture = useTexture('/open/textures/corridor/bokilampy.webp');
     lampSideTexture.wrapS = lampSideTexture.wrapT = THREE.RepeatWrapping;
     // 调整长边的 UV
     lampSideTexture.repeat.set(1, 1);
@@ -382,7 +382,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             y: 0.3,                  // 墙面高度
             id: 'frame-1',
             // Custom setup for "rysuneknaobraz1.png"
-            image: '/textures/corridor/rysuneknaobraz1.webp',
+            image: '/open/textures/corridor/rysuneknaobraz1.webp',
             imageWidth: 1.1,
             imageHeight: 1.1,
             offsetFromWall: 0.1, // 向走廊中心偏移（0.1 单位）
@@ -394,7 +394,7 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             height: 2.5 / 1.785,
             y: 0.2,
             id: 'frame-2',
-            image: '/textures/corridor/rysuneknaobrazek3.webp',
+            image: '/open/textures/corridor/rysuneknaobrazek3.webp',
             imageWidth: 1.7,
             imageHeight: 1,
             offsetFromWall: 0.1
@@ -430,12 +430,12 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
     // =============================================
     // STOLIK (TABLE)
     // =============================================
-    const woodTexture = useTexture('/textures/corridor/texturadrewnadonozekbiurka.webp');
-    const tableTopTexture = useTexture('/textures/corridor/gorastolika.webp');
+    const woodTexture = useTexture('/open/textures/corridor/texturadrewnadonozekbiurka.webp');
+    const tableTopTexture = useTexture('/open/textures/corridor/gorastolika.webp');
 
     // Tekstury szafki
-    const cabinetFrontTexture = useTexture('/textures/corridor/szafkaprzod.webp');
-    const cabinetRestTexture = useTexture('/textures/corridor/szafkaprzodgora.webp');
+    const cabinetFrontTexture = useTexture('/open/textures/corridor/szafkaprzod.webp');
+    const cabinetRestTexture = useTexture('/open/textures/corridor/szafkaprzodgora.webp');
 
     // 克隆桌腿纹理以便旋转（用户说原本是横向，应该为纵向）
     const legTexture = useMemo(() => {

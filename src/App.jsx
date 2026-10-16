@@ -86,8 +86,6 @@ if (isLowEnd) {
   filteredLoader.forEach(path => useLoader.preload(TextureLoader, path));
 }
 
-const FONT_URL = 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff';
-
 // Helper component to handle global audio enable on interaction
 const GlobalAudioEnabler = () => {
   const { enableAudio } = useAudio();
@@ -108,7 +106,7 @@ const GlobalAudioEnabler = () => {
 // Scene background using corridor wall texture (static, no animation)
 const PaperSceneBackground = () => {
   const { scene } = useThree();
-  const texture = useTexture('/textures/paper-texture.webp');
+  const texture = useTexture('/open/textures/paper-texture.webp');
 
   useEffect(() => {
     texture.colorSpace = THREE.SRGBColorSpace;

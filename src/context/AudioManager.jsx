@@ -78,13 +78,13 @@ export const AudioProvider = ({ children }) => {
     const play = useCallback((soundName, { loop = false, volume = 1.0 } = {}) => {
         // Graceful degradation if files missing
         const soundPaths = {
-            'szumwiatru': '/sounds/szumwiatru.mp3', // Szum wiatru w pokoju About
-            'szummiasta': '/sounds/szummiasta.mp3', // Szum miasta w pokoju The Gallery
-            'uchyleniedrzwi': '/sounds/uchyleniedrzwi.mp3', // Skrzypienie przy najechaniu
-            'otwarciedrzwi': '/sounds/otwarciedrzwi.mp3',   // 打开主门/侧门
-            'zamknieciedrzwi': '/sounds/zamknieciedrzwi.mp3' // Zamykanie drzwi
+            'szumwiatru': '/open/sounds/szumwiatru.mp3', // Szum wiatru w pokoju About
+            'szummiasta': '/open/sounds/szummiasta.mp3', // Szum miasta w pokoju The Gallery
+            'uchyleniedrzwi': '/open/sounds/uchyleniedrzwi.mp3', // Skrzypienie przy najechaniu
+            'otwarciedrzwi': '/open/sounds/otwarciedrzwi.mp3',   // 打开主门/侧门
+            'zamknieciedrzwi': '/open/sounds/zamknieciedrzwi.mp3' // Zamykanie drzwi
         };
-        const path = soundPaths[soundName] || `/sounds/${soundName}.mp3`;
+        const path = soundPaths[soundName] || `/open/sounds/${soundName}.mp3`;
 
         // In "simulation mode" or if file missing, this might error.
         // We'll trust the browser to handle 404s without crashing JS.

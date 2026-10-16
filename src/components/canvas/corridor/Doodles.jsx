@@ -20,10 +20,10 @@ const Doodles = () => {
 
     // Load all sketch textures
     const textures = useTexture({
-        paperBall: '/textures/corridor/decorations/paper_ball.webp',
-        paperAirplane: '/textures/corridor/decorations/paper_airplane.webp',
-        pencil: '/textures/corridor/decorations/pencil.webp',
-        coffeeCup: '/textures/corridor/decorations/coffee_cup.webp',
+        paperBall: '/open/textures/corridor/decorations/paper_ball.webp',
+        paperAirplane: '/open/textures/corridor/decorations/paper_airplane.webp',
+        pencil: '/open/textures/corridor/decorations/pencil.webp',
+        coffeeCup: '/open/textures/corridor/decorations/coffee_cup.webp',
     });
 
     // Set color space for all textures

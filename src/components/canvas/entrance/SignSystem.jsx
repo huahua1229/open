@@ -5,8 +5,8 @@ import * as THREE from 'three';
 
 const SignSystem = (props) => {
     const groupRef = useRef();
-    const signTexture = useTexture('/textures/entrance/sign.webp');
-    const mountTexture = useTexture('/textures/entrance/belka.webp');
+    const signTexture = useTexture('/open/textures/entrance/sign.webp');
+    const mountTexture = useTexture('/open/textures/entrance/belka.webp');
 
     // Physics parameters
     const timeOffset = useMemo(() => Math.random() * 100, []);

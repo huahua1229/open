@@ -25,7 +25,7 @@ const Avatar = ({ position = [10, -20, 30] }) => {
 
     // --- FRAME-BY-FRAME ANIMATION (PING-PONG) ---
     const TOTAL_FRAMES = 9;
-    const framePaths = Array.from({ length: TOTAL_FRAMES }, (_, i) => `/textures/corridor/avatar_anim/${i + 1}.webp`);
+    const framePaths = Array.from({ length: TOTAL_FRAMES }, (_, i) => `/open/textures/corridor/avatar_anim/${i + 1}.webp`);
 
     // Load all texture frames
     const textures = useTexture(framePaths);

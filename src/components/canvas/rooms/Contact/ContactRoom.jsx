@@ -112,13 +112,13 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
     }, [isExiting, isTeleporting, hidePopup]);
 
     // Load Sea Texture
-    const seaTexture = useTexture("/textures/contact/faletopdown.webp");
+    const seaTexture = useTexture("/open/textures/contact/faletopdown.webp");
     // Load Molo Texture
-    const moloTexture = useTexture("/textures/contact/molo.webp");
+    const moloTexture = useTexture("/open/textures/contact/molo.webp");
     // Load Latarnia Texture
-    const latarniaTexture = useTexture("/textures/contact/latarnia.webp");
+    const latarniaTexture = useTexture("/open/textures/contact/latarnia.webp");
     // Load Statek Texture
-    const statekTexture = useTexture("/textures/contact/statek.webp");
+    const statekTexture = useTexture("/open/textures/contact/statek.webp");
 
 
     // Configure texture repeating (1:1 scale)
@@ -362,7 +362,7 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             {!isWarmup && (
                 <PositionalAudio
                     ref={audioRef}
-                    url="/sounds/szummorza.mp3"
+                    url="/open/sounds/szummorza.mp3"
                     distanceModel="exponential"
                     refDistance={AUDIO_SETTINGS.distance}
                     rolloffFactor={AUDIO_SETTINGS.rolloff}
@@ -403,7 +403,7 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             <SocialBarrel
                 position={isMobile ? [-1.2, 0.5, -10] : [-3, 0.5, -10]}
                 rotation={[0, 0.2, 0]}
-                texturePath="/textures/contact/beczka.webp"
+                texturePath="/open/textures/contact/beczka.webp"
                 label="哔哩哔哩"
                 onClick={() => window.open('https://space.bilibili.com/1293168688', '_blank')}
                 paintOnBeforeCompile={onBeforeCompile}
@@ -413,7 +413,7 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             <SocialBarrel
                 position={isMobile ? [-1.5, -0.3, -7] : [-5, -0.3, -8]}
                 rotation={[0, 0.3, 0]}
-                texturePath="/textures/contact/beczka.webp"
+                texturePath="/open/textures/contact/beczka.webp"
                 label="GitHub"
                 onClick={() => window.open('https://github.com/huahua1229', '_blank')}
                 paintOnBeforeCompile={onBeforeCompile}
@@ -423,7 +423,7 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             <SocialBarrel
                 position={isMobile ? [1.2, 0.5, -10] : [3, 0.5, -10]}
                 rotation={[0, -0.2, 0]}
-                texturePath="/textures/contact/beczka.webp"
+                texturePath="/open/textures/contact/beczka.webp"
                 label="抖音"
                 onClick={() => window.open('./contact/douyin.html', '_blank')}
                 paintOnBeforeCompile={onBeforeCompile}
@@ -433,7 +433,7 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             <SocialBarrel
                 position={isMobile ? [1.5, -0.3, -7] : [5, -0.3, -8]}
                 rotation={[0, -0.3, 0]}
-                texturePath="/textures/contact/beczka.webp"
+                texturePath="/open/textures/contact/beczka.webp"
                 label="微信"
                 onClick={() => window.open('./contact/wechat.html', '_blank')}
                 paintOnBeforeCompile={onBeforeCompile}
@@ -443,7 +443,7 @@ const ContactRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             <SocialBarrel
                 position={isMobile ? [0, -0.7, -6] : [0, -0.7, -7]}
                 rotation={[0, 0, 0]}
-                texturePath="/textures/contact/beczka.webp"
+                texturePath="/open/textures/contact/beczka.webp"
                 label="QQ邮箱"
                 onClick={handleMailSelect}
                 paintOnBeforeCompile={onBeforeCompile}

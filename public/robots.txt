@@ -22,4 +22,4 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-Sitemap: https://huahua1229.github.io/Polaris/sitemap.xml
+Sitemap: https://huahua1229.github.io/open/sitemap.xml

@@ -41,19 +41,19 @@ const SegmentDoors = ({
 
     // Load textures
     // Note: User provided specific filenames in corridor/doors/
-    const frameTexture = useTexture('/textures/corridor/doors/frame_sketch.webp');
-    const doorLeftTexture = useTexture('/textures/corridor/doors/doorrleft.webp');
-    const doorRightTexture = useTexture('/textures/corridor/doors/dorright.webp');
-    const handleLeftTexture = useTexture('/textures/corridor/doors/handle_left_sketch.webp');
-    const handleRightTexture = useTexture('/textures/corridor/doors/handle_right_sketch.webp');
-    const doorBackTexture = useTexture('/textures/corridor/doors/door_back.webp');
-    const edgeTexture = useTexture('/textures/corridor/doors/pien.webp');
-    const wallTexture = useTexture('/textures/corridor/wall_texture.webp');
+    const frameTexture = useTexture('/open/textures/corridor/doors/frame_sketch.webp');
+    const doorLeftTexture = useTexture('/open/textures/corridor/doors/doorrleft.webp');
+    const doorRightTexture = useTexture('/open/textures/corridor/doors/dorright.webp');
+    const handleLeftTexture = useTexture('/open/textures/corridor/doors/handle_left_sketch.webp');
+    const handleRightTexture = useTexture('/open/textures/corridor/doors/handle_right_sketch.webp');
+    const doorBackTexture = useTexture('/open/textures/corridor/doors/door_back.webp');
+    const edgeTexture = useTexture('/open/textures/corridor/doors/pien.webp');
+    const wallTexture = useTexture('/open/textures/corridor/wall_texture.webp');
 
     wallTexture.wrapS = wallTexture.wrapT = THREE.RepeatWrapping;
 
     // Baseboard texture (1582x94 px)
-    const baseboardTexSrc = useTexture('/textures/corridor/texturadoprogow.webp');
+    const baseboardTexSrc = useTexture('/open/textures/corridor/texturadoprogow.webp');
     const NATURAL_TILE_W = (1582 / 94) * 0.15; // ~2.524 units per natural tile
 
     // --- Dimensions from EntranceDoors ---
@@ -149,9 +149,9 @@ const SegmentDoors = ({
     });
 
     // Wall Decorations
-    const whileTrueTexture = useTexture('/textures/corridor/decorations/while_true_loop.webp');
-    const coffeeTexture = useTexture('/textures/corridor/decorations/coffee_debug.webp');
-    const ideaTexture = useTexture('/textures/corridor/decorations/idea_process.webp');
+    const whileTrueTexture = useTexture('/open/textures/corridor/decorations/while_true_loop.webp');
+    const coffeeTexture = useTexture('/open/textures/corridor/decorations/coffee_debug.webp');
+    const ideaTexture = useTexture('/open/textures/corridor/decorations/idea_process.webp');
 
     return (
         <group position={[position[0], 0, position[2]]}>
@@ -396,7 +396,7 @@ const SegmentDoors = ({
             {/* SPATIAL AUDIO NODES */}
             <PositionalAudio
                 ref={openAudioRef}
-                url="/sounds/otwarciedrzwi.mp3"
+                url="/open/sounds/otwarciedrzwi.mp3"
                 distanceModel="exponential"
                 rolloffFactor={SEGMENT_DOOR_AUDIO_SETTINGS.rolloff}
                 refDistance={SEGMENT_DOOR_AUDIO_SETTINGS.distance}
@@ -404,7 +404,7 @@ const SegmentDoors = ({
             />
             <PositionalAudio
                 ref={closeAudioRef}
-                url="/sounds/zamknieciedrzwi.mp3"
+                url="/open/sounds/zamknieciedrzwi.mp3"
                 distanceModel="exponential"
                 rolloffFactor={SEGMENT_DOOR_AUDIO_SETTINGS.rolloff}
                 refDistance={SEGMENT_DOOR_AUDIO_SETTINGS.distance}

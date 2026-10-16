@@ -16,7 +16,7 @@ const EmptyCorridor = ({ camera }) => {
     const [segmentBase, setSegmentBase] = useState(0);
 
     // Load floor texture
-    const floorTexture = useTexture('/textures/entrance/floor_paper.webp');
+    const floorTexture = useTexture('/open/textures/entrance/floor_paper.webp');
     floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
     floorTexture.repeat.set(6.6, 20); // Adjust repeat to match aspect ratio (2816x1536) and new width
 

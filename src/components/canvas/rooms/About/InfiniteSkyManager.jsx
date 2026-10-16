@@ -132,7 +132,7 @@ const AwardButton = ({ onClick, texture, paintedTexture, width, height, position
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 查看
             </Text>
@@ -259,7 +259,7 @@ const InfiniteSkyManager = ({ scrollProgressRef }) => {
  */
 const IntroMilestone = ({ z, scrollProgressRef }) => {
     // Load avatar texture
-    const avatarTexture = useLoader(THREE.TextureLoader, '/textures/about/awatarnachmurce.webp');
+    const avatarTexture = useLoader(THREE.TextureLoader, '/open/textures/about/awatarnachmurce.webp');
     const { camera, viewport } = useThree();
     const isTouch = isTouchDevice();
 
@@ -350,7 +350,7 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 卓智华
             </Text>
@@ -363,7 +363,7 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
                 color="#4a4a4a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 (POLARIS)
             </Text>
@@ -387,7 +387,7 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
                 color="#555555"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 人生若只如初见，
             </Text>
@@ -400,7 +400,7 @@ const IntroMilestone = ({ z, scrollProgressRef }) => {
                 color="#555555"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 何事秋风悲画扇。
             </Text>
@@ -417,10 +417,10 @@ const AWARDS_DATA = {
         layout: 'certificate_grid',
         title: 'Featured Projects Collection',
         items: [
-            { label: '泰迪杯 · 全国专科组三等奖', date: '2026 年 6 月', image: '/textures/about/teddy_national.webp', url: 'https://huahua1229.github.io/Polaris' },
-            { label: '泰迪杯 · 广东省专科组二等奖', date: '2026 年 6 月', image: '/textures/about/teddy_guangdong.webp', url: 'https://huahua1229.github.io/Polaris' },
-            { label: '全国大学生数学建模竞赛', date: '2026 年 9 月', image: '/textures/about/teddy_national.webp', url: 'https://huahua1229.github.io/Polaris' },
-            { label: 'POLARIS 个人网站', date: '2026', image: '/textures/about/teddy_guangdong.webp', url: 'https://huahua1229.github.io/Polaris' },
+            { label: '泰迪杯 · 全国专科组三等奖', date: '2026 年 6 月', image: '/open/textures/about/teddy_national.webp', url: 'https://huahua1229.github.io/open' },
+            { label: '泰迪杯 · 广东省专科组二等奖', date: '2026 年 6 月', image: '/open/textures/about/teddy_guangdong.webp', url: 'https://huahua1229.github.io/open' },
+            { label: '全国大学生数学建模竞赛', date: '2026 年 9 月', image: '/open/textures/about/teddy_national.webp', url: 'https://huahua1229.github.io/open' },
+            { label: 'POLARIS 个人网站', date: '2026', image: '/open/textures/about/teddy_guangdong.webp', url: 'https://huahua1229.github.io/open' },
         ],
         platformConfig: {
             label: '荣誉',
@@ -433,8 +433,8 @@ const AWARDS_DATA = {
         layout: 'certificate_grid',
         title: '我的荣誉证书',
         items: [
-            { label: '泰迪杯 · 全国专科组三等奖', date: '2026 年 6 月 25 日', image: '/textures/about/teddy_national.webp', url: 'https://huahua1229.github.io/Polaris' },
-            { label: '泰迪杯 · 广东省专科组二等奖', date: '2026 年 6 月 25 日', image: '/textures/about/teddy_guangdong.webp', url: 'https://huahua1229.github.io/Polaris' },
+            { label: '泰迪杯 · 全国专科组三等奖', date: '2026 年 6 月 25 日', image: '/open/textures/about/teddy_national.webp', url: 'https://huahua1229.github.io/open' },
+            { label: '泰迪杯 · 广东省专科组二等奖', date: '2026 年 6 月 25 日', image: '/open/textures/about/teddy_guangdong.webp', url: 'https://huahua1229.github.io/open' },
         ],
         platformConfig: {
             label: '奖项',
@@ -495,14 +495,14 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
     const sotyHideDelayRef = useRef();
 
     // Load textures
-    const sotyTexture = useLoader(THREE.TextureLoader, '/textures/about/SOTY.webp');
-    const sotdTexture = useLoader(THREE.TextureLoader, '/textures/about/SOTD.webp');
-    const sotmTexture = useLoader(THREE.TextureLoader, '/textures/about/SOTM.webp');
-    const sotyPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/textures/about/SOTY.webp' : '/textures/about/SOTY_painted.webp');
-    const sotdPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/textures/about/SOTD.webp' : '/textures/about/SOTD_painted.webp');
-    const sotmPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/textures/about/SOTM.webp' : '/textures/about/SOTM_painted.webp');
-    const buttonTexture = useLoader(THREE.TextureLoader, '/textures/about/button.webp');
-    const buttonPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/textures/about/button.webp' : '/textures/about/button_painted.webp');
+    const sotyTexture = useLoader(THREE.TextureLoader, '/open/textures/about/SOTY.webp');
+    const sotdTexture = useLoader(THREE.TextureLoader, '/open/textures/about/SOTD.webp');
+    const sotmTexture = useLoader(THREE.TextureLoader, '/open/textures/about/SOTM.webp');
+    const sotyPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/open/textures/about/SOTY.webp' : '/open/textures/about/SOTY_painted.webp');
+    const sotdPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/open/textures/about/SOTD.webp' : '/open/textures/about/SOTD_painted.webp');
+    const sotmPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/open/textures/about/SOTM.webp' : '/open/textures/about/SOTM_painted.webp');
+    const buttonTexture = useLoader(THREE.TextureLoader, '/open/textures/about/button.webp');
+    const buttonPaintedTexture = useLoader(THREE.TextureLoader, isTouch ? '/open/textures/about/button.webp' : '/open/textures/about/button_painted.webp');
 
     // Color space fix
     sotyTexture.colorSpace = THREE.SRGBColorSpace;
@@ -618,7 +618,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 荣誉奖项
             </Text>
@@ -667,7 +667,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     今日站点
                 </Text>
@@ -678,7 +678,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     {awardsData.sotd.items.length}
                 </Text>
@@ -728,7 +728,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     本月站点
                 </Text>
@@ -739,7 +739,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     {awardsData.sotm.items.length}
                 </Text>
@@ -788,7 +788,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     其他荣誉
                 </Text>
@@ -799,7 +799,7 @@ const AwardsMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     {awardsData.other.items.length}
                 </Text>
@@ -820,8 +820,8 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
     const freelanceRef = useRef();
 
     // Load textures
-    const uoTexture = useLoader(THREE.TextureLoader, '/textures/about/uowyspa.webp');
-    const freelanceTexture = useLoader(THREE.TextureLoader, '/textures/about/freelancewyspa.webp');
+    const uoTexture = useLoader(THREE.TextureLoader, '/open/textures/about/uowyspa.webp');
+    const freelanceTexture = useLoader(THREE.TextureLoader, '/open/textures/about/freelancewyspa.webp');
 
     // Texture settings
     uoTexture.colorSpace = THREE.SRGBColorSpace;
@@ -897,7 +897,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 成长之路
             </Text>
@@ -909,7 +909,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
                 color="#555555"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 一路走来的足迹…
             </Text>
@@ -931,7 +931,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     2025 至今
                 </Text>
@@ -954,7 +954,7 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
                     color="#1a1a1a"
                     anchorX="center"
                     anchorY="middle"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                 >
                     2023 至今
                 </Text>
@@ -972,20 +972,20 @@ const JourneyMilestone = ({ z, scrollProgressRef }) => {
 // === 在此编辑高度（修改每个气球的 'y' 值） ===
 const BALLOON_CONFIG = [
     // Large balloons (main skills) - front and center
-    { texture: '/textures/about/reactduzybalon.webp', paintedTexture: '/textures/about/reactduzybalon_painted.webp', label: 'React', size: 'large', x: -2.5, y: 2, z: 0.3, phase: 0 },
-    { texture: '/textures/about/threejsduzybalon.webp', paintedTexture: '/textures/about/threejsduzybalon_painted.webp', label: 'Three.js', size: 'large', x: 2.5, y: 2.5, z: 0.2, phase: 1.5 },
-    { texture: '/textures/about/GSAPduzybalon.webp', paintedTexture: '/textures/about/GSAPduzybalon_painted.webp', label: 'GSAP', size: 'large', x: 0, y: 3, z: 0.5, phase: 3 },
+    { texture: '/open/textures/about/reactduzybalon.webp', paintedTexture: '/open/textures/about/reactduzybalon_painted.webp', label: 'React', size: 'large', x: -2.5, y: 2, z: 0.3, phase: 0 },
+    { texture: '/open/textures/about/threejsduzybalon.webp', paintedTexture: '/open/textures/about/threejsduzybalon_painted.webp', label: 'Three.js', size: 'large', x: 2.5, y: 2.5, z: 0.2, phase: 1.5 },
+    { texture: '/open/textures/about/GSAPduzybalon.webp', paintedTexture: '/open/textures/about/GSAPduzybalon_painted.webp', label: 'GSAP', size: 'large', x: 0, y: 3, z: 0.5, phase: 3 },
 
     // Medium balloons - scattered around
-    { texture: '/textures/about/JSSREDNIBALON.webp', paintedTexture: '/textures/about/JSSREDNIBALON_painted.webp', label: 'JavaScript', size: 'medium', x: -4, y: 1, z: -0.3, phase: 0.8 },
-    { texture: '/textures/about/csssrednibalon.webp', paintedTexture: '/textures/about/csssrednibalon_painted.webp', label: 'CSS', size: 'medium', x: 4, y: 1.5, z: -0.2, phase: 2.2 },
-    { texture: '/textures/about/nextjssrednibalon.webp', paintedTexture: '/textures/about/nextjssrednibalon_painted.webp', label: 'Next.js', size: 'medium', x: 0, y: 0.5, z: -0.4, phase: 4 },
+    { texture: '/open/textures/about/JSSREDNIBALON.webp', paintedTexture: '/open/textures/about/JSSREDNIBALON_painted.webp', label: 'JavaScript', size: 'medium', x: -4, y: 1, z: -0.3, phase: 0.8 },
+    { texture: '/open/textures/about/csssrednibalon.webp', paintedTexture: '/open/textures/about/csssrednibalon_painted.webp', label: 'CSS', size: 'medium', x: 4, y: 1.5, z: -0.2, phase: 2.2 },
+    { texture: '/open/textures/about/nextjssrednibalon.webp', paintedTexture: '/open/textures/about/nextjssrednibalon_painted.webp', label: 'Next.js', size: 'medium', x: 0, y: 0.5, z: -0.4, phase: 4 },
 
     // Small balloons - background accents
-    { texture: '/textures/about/htmlmalybalon.webp', paintedTexture: '/textures/about/htmlmalybalon_painted.webp', label: 'HTML', size: 'small', x: -5.5, y: 2.5, z: -0.8, phase: 1.2 },
-    { texture: '/textures/about/gitmalybalon.webp', paintedTexture: '/textures/about/gitmalybalon_painted.webp', label: 'Git', size: 'small', x: 5.5, y: 3, z: -0.7, phase: 2.8 },
-    { texture: '/textures/about/figmamalybalon.webp', paintedTexture: '/textures/about/figmamalybalon_painted.webp', label: 'Figma', size: 'small', x: -3, y: 4.5, z: -0.5, phase: 3.5 },
-    { texture: '/textures/about/firebasemalybalon.webp', paintedTexture: '/textures/about/firebasemalybalon_painted.webp', label: 'Firebase', size: 'small', x: 3.5, y: 4, z: -0.6, phase: 4.5 },
+    { texture: '/open/textures/about/htmlmalybalon.webp', paintedTexture: '/open/textures/about/htmlmalybalon_painted.webp', label: 'HTML', size: 'small', x: -5.5, y: 2.5, z: -0.8, phase: 1.2 },
+    { texture: '/open/textures/about/gitmalybalon.webp', paintedTexture: '/open/textures/about/gitmalybalon_painted.webp', label: 'Git', size: 'small', x: 5.5, y: 3, z: -0.7, phase: 2.8 },
+    { texture: '/open/textures/about/figmamalybalon.webp', paintedTexture: '/open/textures/about/figmamalybalon_painted.webp', label: 'Figma', size: 'small', x: -3, y: 4.5, z: -0.5, phase: 3.5 },
+    { texture: '/open/textures/about/firebasemalybalon.webp', paintedTexture: '/open/textures/about/firebasemalybalon_painted.webp', label: 'Firebase', size: 'small', x: 3.5, y: 4, z: -0.6, phase: 4.5 },
 ];
 
 // Size multipliers for balloon categories
@@ -1304,7 +1304,7 @@ const SkillBalloon = ({ config, revealFactorRef, spreadFactorRef, timeRef }) => 
                         color="#1a1a1a"
                         anchorX="center"
                         anchorY="middle"
-                        font="/fonts/SmileySans-Oblique.ttf"
+                        font="/open/fonts/SmileySans-Oblique.ttf"
                         fillOpacity={0}
                         outlineWidth={0.02}
                         outlineColor="#fff"
@@ -1316,7 +1316,7 @@ const SkillBalloon = ({ config, revealFactorRef, spreadFactorRef, timeRef }) => 
 
                 <PositionalAudio
                     ref={balloonAudioRef}
-                    url="/sounds/baloonpoop.mp3"
+                    url="/open/sounds/baloonpoop.mp3"
                     distanceModel="exponential"
                     rolloffFactor={BALLOON_AUDIO_SETTINGS.rolloff}
                     refDistance={BALLOON_AUDIO_SETTINGS.distance}
@@ -1393,7 +1393,7 @@ const SkillsMilestone = ({ z, scrollProgressRef }) => {
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 技能栈
             </Text>
@@ -1405,7 +1405,7 @@ const SkillsMilestone = ({ z, scrollProgressRef }) => {
                 color="#555555"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
             >
                 我热爱的技术栈
             </Text>
@@ -1481,7 +1481,7 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
     const bodyTextRefs = useRef([]);
     const revealFactorRef = useRef(0);
 
-    const paperTexture = useTexture('/textures/paper-texture.webp');
+    const paperTexture = useTexture('/open/textures/paper-texture.webp');
 
     // 卡片数据：3 列 × 2 行网格
     const CARD_W = 3.1;
@@ -1563,7 +1563,7 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
                 fillOpacity={0}
             >
                 个人爱好
@@ -1577,7 +1577,7 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                 color="#555555"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
                 fillOpacity={0}
             >
                 羽毛球 · 爬山 · 游戏 · 小说 · 历史 · 音乐
@@ -1663,7 +1663,7 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                             color="#e0568a"
                             anchorX="center"
                             anchorY="middle"
-                            font="/fonts/SmileySans-Oblique.ttf"
+                            font="/open/fonts/SmileySans-Oblique.ttf"
                             fillOpacity={0}
                         >
                             {card.tag}
@@ -1688,7 +1688,7 @@ const InterestsMilestone = ({ z, scrollProgressRef }) => {
                             color="#3a3326"
                             anchorX="center"
                             anchorY="middle"
-                            font="/fonts/SmileySans-Oblique.ttf"
+                            font="/open/fonts/SmileySans-Oblique.ttf"
                             maxWidth={CARD_W - 0.5}
                             textAlign="center"
                             lineHeight={1.5}

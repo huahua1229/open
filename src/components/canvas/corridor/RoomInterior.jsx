@@ -49,10 +49,10 @@ const RoomInterior = memo(({ label, showRoom, onReady, isExiting }) => {
     const roomZ = -corridorDepth - roomDepth / 2;
 
     // Load corridor textures
-    const floorTexSrc = useTexture('/textures/corridor/kawalekpodlogi.webp');
-    const wallTexSrc = useTexture('/textures/corridor/wall_texture.webp');
-    const ceilingTexSrc = useTexture('/textures/corridor/ceiling_texture.webp');
-    const bbTexSrc = useTexture('/textures/corridor/texturadoprogow.webp');
+    const floorTexSrc = useTexture('/open/textures/corridor/kawalekpodlogi.webp');
+    const wallTexSrc = useTexture('/open/textures/corridor/wall_texture.webp');
+    const ceilingTexSrc = useTexture('/open/textures/corridor/ceiling_texture.webp');
+    const bbTexSrc = useTexture('/open/textures/corridor/texturadoprogow.webp');
 
     // Memoize textured materials for mini-corridor
     const materials = useMemo(() => {
@@ -285,7 +285,7 @@ const RoomInterior = memo(({ label, showRoom, onReady, isExiting }) => {
                                 anchorY="middle"
                                 maxWidth={roomWidth * 0.8}
                                 textAlign="center"
-                                font="/fonts/SmileySans-Oblique.ttf"
+                                font="/open/fonts/SmileySans-Oblique.ttf"
                             >
                                 {ROOM_TITLES[label] || label}
                             </Text>
@@ -299,7 +299,7 @@ const RoomInterior = memo(({ label, showRoom, onReady, isExiting }) => {
                                 anchorY="middle"
                                 maxWidth={roomWidth * 0.7}
                                 textAlign="center"
-                                font="/fonts/SmileySans-Oblique.ttf"
+                                font="/open/fonts/SmileySans-Oblique.ttf"
                             >
                                 {SUBTITLES[label] || ''}
                             </Text>

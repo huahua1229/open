@@ -82,21 +82,21 @@ const CorridorWalls = ({ zStart = 10, length = 80, doorPositions = [], zClip = 1
     // 地板设置（FLOOR SETTINGS）
     // =============================================
     // 地板块纹理 - 手绘木板
-    const floorTexture = useTexture('/textures/corridor/kawalekpodlogi.webp');
+    const floorTexture = useTexture('/open/textures/corridor/kawalekpodlogi.webp');
     floorTexture.wrapS = floorTexture.wrapT = THREE.ClampToEdgeWrapping;
 
     // 踢脚线纹理（baseboards）
     // Wymiary obrazka: 1582 x 94 px → aspect ratio 16.83:1
-    const baseboardTexture = useTexture('/textures/corridor/texturadoprogow.webp');
+    const baseboardTexture = useTexture('/open/textures/corridor/texturadoprogow.webp');
     baseboardTexture.wrapS = baseboardTexture.wrapT = THREE.RepeatWrapping;
     baseboardTexture.colorSpace = THREE.SRGBColorSpace;
 
     // Load wall texture
-    const wallTexture = useTexture('/textures/corridor/wall_texture.webp');
+    const wallTexture = useTexture('/open/textures/corridor/wall_texture.webp');
     wallTexture.wrapS = wallTexture.wrapT = THREE.RepeatWrapping;
 
     // Load ceiling texture
-    const ceilingTexture = useTexture('/textures/corridor/ceiling_texture.webp');
+    const ceilingTexture = useTexture('/open/textures/corridor/ceiling_texture.webp');
     ceilingTexture.wrapS = ceilingTexture.wrapT = THREE.RepeatWrapping;
 
     // Calculate effective geometry based on clipping

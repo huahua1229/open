@@ -10,8 +10,8 @@ import { configureTextBuilder } from 'troika-three-text'
 // 这里把「默认字体」指向本地得意黑（含中文与常用符号），并把 fallback 数据源
 // 也指到本地（空数据），让 troika 永不依赖外网 CDN。
 configureTextBuilder({
-  defaultFontURL: '/fonts/SmileySans-Oblique.ttf',
-  unicodeFontsURL: '/fonts/ufr', // 本地 fallback 数据目录（不存在则快速失败，不再卡死）
+  defaultFontURL: '/open/fonts/SmileySans-Oblique.ttf',
+  unicodeFontsURL: '/open/fonts/ufr', // 本地 fallback 数据目录（不存在则快速失败，不再卡死）
 })
 
 

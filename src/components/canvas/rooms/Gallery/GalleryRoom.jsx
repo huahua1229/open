@@ -38,52 +38,52 @@ const FALLBACK_PROJECTS = [
     {
         id: 'teddy-national',
         title: '泰迪杯 · 全国三等奖',
-        front: '/textures/gallery/teddy_national.webp',
-        painted: '/textures/gallery/teddy_national.webp',
-        url: 'https://huahua1229.github.io/Polaris',
+        front: '/open/textures/gallery/teddy_national.webp',
+        painted: '/open/textures/gallery/teddy_national.webp',
+        url: 'https://huahua1229.github.io/open',
         description: '2026 年（第 14 届）泰迪杯数据挖掘挑战赛全国专科组三等奖，获奖作品《「秦直道」的路线规划》。',
-        techStack: ['/textures/gallery/deepseek_logo.png', '/textures/gallery/wps_logo.png', '/textures/gallery/pycharm_logo.png', '/textures/gallery/python_logo.png']
+        techStack: ['/open/textures/gallery/deepseek_logo.png', '/open/textures/gallery/wps_logo.png', '/open/textures/gallery/pycharm_logo.png', '/open/textures/gallery/python_logo.png']
     },
     {
         id: 'teddy-guangdong',
         title: '泰迪杯 · 省二等奖',
-        front: '/textures/gallery/teddy_guangdong.webp',
-        painted: '/textures/gallery/teddy_guangdong.webp',
-        url: 'https://huahua1229.github.io/Polaris',
+        front: '/open/textures/gallery/teddy_guangdong.webp',
+        painted: '/open/textures/gallery/teddy_guangdong.webp',
+        url: 'https://huahua1229.github.io/open',
         description: '同一作品《「秦直道」的路线规划》荣获广东省专科组二等奖。',
-        techStack: ['/textures/gallery/deepseek_logo.png', '/textures/gallery/wps_logo.png', '/textures/gallery/pycharm_logo.png', '/textures/gallery/python_logo.png']
+        techStack: ['/open/textures/gallery/deepseek_logo.png', '/open/textures/gallery/wps_logo.png', '/open/textures/gallery/pycharm_logo.png', '/open/textures/gallery/python_logo.png']
     },
     {
         id: 'polaris-site',
         title: 'POLARIS 个人小站',
-        front: '/textures/gallery/polaris_day.webp',
-        painted: '/textures/gallery/polaris_night.webp',
-        url: 'https://huahua1229.github.io/Polaris',
+        front: '/open/textures/gallery/polaris_day.webp',
+        painted: '/open/textures/gallery/polaris_night.webp',
+        url: 'https://huahua1229.github.io/open',
         description: '亲手搭建的个人网站：三栏布局、日夜模式、留言板、音乐库、相册、投稿系统，从零到上线。',
-        techStack: ['/textures/gallery/deepseek_logo.png', '/textures/gallery/wps_logo.png', '/textures/gallery/pycharm_logo.png', '/textures/gallery/python_logo.png']
+        techStack: ['/open/textures/gallery/deepseek_logo.png', '/open/textures/gallery/wps_logo.png', '/open/textures/gallery/pycharm_logo.png', '/open/textures/gallery/python_logo.png']
     },
 
     // ========== 生活照片墙（按时间顺序） ==========
-    { id: 'photo-01', title: '2026年的珠海跨年之旅', front: '/textures/gallery/gallery_photo_01.jpg', painted: '/textures/gallery/gallery_photo_01.jpg', url: '', description: '2026年的珠海跨年之旅', techStack: [] , poem: { text: '爆竹声中一岁除，春风送暖入屠苏', source: '王安石《元日》' } },
-    { id: 'photo-02', title: '大一国庆的梧桐山之旅', front: '/textures/gallery/gallery_photo_02.jpg', painted: '/textures/gallery/gallery_photo_02.jpg', url: '', description: '大一国庆的梧桐山之旅', techStack: [] , poem: { text: '会当凌绝顶，一览众山小', source: '杜甫《望岳》' } },
-    { id: 'photo-03', title: '临时起意的看日出', front: '/textures/gallery/gallery_photo_03.jpg', painted: '/textures/gallery/gallery_photo_03.jpg', url: '', description: '临时起意的看日出', techStack: [] , poem: { text: '日出江花红胜火，春来江水绿如蓝', source: '白居易《忆江南》' } },
-    { id: 'photo-04', title: '大学时期的工作证', front: '/textures/gallery/gallery_photo_04.jpg', painted: '/textures/gallery/gallery_photo_04.jpg', url: '', description: '大学时期的工作证', techStack: [] , poem: { text: '恰同学少年，风华正茂', source: '毛泽东《沁园春·长沙》' } },
-    { id: 'photo-05', title: '青志外联的初团建', front: '/textures/gallery/gallery_photo_05.jpg', painted: '/textures/gallery/gallery_photo_05.jpg', url: '', description: '青志外联的初团建', techStack: [] , poem: { text: '同是天涯沦落人，相逢何必曾相识', source: '白居易《琵琶行》' } },
-    { id: 'photo-06', title: '大学与新朋友聚餐', front: '/textures/gallery/gallery_photo_06.jpg', painted: '/textures/gallery/gallery_photo_06.jpg', url: '', description: '大学与新朋友聚餐', techStack: [] , poem: { text: '人生得意须尽欢，莫使金樽空对月', source: '李白《将进酒》' } },
-    { id: 'photo-07', title: '赚学分的成品作', front: '/textures/gallery/gallery_photo_07.jpg', painted: '/textures/gallery/gallery_photo_07.jpg', url: '', description: '赚学分的成品作', techStack: [] , poem: { text: '宝剑锋从磨砺出，梅花香自苦寒来', source: '《警世贤文》' } },
-    { id: 'photo-08', title: '企业参观和朋友的合照', front: '/textures/gallery/gallery_photo_08.jpg', painted: '/textures/gallery/gallery_photo_08.jpg', url: '', description: '企业参观和朋友的合照', techStack: [] , poem: { text: '三人行，必有我师焉', source: '《论语·述而》' } },
-    { id: 'photo-09', title: '高中时期的食品研究', front: '/textures/gallery/gallery_photo_09.jpg', painted: '/textures/gallery/gallery_photo_09.jpg', url: '', description: '高中时期的食品研究', techStack: [] , poem: { text: '人间有味是清欢', source: '苏轼《浣溪沙》' } },
-    { id: 'photo-10', title: '高中时期的食品研究', front: '/textures/gallery/gallery_photo_10.jpg', painted: '/textures/gallery/gallery_photo_10.jpg', url: '', description: '高中时期的食品研究', techStack: [] , poem: { text: '谁知盘中餐，粒粒皆辛苦', source: '李绅《悯农》' } },
-    { id: 'photo-11', title: '青志迎新晚会大合照', front: '/textures/gallery/gallery_photo_11.jpg', painted: '/textures/gallery/gallery_photo_11.jpg', url: '', description: '青志迎新晚会大合照', techStack: [] , poem: { text: '东风夜放花千树', source: '辛弃疾《青玉案·元夕》' } },
-    { id: 'photo-12', title: '高二班级大合照', front: '/textures/gallery/gallery_photo_12.jpg', painted: '/textures/gallery/gallery_photo_12.jpg', url: '', description: '高二班级大合照', techStack: [] , poem: { text: '桃李春风一杯酒，江湖夜雨十年灯', source: '黄庭坚《寄黄几复》' } },
-    { id: 'photo-13', title: '自行体会', front: '/textures/gallery/gallery_photo_13.jpg', painted: '/textures/gallery/gallery_photo_13.jpg', url: '', description: '自行体会', techStack: [] , poem: { text: '只可意会，不可言传', source: '《庄子·天道》' } },
-    { id: 'photo-14', title: '调一些酒', front: '/textures/gallery/gallery_photo_14.jpg', painted: '/textures/gallery/gallery_photo_14.jpg', url: '', description: '调一些酒', techStack: [] , poem: { text: '葡萄美酒夜光杯，欲饮琵琶马上催', source: '王翰《凉州词》' } },
-    { id: 'photo-15', title: '聚餐碰杯', front: '/textures/gallery/gallery_photo_15.jpg', painted: '/textures/gallery/gallery_photo_15.jpg', url: '', description: '聚餐碰杯', techStack: [] , poem: { text: '金樽清酒斗十千，玉盘珍羞直万钱', source: '李白《行路难》' } },
-    { id: 'photo-16', title: '高中假期的香港之旅', front: '/textures/gallery/gallery_photo_16.jpg', painted: '/textures/gallery/gallery_photo_16.jpg', url: '', description: '高中假期的香港之旅', techStack: [] , poem: { text: '长风破浪会有时，直挂云帆济沧海', source: '李白《行路难》' } },
-    { id: 'photo-17', title: '保佑保佑！', front: '/textures/gallery/gallery_photo_17.jpg', painted: '/textures/gallery/gallery_photo_17.jpg', url: '', description: '保佑保佑！', techStack: [] , poem: { text: '如月之恒，如日之升', source: '《诗经·小雅·天保》' } },
-    { id: 'photo-18', title: '夜骑之旅', front: '/textures/gallery/gallery_photo_18.jpg', painted: '/textures/gallery/gallery_photo_18.jpg', url: '', description: '夜骑之旅', techStack: [] , poem: { text: '春风得意马蹄疾，一日看尽长安花', source: '孟郊《登科后》' } },
-    { id: 'photo-19', title: '出发出发！', front: '/textures/gallery/gallery_photo_19.jpg', painted: '/textures/gallery/gallery_photo_19.jpg', url: '', description: '出发出发！', techStack: [] , poem: { text: '路漫漫其修远兮，吾将上下而求索', source: '屈原《离骚》' } },
-    { id: 'photo-20', title: '三剑客', front: '/textures/gallery/gallery_photo_20.jpg', painted: '/textures/gallery/gallery_photo_20.jpg', url: '', description: '三剑客', techStack: [] , poem: { text: '海内存知己，天涯若比邻', source: '王勃《送杜少府之任蜀州》' } },
+    { id: 'photo-01', title: '2026年的珠海跨年之旅', front: '/open/textures/gallery/gallery_photo_01.jpg', painted: '/open/textures/gallery/gallery_photo_01.jpg', url: '', description: '2026年的珠海跨年之旅', techStack: [] , poem: { text: '爆竹声中一岁除，春风送暖入屠苏', source: '王安石《元日》' } },
+    { id: 'photo-02', title: '大一国庆的梧桐山之旅', front: '/open/textures/gallery/gallery_photo_02.jpg', painted: '/open/textures/gallery/gallery_photo_02.jpg', url: '', description: '大一国庆的梧桐山之旅', techStack: [] , poem: { text: '会当凌绝顶，一览众山小', source: '杜甫《望岳》' } },
+    { id: 'photo-03', title: '临时起意的看日出', front: '/open/textures/gallery/gallery_photo_03.jpg', painted: '/open/textures/gallery/gallery_photo_03.jpg', url: '', description: '临时起意的看日出', techStack: [] , poem: { text: '日出江花红胜火，春来江水绿如蓝', source: '白居易《忆江南》' } },
+    { id: 'photo-04', title: '大学时期的工作证', front: '/open/textures/gallery/gallery_photo_04.jpg', painted: '/open/textures/gallery/gallery_photo_04.jpg', url: '', description: '大学时期的工作证', techStack: [] , poem: { text: '恰同学少年，风华正茂', source: '毛泽东《沁园春·长沙》' } },
+    { id: 'photo-05', title: '青志外联的初团建', front: '/open/textures/gallery/gallery_photo_05.jpg', painted: '/open/textures/gallery/gallery_photo_05.jpg', url: '', description: '青志外联的初团建', techStack: [] , poem: { text: '同是天涯沦落人，相逢何必曾相识', source: '白居易《琵琶行》' } },
+    { id: 'photo-06', title: '大学与新朋友聚餐', front: '/open/textures/gallery/gallery_photo_06.jpg', painted: '/open/textures/gallery/gallery_photo_06.jpg', url: '', description: '大学与新朋友聚餐', techStack: [] , poem: { text: '人生得意须尽欢，莫使金樽空对月', source: '李白《将进酒》' } },
+    { id: 'photo-07', title: '赚学分的成品作', front: '/open/textures/gallery/gallery_photo_07.jpg', painted: '/open/textures/gallery/gallery_photo_07.jpg', url: '', description: '赚学分的成品作', techStack: [] , poem: { text: '宝剑锋从磨砺出，梅花香自苦寒来', source: '《警世贤文》' } },
+    { id: 'photo-08', title: '企业参观和朋友的合照', front: '/open/textures/gallery/gallery_photo_08.jpg', painted: '/open/textures/gallery/gallery_photo_08.jpg', url: '', description: '企业参观和朋友的合照', techStack: [] , poem: { text: '三人行，必有我师焉', source: '《论语·述而》' } },
+    { id: 'photo-09', title: '高中时期的食品研究', front: '/open/textures/gallery/gallery_photo_09.jpg', painted: '/open/textures/gallery/gallery_photo_09.jpg', url: '', description: '高中时期的食品研究', techStack: [] , poem: { text: '人间有味是清欢', source: '苏轼《浣溪沙》' } },
+    { id: 'photo-10', title: '高中时期的食品研究', front: '/open/textures/gallery/gallery_photo_10.jpg', painted: '/open/textures/gallery/gallery_photo_10.jpg', url: '', description: '高中时期的食品研究', techStack: [] , poem: { text: '谁知盘中餐，粒粒皆辛苦', source: '李绅《悯农》' } },
+    { id: 'photo-11', title: '青志迎新晚会大合照', front: '/open/textures/gallery/gallery_photo_11.jpg', painted: '/open/textures/gallery/gallery_photo_11.jpg', url: '', description: '青志迎新晚会大合照', techStack: [] , poem: { text: '东风夜放花千树', source: '辛弃疾《青玉案·元夕》' } },
+    { id: 'photo-12', title: '高二班级大合照', front: '/open/textures/gallery/gallery_photo_12.jpg', painted: '/open/textures/gallery/gallery_photo_12.jpg', url: '', description: '高二班级大合照', techStack: [] , poem: { text: '桃李春风一杯酒，江湖夜雨十年灯', source: '黄庭坚《寄黄几复》' } },
+    { id: 'photo-13', title: '自行体会', front: '/open/textures/gallery/gallery_photo_13.jpg', painted: '/open/textures/gallery/gallery_photo_13.jpg', url: '', description: '自行体会', techStack: [] , poem: { text: '只可意会，不可言传', source: '《庄子·天道》' } },
+    { id: 'photo-14', title: '调一些酒', front: '/open/textures/gallery/gallery_photo_14.jpg', painted: '/open/textures/gallery/gallery_photo_14.jpg', url: '', description: '调一些酒', techStack: [] , poem: { text: '葡萄美酒夜光杯，欲饮琵琶马上催', source: '王翰《凉州词》' } },
+    { id: 'photo-15', title: '聚餐碰杯', front: '/open/textures/gallery/gallery_photo_15.jpg', painted: '/open/textures/gallery/gallery_photo_15.jpg', url: '', description: '聚餐碰杯', techStack: [] , poem: { text: '金樽清酒斗十千，玉盘珍羞直万钱', source: '李白《行路难》' } },
+    { id: 'photo-16', title: '高中假期的香港之旅', front: '/open/textures/gallery/gallery_photo_16.jpg', painted: '/open/textures/gallery/gallery_photo_16.jpg', url: '', description: '高中假期的香港之旅', techStack: [] , poem: { text: '长风破浪会有时，直挂云帆济沧海', source: '李白《行路难》' } },
+    { id: 'photo-17', title: '保佑保佑！', front: '/open/textures/gallery/gallery_photo_17.jpg', painted: '/open/textures/gallery/gallery_photo_17.jpg', url: '', description: '保佑保佑！', techStack: [] , poem: { text: '如月之恒，如日之升', source: '《诗经·小雅·天保》' } },
+    { id: 'photo-18', title: '夜骑之旅', front: '/open/textures/gallery/gallery_photo_18.jpg', painted: '/open/textures/gallery/gallery_photo_18.jpg', url: '', description: '夜骑之旅', techStack: [] , poem: { text: '春风得意马蹄疾，一日看尽长安花', source: '孟郊《登科后》' } },
+    { id: 'photo-19', title: '出发出发！', front: '/open/textures/gallery/gallery_photo_19.jpg', painted: '/open/textures/gallery/gallery_photo_19.jpg', url: '', description: '出发出发！', techStack: [] , poem: { text: '路漫漫其修远兮，吾将上下而求索', source: '屈原《离骚》' } },
+    { id: 'photo-20', title: '三剑客', front: '/open/textures/gallery/gallery_photo_20.jpg', painted: '/open/textures/gallery/gallery_photo_20.jpg', url: '', description: '三剑客', techStack: [] , poem: { text: '海内存知己，天涯若比邻', source: '王勃《送杜少府之任蜀州》' } },
 ];
 
 const PROJECT_COUNT = 10; // Keep the count for the infinite scroll feel
@@ -255,8 +255,8 @@ const GalleryRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
     const paintedTextures = useTexture(paintedUrls);
 
     // Load the universal back texture and the button texture conditionally
-    const backTextureRaw = useTexture(canHover ? '/textures/gallery/tylkartki_painted.webp' : '/textures/gallery/tylkartki.webp');
-    const overlayTextureRaw = useTexture(canHover ? '/textures/gallery/przyciskdotylukartki_painted.webp' : '/textures/gallery/przyciskdotylukartki.webp');
+    const backTextureRaw = useTexture(canHover ? '/open/textures/gallery/tylkartki_painted.webp' : '/open/textures/gallery/tylkartki.webp');
+    const overlayTextureRaw = useTexture(canHover ? '/open/textures/gallery/przyciskdotylukartki_painted.webp' : '/open/textures/gallery/przyciskdotylukartki.webp');
 
     // POLARIS 版：提升卡片纹理清晰度——开启各向异性过滤 + 高质量 mipmap，消除斜视/远景时的模糊
     useEffect(() => {
@@ -280,10 +280,10 @@ const GalleryRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
     const allLogos = useMemo(() => {
         // POLARIS 版：固定 4 个技术栈图标（DeepSeek / WPS / PyCharm / Python）
         return [
-            '/textures/gallery/deepseek_logo.png',
-            '/textures/gallery/wps_logo.png',
-            '/textures/gallery/pycharm_logo.png',
-            '/textures/gallery/python_logo.png'
+            '/open/textures/gallery/deepseek_logo.png',
+            '/open/textures/gallery/wps_logo.png',
+            '/open/textures/gallery/pycharm_logo.png',
+            '/open/textures/gallery/python_logo.png'
         ];
     }, []);
     
@@ -320,8 +320,8 @@ const GalleryRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
                 // POLARIS 版：PNG 图标无 painted 版本，原样返回
                 if (path.endsWith('.png')) return path;
                 const name = path.split('/').pop().replace('.webp', '');
-                if (name === 'csslogo') return '/textures/gallery/css3logo_painted.webp';
-                return `/textures/gallery/${name}_painted.webp`;
+                if (name === 'csslogo') return '/open/textures/gallery/css3logo_painted.webp';
+                return `/open/textures/gallery/${name}_painted.webp`;
             });
 
             return {
@@ -403,12 +403,12 @@ const GalleryRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
     });
 
     // --- GEOMETRY & MATERIALS ---
-    const floorTexture = useTexture('/textures/gallery/floor.webp');
-    const railingTexture = useTexture('/textures/gallery/railing.webp');
-    const housesTexture = useTexture('/textures/gallery/domki.webp');
-    const cityTexture = useTexture('/textures/gallery/miastotlo.webp');
-    const birdTexture = useTexture('/textures/gallery/bird_gray.webp');
-    const clothespinTexture = useTexture('/textures/gallery/klamerka.webp');
+    const floorTexture = useTexture('/open/textures/gallery/floor.webp');
+    const railingTexture = useTexture('/open/textures/gallery/railing.webp');
+    const housesTexture = useTexture('/open/textures/gallery/domki.webp');
+    const cityTexture = useTexture('/open/textures/gallery/miastotlo.webp');
+    const birdTexture = useTexture('/open/textures/gallery/bird_gray.webp');
+    const clothespinTexture = useTexture('/open/textures/gallery/klamerka.webp');
 
     useEffect(() => {
         if (floorTexture) {
@@ -442,7 +442,7 @@ const GalleryRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
         const thresholdMat = new THREE.MeshBasicMaterial({
             color: '#e0e0e0',
             map: (() => {
-                const t = new THREE.TextureLoader().load('/textures/corridor/texturadoprogow.webp');
+                const t = new THREE.TextureLoader().load('/open/textures/corridor/texturadoprogow.webp');
                 t.colorSpace = THREE.SRGBColorSpace;
                 t.wrapS = t.wrapT = THREE.RepeatWrapping;
                 t.repeat.set(15 / 2.524, 1);
@@ -490,7 +490,7 @@ const GalleryRoom = ({ showRoom, onReady, isExiting, isWarmup }) => {
             {!isWarmup && (
                 <PositionalAudio
                     ref={audioRef}
-                    url="/sounds/szummiasta.mp3"
+                    url="/open/sounds/szummiasta.mp3"
                     distanceModel="exponential"
                     refDistance={AUDIO_SETTINGS.distance}
                     rolloffFactor={AUDIO_SETTINGS.rolloff}
@@ -1223,7 +1223,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                         position={[0, 0, 0.01]}
                         fontSize={0.11}
                         color={btnHovered ? "#333333" : "#1c1c1c"}
-                        font="/fonts/SmileySans-Oblique.ttf"
+                        font="/open/fonts/SmileySans-Oblique.ttf"
                         anchorX="center"
                         anchorY="middle"
                         fillOpacity={0} // Start hidden
@@ -1270,7 +1270,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                         position={[0, 0.28, 0.01]} // 相对 detailsGroupRef 中心，更高
                         fontSize={0.10}
                         color="#1c1c1c"
-                        font="/fonts/SmileySans-Oblique.ttf"
+                        font="/open/fonts/SmileySans-Oblique.ttf"
                         anchorX="center"
                         anchorY="middle"
                         fillOpacity={0} // Start hidden
@@ -1284,7 +1284,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                         position={[0, 0.2, 0.01]} // 标题下方
                         fontSize={0.06}
                         color="#333333"
-                        font="/fonts/SmileySans-Oblique.ttf"
+                        font="/open/fonts/SmileySans-Oblique.ttf"
                         anchorX="center"
                         anchorY="top"
                         maxWidth={1.1} // 开始换行前的最大宽度
@@ -1310,7 +1310,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                             position={[0, 0.15, 0.01]}
                             fontSize={0.08}
                             color="#1c1c1c"
-                            font="/fonts/SmileySans-Oblique.ttf"
+                            font="/open/fonts/SmileySans-Oblique.ttf"
                             anchorX="center"
                             anchorY="middle"
                             fillOpacity={0} // Start hidden
@@ -1351,7 +1351,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                             position={[0, 0.14, 0.012]}
                             fontSize={0.095}
                             color="#4a3220"
-                            font="/fonts/SmileySans-Oblique.ttf"
+                            font="/open/fonts/SmileySans-Oblique.ttf"
                             anchorX="center"
                             anchorY="middle"
                             fillOpacity={0} // Start hidden
@@ -1364,7 +1364,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                             position={[0, -0.02, 0.012]}
                             fontSize={0.095}
                             color="#4a3220"
-                            font="/fonts/SmileySans-Oblique.ttf"
+                            font="/open/fonts/SmileySans-Oblique.ttf"
                             anchorX="center"
                             anchorY="middle"
                             fillOpacity={0} // Start hidden
@@ -1377,7 +1377,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                             position={[0, -0.2, 0.012]}
                             fontSize={0.06}
                             color="#6b4a2f"
-                            font="/fonts/SmileySans-Oblique.ttf"
+                            font="/open/fonts/SmileySans-Oblique.ttf"
                             anchorX="center"
                             anchorY="middle"
                             fillOpacity={0} // Start hidden
@@ -1406,7 +1406,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
                     position={[0, 0.7, 0]} // 这里只有前两个参数 [X, Y] 有意义
                     fontSize={0.20}
                     color="#1c1c1c"
-                    font="/fonts/SmileySans-Oblique.ttf"
+                    font="/open/fonts/SmileySans-Oblique.ttf"
                     anchorX="center"
                     anchorY="middle"
                     maxWidth={1.3}
@@ -1419,7 +1419,7 @@ const ProjectCard = memo(forwardRef(({ index, project, clothespinTexture, curren
 
                 <PositionalAudio
                     ref={paperAudioRef}
-                    url="/sounds/papersound.mp3"
+                    url="/open/sounds/papersound.mp3"
                     distanceModel="exponential"
                     rolloffFactor={GALLERY_INTERACTION_AUDIO_SETTINGS.rolloff}
                     refDistance={GALLERY_INTERACTION_AUDIO_SETTINGS.distance}

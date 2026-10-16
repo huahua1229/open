@@ -41,18 +41,18 @@ const DOOR_ALIGN_X = 1.2;
 
 // Door texture mapping - maps label to texture file
 const DOOR_TEXTURES = {
-    'THE GALLERY': '/textures/corridor/doors/drzwiprojekty.webp',
-    'THE STUDIO': '/textures/corridor/doors/studio_door_sketch.png',
-    'THE ABOUT': '/textures/corridor/doors/drzwiabout.webp',
-    "LET'S CONNECT": '/textures/corridor/doors/drzwikontakt.webp',
+    'THE GALLERY': '/open/textures/corridor/doors/drzwiprojekty.webp',
+    'THE STUDIO': '/open/textures/corridor/doors/studio_door_sketch.png',
+    'THE ABOUT': '/open/textures/corridor/doors/drzwiabout.webp',
+    "LET'S CONNECT": '/open/textures/corridor/doors/drzwikontakt.webp',
 };
 
 // Painted (colored) variants for brush-stroke reveal on hover
 const DOOR_PAINTED_TEXTURES = {
-    'THE GALLERY': '/textures/corridor/doors/drzwiprojekty_painted.webp',
-    'THE STUDIO': '/textures/corridor/doors/studio_door_painted.png',
-    'THE ABOUT': '/textures/corridor/doors/drzwiabout_painted.webp',
-    "LET'S CONNECT": '/textures/corridor/doors/drzwikontakt_painted.webp',
+    'THE GALLERY': '/open/textures/corridor/doors/drzwiprojekty_painted.webp',
+    'THE STUDIO': '/open/textures/corridor/doors/studio_door_painted.png',
+    'THE ABOUT': '/open/textures/corridor/doors/drzwiabout_painted.webp',
+    "LET'S CONNECT": '/open/textures/corridor/doors/drzwikontakt_painted.webp',
 };
 
 
@@ -189,7 +189,7 @@ const DoorSection = ({
     const currentTilt = useRef(0);
 
     // Load wall texture
-    const originalWallTexture = useTexture('/textures/corridor/wall_texture.webp');
+    const originalWallTexture = useTexture('/open/textures/corridor/wall_texture.webp');
 
     // Clone texture to have independent repeat settings (fixes scaling issues)
     const wallTexture = useMemo(() => {
@@ -216,14 +216,14 @@ const DoorSection = ({
 
     const doorPaintedTexturePath = DOOR_PAINTED_TEXTURES[label] || DOOR_PAINTED_TEXTURES['THE GALLERY'];
     const doorPaintedTexture = useTexture(isTouch ? dummyTex : doorPaintedTexturePath);
-    const frameTexture = useTexture('/textures/corridor/doors/ramkasingledoors.webp');
-    const handleTexture = useTexture('/textures/corridor/doors/klamkadodrzwi.webp');
-    const handlePaintedTexture = useTexture(isTouch ? dummyTex : '/textures/corridor/doors/klamkadodrzwi_painted.webp');
-    const doorBackTexture = useTexture('/textures/corridor/doors/backsingledoors.webp');
-    const arrowTexture = useTexture('/textures/corridor/strzalka.webp');
+    const frameTexture = useTexture('/open/textures/corridor/doors/ramkasingledoors.webp');
+    const handleTexture = useTexture('/open/textures/corridor/doors/klamkadodrzwi.webp');
+    const handlePaintedTexture = useTexture(isTouch ? dummyTex : '/open/textures/corridor/doors/klamkadodrzwi_painted.webp');
+    const doorBackTexture = useTexture('/open/textures/corridor/doors/backsingledoors.webp');
+    const arrowTexture = useTexture('/open/textures/corridor/strzalka.webp');
 
     // Baseboard texture for door sections (1582x94 px, aspect 16.83:1)
-    const baseboardTexture = useTexture('/textures/corridor/texturadoprogow.webp');
+    const baseboardTexture = useTexture('/open/textures/corridor/texturadoprogow.webp');
     baseboardTexture.wrapS = baseboardTexture.wrapT = THREE.RepeatWrapping;
     baseboardTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -937,7 +937,7 @@ const DoorSection = ({
     const handlePivotX = side === 'left' ? doorWidth * 0.25 : -doorWidth * 0.25;
 
     // Sign texture mapping - now uses a single empty sign texture
-    const signTextureUrl = '/textures/corridor/pustatabliczka.webp';
+    const signTextureUrl = '/open/textures/corridor/pustatabliczka.webp';
     const signLegacyRatio = 1.792; // 2752x1536
     const signHeight = 0.55;
     const signWidth = signHeight * signLegacyRatio;
@@ -1071,7 +1071,7 @@ const DoorSection = ({
                         {/* === DYNAMIC TEXT FOR SIGNS === */}
                         {label === 'THE GALLERY' && (
                             <Text
-                                font="/fonts/SmileySans-Oblique.ttf"
+                                font="/open/fonts/SmileySans-Oblique.ttf"
                                 fontSize={0.32}
                                 color="#111111"
                                 anchorX="center"
@@ -1083,7 +1083,7 @@ const DoorSection = ({
                         )}
                         {label === 'THE STUDIO' && (
                             <Text
-                                font="/fonts/SmileySans-Oblique.ttf"
+                                font="/open/fonts/SmileySans-Oblique.ttf"
                                 fontSize={0.32}
                                 color="#111111"
                                 anchorX="center"
@@ -1095,7 +1095,7 @@ const DoorSection = ({
                         )}
                         {label === 'THE ABOUT' && (
                             <Text
-                                font="/fonts/SmileySans-Oblique.ttf"
+                                font="/open/fonts/SmileySans-Oblique.ttf"
                                 fontSize={0.32}
                                 color="#111111"
                                 anchorX="center"
@@ -1107,7 +1107,7 @@ const DoorSection = ({
                         )}
                         {label === "LET'S CONNECT" && (
                             <Text
-                                font="/fonts/SmileySans-Oblique.ttf"
+                                font="/open/fonts/SmileySans-Oblique.ttf"
                                 fontSize={0.32}
                                 color="#111111"
                                 anchorX="center"
@@ -1232,7 +1232,7 @@ const DoorSection = ({
                 {/* SPATIAL AUDIO NODES (Attached slightly in front of the door) */}
                 <PositionalAudio
                     ref={hoverAudioRef}
-                    url="/sounds/uchyleniedrzwi.mp3"
+                    url="/open/sounds/uchyleniedrzwi.mp3"
                     distanceModel="exponential"
                     rolloffFactor={DOOR_AUDIO_SETTINGS.rolloff}
                     refDistance={DOOR_AUDIO_SETTINGS.distance}
@@ -1240,7 +1240,7 @@ const DoorSection = ({
                 />
                 <PositionalAudio
                     ref={openAudioRef}
-                    url="/sounds/otwarciedrzwi.mp3"
+                    url="/open/sounds/otwarciedrzwi.mp3"
                     distanceModel="exponential"
                     rolloffFactor={DOOR_AUDIO_SETTINGS.rolloff}
                     refDistance={DOOR_AUDIO_SETTINGS.distance}
@@ -1248,7 +1248,7 @@ const DoorSection = ({
                 />
                 <PositionalAudio
                     ref={closeAudioRef}
-                    url="/sounds/zamknieciedrzwi.mp3"
+                    url="/open/sounds/zamknieciedrzwi.mp3"
                     distanceModel="exponential"
                     rolloffFactor={DOOR_AUDIO_SETTINGS.rolloff}
                     refDistance={DOOR_AUDIO_SETTINGS.distance}

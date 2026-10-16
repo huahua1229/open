@@ -4,10 +4,10 @@ import { Text } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Local fonts for sketch-style typography (TTF format required by troika)
-const RUBIK_SCRIBBLE_URL = '/fonts/RubikScribble-Regular.ttf';
-const CABIN_SKETCH_URL = '/fonts/CabinSketch-Regular.ttf';
+const RUBIK_SCRIBBLE_URL = '/open/fonts/RubikScribble-Regular.ttf';
+const CABIN_SKETCH_URL = '/open/fonts/CabinSketch-Regular.ttf';
 // 中文字体（得意黑）—— 3D 场景内中文文案统一使用
-const SMILEY_URL = '/fonts/SmileySans-Oblique.ttf';
+const SMILEY_URL = '/open/fonts/SmileySans-Oblique.ttf';
 
 // Global flag - draw animation only happens ONCE per page load
 let hasPlayedDrawAnimation = false;

@@ -2,28 +2,28 @@
 
 @font-face {
     font-family: 'Cabin Sketch';
-    src: url('/fonts/CabinSketch-Bold.ttf') format('truetype');
+    src: url('/open/fonts/CabinSketch-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Cabin Sketch';
-    src: url('/fonts/CabinSketch-Regular.ttf') format('truetype');
+    src: url('/open/fonts/CabinSketch-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Fredericka the Great', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC';
-    src: url('/fonts/FrederickatheGreat-Regular.ttf') format('truetype');
+    src: url('/open/fonts/FrederickatheGreat-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Rubik Scribble';
-    src: url('/fonts/RubikScribble-Regular.ttf') format('truetype');
+    src: url('/open/fonts/RubikScribble-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -40,7 +40,7 @@
         left: -50%;
         width: 200%;
         height: 200%;
-        background: url('/textures/paper-texture.webp') center center;
+        background: url('/open/textures/paper-texture.webp') center center;
         background-size: cover;
         transform: rotate(90deg);
         z-index: -1;

@@ -9,7 +9,7 @@ import { useAchievements } from '../../../context/AchievementsContext';
 import { isTouchDevice } from '../../../utils/deviceDetect';
 
 // 中文字体（得意黑）—— 鸭子气泡等 3D 中文文案
-const FONT_URL = '/fonts/SmileySans-Oblique.ttf';
+const FONT_URL = '/open/fonts/SmileySans-Oblique.ttf';
 
 
 
@@ -54,34 +54,34 @@ const EntranceDoors = ({
     const isMobileDevice = typeof window !== 'undefined' && (isTouchDevice() || window.innerWidth < 1000);
     const dummyTex = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-    const frameTexture = useTexture('/textures/doors/frame_sketch.webp');
-    const doorLeftTexture = useTexture('/textures/doors/door_left_sketch.webp');
-    const doorRightTexture = useTexture('/textures/doors/door_right_sketch.webp');
+    const frameTexture = useTexture('/open/textures/doors/frame_sketch.webp');
+    const doorLeftTexture = useTexture('/open/textures/doors/door_left_sketch.webp');
+    const doorRightTexture = useTexture('/open/textures/doors/door_right_sketch.webp');
 
     // Mobile optimization: Don't load painted textures or handles on phones
-    const doorRightPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/textures/doors/door_right_painted.webp');
-    const doorLeftPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/textures/doors/door_left_painted.webp');
-    const handleLeftTexture = useTexture('/textures/doors/handle_left_sketch.webp');
-    const handleLeftPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/textures/doors/handle_left_painted.webp');
-    const handleRightTexture = useTexture('/textures/doors/handle_right_sketch.webp');
-    const handleRightPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/textures/doors/handle_right_painted.webp');
+    const doorRightPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/open/textures/doors/door_right_painted.webp');
+    const doorLeftPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/open/textures/doors/door_left_painted.webp');
+    const handleLeftTexture = useTexture('/open/textures/doors/handle_left_sketch.webp');
+    const handleLeftPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/open/textures/doors/handle_left_painted.webp');
+    const handleRightTexture = useTexture('/open/textures/doors/handle_right_sketch.webp');
+    const handleRightPaintedTexture = useTexture(isMobileDevice ? dummyTex : '/open/textures/doors/handle_right_painted.webp');
 
     // Dynamic textures for mobile
-    const doorBackTexture = useTexture(isMobileDevice ? '/textures/doors/door_back.webp' : '/textures/doors/door_back_left_sketch.webp');
-    const edgeTexture = useTexture(isMobileDevice ? '/textures/doors/pien_sketch.webp' : '/textures/doors/pien.webp');
+    const doorBackTexture = useTexture(isMobileDevice ? '/open/textures/doors/door_back.webp' : '/open/textures/doors/door_back_left_sketch.webp');
+    const edgeTexture = useTexture(isMobileDevice ? '/open/textures/doors/pien_sketch.webp' : '/open/textures/doors/pien.webp');
 
-    const bricksTexture = useTexture('/textures/entrance/wall_bricks_2.webp');
-    const stonePathTexture = useTexture('/textures/entrance/stone-path.webp');
-    // const catTexture = useTexture('/textures/entrance/cat_sketch.webp'); // Old side cat
-    const catFrontBodyTexture = useTexture('/textures/entrance/cat_front_body.webp');
-    const windowSketchTexture = useTexture('/textures/entrance/window_sketch.webp');
-    const avatarWindowTexture = useTexture('/textures/entrance/avatar_window.webp');
-    const treeTexture = useTexture('/textures/entrance/tree_sketch.webp');
-    const mouseTexture = useTexture('/textures/entrance/mouse_hanging.webp');
-    const potTexture = useTexture('/textures/entrance/pot_with_duck.webp');
-    const bugTexture = useTexture('/textures/entrance/bug_sketch.webp');
-    const inkSplashTexture = useTexture('/images/ink-splash.webp');
-    const speechBubbleTexture = useTexture('/textures/entrance/speech_bubble.webp');
+    const bricksTexture = useTexture('/open/textures/entrance/wall_bricks_2.webp');
+    const stonePathTexture = useTexture('/open/textures/entrance/stone-path.webp');
+    // const catTexture = useTexture('/open/textures/entrance/cat_sketch.webp'); // Old side cat
+    const catFrontBodyTexture = useTexture('/open/textures/entrance/cat_front_body.webp');
+    const windowSketchTexture = useTexture('/open/textures/entrance/window_sketch.webp');
+    const avatarWindowTexture = useTexture('/open/textures/entrance/avatar_window.webp');
+    const treeTexture = useTexture('/open/textures/entrance/tree_sketch.webp');
+    const mouseTexture = useTexture('/open/textures/entrance/mouse_hanging.webp');
+    const potTexture = useTexture('/open/textures/entrance/pot_with_duck.webp');
+    const bugTexture = useTexture('/open/textures/entrance/bug_sketch.webp');
+    const inkSplashTexture = useTexture('/open/images/ink-splash.webp');
+    const speechBubbleTexture = useTexture('/open/textures/entrance/speech_bubble.webp');
 
     // Cat Ref
     const leftPupilRef = useRef();
@@ -935,7 +935,7 @@ const EntranceDoors = ({
                 color="#1a1a1a"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/SmileySans-Oblique.ttf"
+                font="/open/fonts/SmileySans-Oblique.ttf"
                 outlineWidth={0.015}
                 outlineColor="#ffffff"
                 clipRect={[-1, -0.5, -1 + (clipProgress * 2.5), 0.5]}
