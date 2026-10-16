@@ -63,29 +63,56 @@ export const PLATFORM_CONFIG = {
 };
 
 // 每条内容对应的中文屏幕纹理（Polaris 版，画面与内容严格对应）
+// 双版本机制：X_sketch = 素描态（默认，纸白淡墨）；X_painted = 上色态（悬停才显色）
 const POLARIS_TEXTURES = {
-    'yt-001': '/textures/studio/polaris/polaris_yt001.png',
-    'yt-003': '/textures/studio/polaris/polaris_yt003.png',
-    'yt-004': '/textures/studio/polaris/polaris_yt004.png',
-    'yt-005': '/textures/studio/polaris/polaris_yt005.png',
-    'yt-006': '/textures/studio/polaris/polaris_yt006.png',
-    'yt-008': '/textures/studio/polaris/polaris_yt008.png',
-    'blog-001': '/textures/studio/polaris/polaris_blog001.png',
-    'blog-paper-teddy': '/textures/studio/polaris/polaris_blogpaper1.png',
-    'blog-paper-cumcm': '/textures/studio/polaris/polaris_blogpaper2.png',
-    'blog-005': '/textures/studio/polaris/polaris_blog005.png',
-    'web-examcrafts': '/textures/studio/polaris/polaris_webexamcrafts.png',
-    'web-runoob': '/textures/studio/polaris/polaris_webrunoob.png',
-    'web-w3school': '/textures/studio/polaris/polaris_webw3school.png',
-    'web-mdn': '/textures/studio/polaris/polaris_webmdn.png',
-    'tt-001': '/textures/studio/polaris/polaris_tt001.png',
-    'tt-002': '/textures/studio/polaris/polaris_tt002.png',
-    'tt-003': '/textures/studio/polaris/polaris_tt003.png',
-    'tt-004': '/textures/studio/polaris/polaris_tt004.png',
-    'tt-006': '/textures/studio/polaris/polaris_tt006.png',
-    'tt-007': '/textures/studio/polaris/polaris_tt007.png',
-    'tt-009': '/textures/studio/polaris/polaris_tt009.png',
-    'tt-012': '/textures/studio/polaris/polaris_tt012.png',
+    'yt-001': '/textures/studio/polaris/polaris_yt001_sketch.png',
+    'yt-003': '/textures/studio/polaris/polaris_yt003_sketch.png',
+    'yt-004': '/textures/studio/polaris/polaris_yt004_sketch.png',
+    'yt-005': '/textures/studio/polaris/polaris_yt005_sketch.png',
+    'yt-006': '/textures/studio/polaris/polaris_yt006_sketch.png',
+    'yt-008': '/textures/studio/polaris/polaris_yt008_sketch.png',
+    'blog-001': '/textures/studio/polaris/polaris_blog001_sketch.png',
+    'blog-paper-teddy': '/textures/studio/polaris/polaris_blogpaper1_sketch.png',
+    'blog-paper-cumcm': '/textures/studio/polaris/polaris_blogpaper2_sketch.png',
+    'blog-005': '/textures/studio/polaris/polaris_blog005_sketch.png',
+    'web-examcrafts': '/textures/studio/polaris/polaris_webexamcrafts_sketch.png',
+    'web-runoob': '/textures/studio/polaris/polaris_webrunoob_sketch.png',
+    'web-w3school': '/textures/studio/polaris/polaris_webw3school_sketch.png',
+    'web-mdn': '/textures/studio/polaris/polaris_webmdn_sketch.png',
+    'tt-001': '/textures/studio/polaris/polaris_tt001_sketch.png',
+    'tt-002': '/textures/studio/polaris/polaris_tt002_sketch.png',
+    'tt-003': '/textures/studio/polaris/polaris_tt003_sketch.png',
+    'tt-004': '/textures/studio/polaris/polaris_tt004_sketch.png',
+    'tt-006': '/textures/studio/polaris/polaris_tt006_sketch.png',
+    'tt-007': '/textures/studio/polaris/polaris_tt007_sketch.png',
+    'tt-009': '/textures/studio/polaris/polaris_tt009_sketch.png',
+    'tt-012': '/textures/studio/polaris/polaris_tt012_sketch.png',
+};
+
+// 上色态纹理（悬停时由 revealMaterial 显出）
+const POLARIS_TEXTURES_PAINTED = {
+    'yt-001': '/textures/studio/polaris/polaris_yt001_painted.png',
+    'yt-003': '/textures/studio/polaris/polaris_yt003_painted.png',
+    'yt-004': '/textures/studio/polaris/polaris_yt004_painted.png',
+    'yt-005': '/textures/studio/polaris/polaris_yt005_painted.png',
+    'yt-006': '/textures/studio/polaris/polaris_yt006_painted.png',
+    'yt-008': '/textures/studio/polaris/polaris_yt008_painted.png',
+    'blog-001': '/textures/studio/polaris/polaris_blog001_painted.png',
+    'blog-paper-teddy': '/textures/studio/polaris/polaris_blogpaper1_painted.png',
+    'blog-paper-cumcm': '/textures/studio/polaris/polaris_blogpaper2_painted.png',
+    'blog-005': '/textures/studio/polaris/polaris_blog005_painted.png',
+    'web-examcrafts': '/textures/studio/polaris/polaris_webexamcrafts_painted.png',
+    'web-runoob': '/textures/studio/polaris/polaris_webrunoob_painted.png',
+    'web-w3school': '/textures/studio/polaris/polaris_webw3school_painted.png',
+    'web-mdn': '/textures/studio/polaris/polaris_webmdn_painted.png',
+    'tt-001': '/textures/studio/polaris/polaris_tt001_painted.png',
+    'tt-002': '/textures/studio/polaris/polaris_tt002_painted.png',
+    'tt-003': '/textures/studio/polaris/polaris_tt003_painted.png',
+    'tt-004': '/textures/studio/polaris/polaris_tt004_painted.png',
+    'tt-006': '/textures/studio/polaris/polaris_tt006_painted.png',
+    'tt-007': '/textures/studio/polaris/polaris_tt007_painted.png',
+    'tt-009': '/textures/studio/polaris/polaris_tt009_painted.png',
+    'tt-012': '/textures/studio/polaris/polaris_tt012_painted.png',
 };
 
 // 跳转目标：项目/论文去 Polaris 小站；纯展示为空；视频类逐条指向对应主题的 B 站视频
@@ -381,12 +408,13 @@ const RAW_CONTENT_DATA = [
 ];
 
 export const CONTENT_DATA = RAW_CONTENT_DATA.map((item) => {
-    const polarisTex = POLARIS_TEXTURES[item.id];
+    const sketchTex = POLARIS_TEXTURES[item.id];
+    const paintedTex = POLARIS_TEXTURES_PAINTED[item.id];
     return {
         ...item,
-        // POLARIS 版：优先使用与内容对应的中文屏幕纹理
-        frontTexture: polarisTex || item.frontTexture,
-        paintedFrontTexture: polarisTex || item.paintedFrontTexture,
+        // 素描态默认显示；悬停时 revealMaterial 渐显上色态
+        frontTexture: sketchTex || item.frontTexture,
+        paintedFrontTexture: paintedTex || sketchTex || item.paintedFrontTexture,
     };
 });
 
