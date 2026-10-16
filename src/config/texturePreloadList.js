@@ -86,8 +86,8 @@ export const CORRIDOR_TEXTURES = [
     '/open/textures/corridor/szafkaprzodgora.webp',
     '/open/textures/corridor/rysuneknaobraz1.webp',
     '/open/textures/corridor/rysuneknaobrazek3.webp',
-    '/open/textures/corridor/chibi_girl.webp',
-    '/open/textures/corridor/chibi_girl_painted.webp',
+    '/open/textures/corridor/chibi_girl_v2.webp',
+    '/open/textures/corridor/chibi_girl_v2_painted.webp',
     // DoorSection extras
     '/open/textures/corridor/strzalka.webp',
     '/open/textures/corridor/doors/door_back.webp',
