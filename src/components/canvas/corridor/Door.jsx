@@ -209,7 +209,7 @@ const Door = ({
                     renderOrder={3}
                     depthOffset={-1}
                 >
-                    ▼
+                    ↓
                 </Text>
             </group>
 

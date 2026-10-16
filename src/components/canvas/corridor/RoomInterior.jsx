@@ -285,6 +285,7 @@ const RoomInterior = memo(({ label, showRoom, onReady, isExiting }) => {
                                 anchorY="middle"
                                 maxWidth={roomWidth * 0.8}
                                 textAlign="center"
+                                font="/fonts/SmileySans-Oblique.ttf"
                             >
                                 {ROOM_TITLES[label] || label}
                             </Text>
@@ -298,6 +299,7 @@ const RoomInterior = memo(({ label, showRoom, onReady, isExiting }) => {
                                 anchorY="middle"
                                 maxWidth={roomWidth * 0.7}
                                 textAlign="center"
+                                font="/fonts/SmileySans-Oblique.ttf"
                             >
                                 {SUBTITLES[label] || ''}
                             </Text>

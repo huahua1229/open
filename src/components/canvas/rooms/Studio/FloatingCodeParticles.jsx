@@ -45,12 +45,12 @@ const SYMBOLS = [
     { text: '←', size: 0.4, weight: 1 },
     { text: '×', size: 0.3, weight: 2 },
     { text: '•', size: 0.25, weight: 3 },
-    { text: '○', size: 0.3, weight: 2 },
+    { text: '〇', size: 0.3, weight: 2 },
 
     // Pixel-like patterns
-    { text: '▪▪\n▪', size: 0.25, weight: 2 },
-    { text: '▪ ▪\n ▪', size: 0.25, weight: 1 },
-    { text: '▪▪▪', size: 0.2, weight: 2 },
+    { text: '••\n•', size: 0.25, weight: 2 },
+    { text: '• •\n •', size: 0.25, weight: 1 },
+    { text: '•••', size: 0.2, weight: 2 },
 ];
 
 // Weighted random selection
