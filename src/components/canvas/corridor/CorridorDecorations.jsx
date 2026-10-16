@@ -406,11 +406,11 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             height: 2.5 / 1.785,
             y: 0.25,
             id: 'frame-3',
-            signature: "空画布！\n想挂你的作品吗？\n联系我！",
-            signatureX: 0,
-            signatureY: 0,
-            signatureSize: 0.12,
-            signatureColor: '#333333'
+            // chibi 少女竖版画（423x753），悬停显色
+            image: '/open/textures/corridor/chibi_girl.webp',
+            imagePainted: '/open/textures/corridor/chibi_girl_painted.webp',
+            imageWidth: 0.72,
+            imageHeight: 1.28,
         },
         {
             z: zOffset - 55,         // 在 About 与 Contact 之间（relZ -50 到 -60）
