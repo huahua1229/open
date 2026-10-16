@@ -55,11 +55,11 @@ export const CORRIDOR_TEXTURES = [
     '/textures/corridor/doors/klamkadodrzwi.webp',
     '/textures/corridor/doors/backsingledoors.webp',
     '/textures/corridor/doors/drzwiprojekty.webp',
-    '/textures/corridor/doors/drzwisocial.webp',
+    '/textures/corridor/doors/studio_door_sketch.png',
     '/textures/corridor/doors/drzwiabout.webp',
     '/textures/corridor/doors/drzwikontakt.webp',
     '/textures/corridor/doors/drzwiprojekty_painted.webp',
-    '/textures/corridor/doors/drzwisocial_painted.webp',
+    '/textures/corridor/doors/studio_door_painted.png',
     '/textures/corridor/doors/drzwiabout_painted.webp',
     '/textures/corridor/doors/drzwikontakt_painted.webp',
     // Signs

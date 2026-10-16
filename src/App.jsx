@@ -15,6 +15,17 @@ import ScreenReaderOverlay from './components/ui/ScreenReaderOverlay';
 import { useDocumentMeta } from './hooks/useDocumentMeta';
 import posthog from 'posthog-js';
 import { loadSanityData } from './hooks/useSanityData';
+import { EffectComposer, Bloom, Vignette, Noise } from '@react-three/postprocessing';
+import { BlendFunction } from 'postprocessing';
+
+// 手绘世界的柔光层：轻微 Bloom（高光泛光）+ 暗角聚焦 + 淡淡纸纹颗粒
+const SceneEffects = () => (
+  <EffectComposer multisampling={0}>
+    <Bloom intensity={0.35} luminanceThreshold={0.72} luminanceSmoothing={0.25} mipmapBlur />
+    <Vignette offset={0.28} darkness={0.42} />
+    <Noise premultiply blendFunction={BlendFunction.OVERLAY} opacity={0.12} />
+  </EffectComposer>
+);
 
 // Initialize PostHog
 posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
@@ -194,6 +205,9 @@ function AppContent() {
                 />
                 <Preload all />
               </Suspense>
+
+              {/* 后处理：柔光 + 暗角（低端设备关闭以保帧率） */}
+              {tier !== 'LOW' && <SceneEffects />}
             </Canvas>
           </div>
 

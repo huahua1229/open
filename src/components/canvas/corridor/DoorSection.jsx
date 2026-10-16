@@ -42,7 +42,7 @@ const DOOR_ALIGN_X = 1.2;
 // Door texture mapping - maps label to texture file
 const DOOR_TEXTURES = {
     'THE GALLERY': '/textures/corridor/doors/drzwiprojekty.webp',
-    'THE STUDIO': '/textures/corridor/doors/drzwisocial.webp',
+    'THE STUDIO': '/textures/corridor/doors/studio_door_sketch.png',
     'THE ABOUT': '/textures/corridor/doors/drzwiabout.webp',
     "LET'S CONNECT": '/textures/corridor/doors/drzwikontakt.webp',
 };
@@ -50,7 +50,7 @@ const DOOR_TEXTURES = {
 // Painted (colored) variants for brush-stroke reveal on hover
 const DOOR_PAINTED_TEXTURES = {
     'THE GALLERY': '/textures/corridor/doors/drzwiprojekty_painted.webp',
-    'THE STUDIO': '/textures/corridor/doors/drzwisocial_painted.webp',
+    'THE STUDIO': '/textures/corridor/doors/studio_door_painted.png',
     'THE ABOUT': '/textures/corridor/doors/drzwiabout_painted.webp',
     "LET'S CONNECT": '/textures/corridor/doors/drzwikontakt_painted.webp',
 };
@@ -221,11 +221,6 @@ const DoorSection = ({
     const handlePaintedTexture = useTexture(isTouch ? dummyTex : '/textures/corridor/doors/klamkadodrzwi_painted.webp');
     const doorBackTexture = useTexture('/textures/corridor/doors/backsingledoors.webp');
     const arrowTexture = useTexture('/textures/corridor/strzalka.webp');
-
-    // 社交平台图标纹理（THE STUDIO 门专用：抖音 / 微信 / 哔哩哔哩）
-    const iconDouyinTexture = useTexture('/textures/corridor/doors/icon_douyin.png');
-    const iconWechatTexture = useTexture('/textures/corridor/doors/icon_wechat.png');
-    const iconBiliTexture = useTexture('/textures/corridor/doors/icon_bilibili.png');
 
     // Baseboard texture for door sections (1582x94 px, aspect 16.83:1)
     const baseboardTexture = useTexture('/textures/corridor/texturadoprogow.webp');
@@ -1189,60 +1184,6 @@ const DoorSection = ({
                                 uProgress={0.0}
                             />
                         </mesh>
-
-                        {/* 社交平台图标贴片（THE STUDIO 门：抖音 / 微信 / 哔哩哔哩） */}
-                        {label === 'THE STUDIO' && (
-                            <group>
-                                {/* 微信（左上，原 Instagram 位置） */}
-                                <group position={[doorMeshX - 0.108, -0.2 + 0.87, 0.02]}>
-                                    <mesh position={[0, 0, -0.001]}>
-                                        <planeGeometry args={[0.52, 0.42]} />
-                                        <meshBasicMaterial color="#f5f0e6" />
-                                    </mesh>
-                                    <mesh>
-                                        <planeGeometry args={[0.46, 0.21]} />
-                                        <meshBasicMaterial color="#e0e0e0"
-                                            map={iconWechatTexture}
-                                            transparent={true}
-                                            alphaTest={0.05}
-                                            depthWrite={false}
-                                        />
-                                    </mesh>
-                                </group>
-                                {/* 抖音（右上，原 TikTok 位置） */}
-                                <group position={[doorMeshX + 0.088, -0.2 + 0.23, 0.02]}>
-                                    <mesh position={[0, 0, -0.001]}>
-                                        <planeGeometry args={[0.42, 0.38]} />
-                                        <meshBasicMaterial color="#f5f0e6" />
-                                    </mesh>
-                                    <mesh>
-                                        <planeGeometry args={[0.32, 0.32]} />
-                                        <meshBasicMaterial color="#e0e0e0"
-                                            map={iconDouyinTexture}
-                                            transparent={true}
-                                            alphaTest={0.05}
-                                            depthWrite={false}
-                                        />
-                                    </mesh>
-                                </group>
-                                {/* 哔哩哔哩（下方，原 YouTube 位置） */}
-                                <group position={[doorMeshX - 0.018, -0.2 - 0.62, 0.02]}>
-                                    <mesh position={[0, 0, -0.001]}>
-                                        <planeGeometry args={[0.52, 0.36]} />
-                                        <meshBasicMaterial color="#f5f0e6" />
-                                    </mesh>
-                                    <mesh>
-                                        <planeGeometry args={[0.30, 0.30]} />
-                                        <meshBasicMaterial color="#e0e0e0"
-                                            map={iconBiliTexture}
-                                            transparent={true}
-                                            alphaTest={0.05}
-                                            depthWrite={false}
-                                        />
-                                    </mesh>
-                                </group>
-                            </group>
-                        )}
 
                         {/* Door Back Texture */}
                         <mesh

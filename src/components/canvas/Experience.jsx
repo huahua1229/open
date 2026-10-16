@@ -8,6 +8,7 @@ import TeleportRoom from './corridor/TeleportRoom';
 import RoomWarmup from './corridor/RoomWarmup';
 import useInfiniteCamera from '../../hooks/useInfiniteCamera';
 import SignSystem from './entrance/SignSystem';
+import SakuraParticles from './corridor/SakuraParticles';
 import { useScene } from '../../context/SceneContext';
 
 // Positioning:
@@ -109,6 +110,9 @@ const Experience = ({ isLoaded, onSceneReady, performanceTier }) => {
 
             {/* === TELEPORT ROOM (renders room directly during teleportation) === */}
             <TeleportRoom />
+
+            {/* === 樱花花瓣飘落（全局氛围层） === */}
+            {!isLowTier && <SakuraParticles />}
         </>
     );
 };
