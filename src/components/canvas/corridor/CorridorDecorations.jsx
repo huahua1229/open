@@ -36,25 +36,18 @@ const PictureContent = ({ imagePath, imagePaintedPath, width, height, isPainted 
     const paintedTexture = useTexture(imagePaintedPath || imagePath);
 
     const materialRef = useRef();
+    const paintedMatRef = useRef();
 
     useEffect(() => {
         if (!materialRef.current || !imagePaintedPath) return;
 
-        if (isPainted) {
-            gsap.to(materialRef.current, {
-                uProgress: 1.0,
-                duration: 0.8,
-                ease: 'power2.out',
-                overwrite: true
-            });
-        } else {
-            gsap.to(materialRef.current, {
-                uProgress: 0.0,
-                duration: 0.5,
-                ease: 'power2.out',
-                overwrite: true
-            });
-        }
+        // 透明背景线稿：彩色层默认隐藏，悬停时淡入（擦除动画对透明线稿无意义）
+        gsap.to(paintedMatRef.current, {
+            opacity: isPainted ? 1.0 : 0.0,
+            duration: 0.6,
+            ease: 'power2.out',
+            overwrite: true
+        });
     }, [isPainted, imagePaintedPath]);
 
     return (
@@ -63,9 +56,12 @@ const PictureContent = ({ imagePath, imagePaintedPath, width, height, isPainted 
                 <mesh position={[0, 0, -0.001]}>
                     <planeGeometry args={[width, height]} />
                     <meshBasicMaterial color="#e0e0e0"
+                        ref={paintedMatRef}
                         map={paintedTexture}
                         transparent={true}
-                        alphaTest={0.5}
+                        opacity={0}
+                        depthWrite={false}
+                        alphaTest={0.05}
                         side={THREE.DoubleSide}
                         roughness={0.9}
                     />
@@ -409,8 +405,8 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             // chibi 少女竖版画（423x753），悬停显色
             image: '/open/textures/corridor/chibi_girl.webp',
             imagePainted: '/open/textures/corridor/chibi_girl_painted.webp',
-            imageWidth: 0.73,
-            imageHeight: 1.28,
+            imageWidth: 0.6,
+            imageHeight: 1.05,
         },
         {
             z: zOffset - 55,         // 在 About 与 Contact 之间（relZ -50 到 -60）
