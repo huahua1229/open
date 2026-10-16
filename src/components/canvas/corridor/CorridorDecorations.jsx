@@ -69,25 +69,14 @@ const PictureContent = ({ imagePath, imagePaintedPath, width, height, isPainted 
             )}
             <mesh position={[0, 0, 0]}>
                 <planeGeometry args={[width, height]} />
-                {imagePaintedPath ? (
-                    <revealMaterial color="#e0e0e0"
-                        ref={materialRef}
-                        map={texture}
-                        transparent={true}
-                        alphaTest={0.1}
-                        side={THREE.DoubleSide}
-                        roughness={0.9}
-                        uProgress={0.0}
-                    />
-                ) : (
-                    <meshBasicMaterial color="#e0e0e0"
-                        map={texture}
-                        transparent={true}
-                        alphaTest={0.1} // 关键：修复透明度（裁剪背景）
-                        side={THREE.DoubleSide}
-                        roughness={0.5}
-                    />
-                )}
+                {/* 与其他画框一致：普通材质正确处理透明背景（revealMaterial 擦除方案已弃用，显色改为彩色层淡入） */}
+                <meshBasicMaterial color="#e0e0e0"
+                    map={texture}
+                    transparent={true}
+                    alphaTest={0.1}
+                    side={THREE.DoubleSide}
+                    roughness={0.5}
+                />
             </mesh>
         </group>
     );
