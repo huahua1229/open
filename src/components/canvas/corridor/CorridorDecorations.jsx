@@ -392,8 +392,8 @@ const CorridorDecorations = ({ segmentLength, zOffset, corridorWidth = 4, corrid
             y: 0.25,
             id: 'frame-3',
             // chibi 少女竖版画（423x753），悬停显色
-            image: '/open/textures/corridor/chibi_girl_v2.webp',
-            imagePainted: '/open/textures/corridor/chibi_girl_v2_painted.webp',
+            image: '/open/textures/corridor/chibi_girl_v3.webp',
+            imagePainted: '/open/textures/corridor/chibi_girl_v3_painted.webp',
             imageWidth: 0.6,
             imageHeight: 1.05,
         },
