@@ -5,6 +5,7 @@ import * as THREE from 'three';
 
 import Preloader from './components/dom/Preloader';
 import PaperTransition from './components/dom/PaperTransition';
+import SceneErrorBoundary from './components/SceneErrorBoundary';
 import { AudioProvider, useAudio } from './context/AudioManager';
 import { initAudio } from './utils/audioManager';
 import { PerformanceProvider, usePerformance } from './context/PerformanceContext';
@@ -151,6 +152,26 @@ function AppContent() {
     initAudio();
   }, []);
 
+  // WebGL 上下文兜底：GPU 偶发异常（驱动重置 / 多开 WebGL 压力）时浏览器会丢上下文。
+  // 监听 canvas 的 contextlost 事件并 preventDefault（允许恢复），
+  // context 恢复后整页重载，重新初始化 3D 场景，避免停在白屏。
+  useEffect(() => {
+    const handleContextLost = (e) => {
+      e.preventDefault();
+      console.warn('[WebGL] 检测到 WebGL 上下文丢失，等待恢复后重载…');
+    };
+    const handleContextRestored = () => {
+      console.warn('[WebGL] WebGL 上下文已恢复，重载页面…');
+      window.location.reload();
+    };
+    document.addEventListener('webglcontextlost', handleContextLost, true);
+    document.addEventListener('webglcontextrestored', handleContextRestored, true);
+    return () => {
+      document.removeEventListener('webglcontextlost', handleContextLost, true);
+      document.removeEventListener('webglcontextrestored', handleContextRestored, true);
+    };
+  }, []);
+
   const handleSceneReady = useCallback(() => {
     requestAnimationFrame(() => {
       setSceneReady(true);
@@ -165,6 +186,7 @@ function AppContent() {
         <div className="app">
           {/* Full screen 3D Canvas */}
           <div className="canvas-wrapper">
+            <SceneErrorBoundary>
             <Canvas
               camera={{
                 position: [0, 0.2, 28],
@@ -177,7 +199,11 @@ function AppContent() {
                 alpha: false,
                 powerPreference: settings.powerPreference,
                 localClippingEnabled: true,
-                failIfMajorPerformanceCaveat: true
+                // 注意：failIfMajorPerformanceCaveat 已移除。
+                // 该参数为 true 时，浏览器一旦判定"主要性能受限"（GPU 偶发异常、软渲染环境）
+                // 会直接拒绝创建 WebGL 上下文，导致整个 3D 场景白屏且只能靠刷新碰运气恢复。
+                // 移除后即使性能受限也会退化为软件渲染继续出内容，配合上方错误边界 + context
+                // 丢失自动重载，偶发白屏不再出现。
               }}
               dpr={settings.dpr}
               shadows={settings.shadows}
@@ -207,6 +233,7 @@ function AppContent() {
               {/* 后处理：柔光 + 暗角（低端设备关闭以保帧率） */}
               {tier !== 'LOW' && <SceneEffects />}
             </Canvas>
+            </SceneErrorBoundary>
           </div>
 
           {/* Navigation UI - Hamburger, Map, Back, Audio */}
